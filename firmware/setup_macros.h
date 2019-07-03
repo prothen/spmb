@@ -2,9 +2,9 @@
 
 // IDENTIFIERS - OUTPUT
 #define BAUD_RATE 115200   
-#define PWM_LOW 1000.0
+#define PWM_LOW 900.0
 #define PWM_NEUTRAL 1500.0
-#define PWM_HIGH 2000.0
+#define PWM_HIGH 2100.0
 #define PWM_THRESHOLD 500.0
 #define PWM_CTRL_THRESHOLD 200.0                          // margin around center value for clearly defined logic states
 #define PWM_EMERGENCY_CTRL_SWITCH_LOW 1150.0              // if in CONTROL_SW mode acceleration or deceleration outside of these margins, switches immediately to CONTROL_REMOTE

@@ -8,21 +8,21 @@ namespace SPMB {
     class InterruptInput{ 
         public:
             std::string mLabel;
-            uint8_t mBit;
+            volatile uint8_t mBit;
             volatile uint8_t * mDataRegister; 
             volatile uint8_t * mDirectionRegister; 
             volatile uint8_t * mCfgRegister; 
             volatile uint8_t * mInterruptRegister;
 
-            long mTimer;
-            uint16_t mTimePeriod;
+            volatile long mTimer;
+            volatile uint16_t mTimePeriod;
 
-            bool mStatus;
-            bool mReceivedHigh;
-            bool mReceivedLow;
-            bool mNewInterruptAvailable;
+            volatile bool mStatus;
+            volatile bool mReceivedHigh;
+            volatile bool mReceivedLow;
+            volatile bool mNewInterruptAvailable;
 
-            uint8_t mErrorCount;
+            volatile uint8_t mErrorCount;
 
             InterruptInput();   
 
@@ -82,6 +82,9 @@ namespace SPMB {
             std::vector<InterruptGroup*> mInterruptGroups;
             void append_group(InterruptGroup * newInterruptGroup);
             void rotate_interrupts();
+            void arm_interrupts();
+
+            volatile uint16_t get_time_period(std::string label);
     };
 }
 

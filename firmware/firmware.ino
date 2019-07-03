@@ -3,37 +3,41 @@
 using namespace SPMB;
 
 InterruptManager interrupt_manager;
+InterruptGroup B;
+InterruptGroup C;    
+InterruptGroup D; 
 InterruptInput interrupt_steering;
 InterruptInput interrupt_velocity;
 InterruptInput interrupt_transmission;
 InterruptInput interrupt_differential_front;
 InterruptInput interrupt_differential_rear;
+
        
-void setup(){
+void setup(){  
     SetupManager SetupSPMB;
-    SetupSPMB.delay_start(5);
+    SetupSPMB.delay_start(1);
 
     /* Global Interrupt Objects */
     interrupt_steering.initialise("steering", BIT0, &DDRB, &PORTB, &PINB, &PCMSK0);        // PB0 - D08 - PCINT0 
     interrupt_velocity.initialise("velocity", BIT0, &DDRC, &PORTC, &PINC, &PCMSK1);        // PC0 - D14 - PCINT8
     interrupt_transmission.initialise("transmission", BIT4, &DDRD, &PORTD, &PIND, &PCMSK2);    // PD4 - D04 - PCINT20
-    interrupt_differential_front.initialise("differential_front", BIT5, &DDRD, &PORTD, &PIND, &PCMSK2);    // PD4 - D04 - PCINT20
-    interrupt_differential_rear.initialise("differential_rear", BIT6, &DDRD, &PORTD, &PIND, &PCMSK2);    // PD4 - D04 - PCINT20
-    InterruptGroup B;
-    InterruptGroup C;
-    InterruptGroup D; 
-    B.mInterrupts.push_back(&interrupt_steering);
-    C.mInterrupts.push_back(&interrupt_velocity);
-    D.mInterrupts.push_back(&interrupt_transmission);
-    D.mInterrupts.push_back(&interrupt_differential_front);
-    D.mInterrupts.push_back(&interrupt_differential_rear);
+    interrupt_differential_front.initialise("differentialfront", BIT5, &DDRD, &PORTD, &PIND, &PCMSK2);    // PD4 - D04 - PCINT20
+    interrupt_differential_rear.initialise("differentialrear", BIT6, &DDRD, &PORTD, &PIND, &PCMSK2);    // PD4 - D04 - PCINT20
+
+    B.append_interrupt(&interrupt_steering);
+    C.append_interrupt(&interrupt_velocity);
+    D.append_interrupt(&interrupt_transmission);
+    D.append_interrupt(&interrupt_differential_front);
+    D.append_interrupt(&interrupt_differential_rear);
     
     interrupt_manager.append_group(&B);
     interrupt_manager.append_group(&C);
     interrupt_manager.append_group(&D);
 
-    SetupSPMB.mInterruptManager = interrupt_manager;
+    SetupSPMB.mInterruptManager = &interrupt_manager;
     SetupSPMB.configure();
+
+    interrupt_manager.arm_interrupts();
 }
 
 //! The main loop algorithm
@@ -41,53 +45,79 @@ void setup(){
    The main logic loop algorithm
 */
 void loop()
-{   static long t0 = micros();
-    static long dt = micros();
-    t0 = micros();
-    delay(20);
-    interrupt_manager.rotate_interrupts();
-
-    // process interrupt measurements 
-    // go through all interrupt groups and if vaild and new time period then update
-    // else toggle and reset
-    // update ros time periods 
-    // select new time periods 
-    // lowpass filetr them
-    // actuate 
-    // publish 
-    // sleep
+{   
 
 
-    dt = micros() - t0;
-    //util::print("Main Loop active with loop time: ", false);
-    //util::print(dt, true);
-    
-    // switch interrupts if valid time period has been recorded for active interrupt in interrupt group 
-    // apply lowpass filter to read time periods 
-    // update external timer module
-    // update state machine and trigger switch in necessary (state machine should indicate current mode with led freq)
-    // sent ros message
-    // create spmb object
-    // init interruptpins from global in interrupt groups
-    // init interrupt groups in interruptManager
-    // init error_object
-    // init input manager (add error object link)
-    // define input manager
-    // update inputs
-    // DEFINE MAIN VARIABLES
-    // actuate 
+    while(1){
 
-    // Add Scheduler Object
-    
-    // while STATUS_BOOLEAN from state machine // is set to False by Error Object
-            // INPUT_H
-    //update_input_pwm_periods();
-            //actuate();
-            //ROS_publish_data();
-            //update_control_mode(); // TODO: Replace with state machine
-            //update_measurements();
-            //print_diagnosis();
-  
+        static volatile long t0 = micros();
+        static volatile long dt = micros();
+        volatile uint16_t   time_period_steering, 
+                            time_period_velocity, 
+                            time_period_transmission, 
+                            time_period_differential_rear, 
+                            time_period_differential_front;
+        t0 = micros();
+        delay(300);
+        interrupt_manager.rotate_interrupts();
+        time_period_steering = interrupt_manager.get_time_period("steering");
+        time_period_velocity = interrupt_manager.get_time_period("velocity");
+        time_period_transmission = interrupt_manager.get_time_period("transmission");
+        time_period_differential_front = interrupt_manager.get_time_period("differentialfront");
+        time_period_differential_rear = interrupt_manager.get_time_period("differentialrear");
+        //util::print()
+        /* util::print("Time Period Steering:", false);
+        util::print(time_period_steering, true);
+        util::print("Time Period Velocity:", false);
+        util::print(time_period_velocity, true);
+        util::print("Time Period Transmission:", false);
+        util::print(time_period_transmission, true);
+        util::print("Time Period Differential Front:", false);
+        util::print(time_period_differential_front, true);
+        util::print("Time Period Differential Rear:", false);
+        util::print(time_period_differential_rear, true); */
+
+        // process interrupt measurements 
+        // go through all interrupt groups and if vaild and new time period then update
+        // else toggle and reset
+        // update ros time periods 
+        // select new time periods 
+        // lowpass filetr them
+        // actuate 
+        // publish 
+        // sleep
+
+
+        dt = micros() - t0;
+        //util::print("Main Loop active with loop time: ", false);
+        //util::print(dt, true);
+        
+        // switch interrupts if valid time period has been recorded for active interrupt in interrupt group 
+        // apply lowpass filter to read time periods 
+        // update external timer module
+        // update state machine and trigger switch in necessary (state machine should indicate current mode with led freq)
+        // sent ros message
+        // create spmb object
+        // init interruptpins from global in interrupt groups
+        // init interrupt groups in interruptManager
+        // init error_object
+        // init input manager (add error object link)
+        // define input manager
+        // update inputs
+        // DEFINE MAIN VARIABLES
+        // actuate 
+
+        // Add Scheduler Object
+        
+        // while STATUS_BOOLEAN from state machine // is set to False by Error Object
+                // INPUT_H
+        //update_input_pwm_periods();
+                //actuate();
+                //ROS_publish_data();
+                //update_control_mode(); // TODO: Replace with state machine
+                //update_measurements();
+                //print_diagnosis();
+    }    
     // TODO: limit loop time to 100 Hz 
 }
 // scheduler using interrut_manager:

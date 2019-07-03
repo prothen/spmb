@@ -14,6 +14,11 @@ namespace SPMB{
         */
         void print_binary(uint8_t binary_number);
         
+        /* 
+        Print std::string
+        */
+        void print(std::string text_in, bool new_line);
+
         /*
         Print text
         */
@@ -23,6 +28,11 @@ namespace SPMB{
         Print number int
         */
         void print(int number, bool new_line);
+
+        /*
+        Print number int
+        */
+        void print(uint16_t number, bool new_line);
 
         /*
         Print number long

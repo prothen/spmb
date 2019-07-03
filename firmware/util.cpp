@@ -12,7 +12,21 @@ namespace SPMB{
     }
     #endif /* DIAGNOSIS */
     } 
-            
+
+    /*
+        Print text
+    */
+    void util::print(std::string text_in, bool new_line) {
+    #if DIAGNOSIS
+        const char * text = text_in.c_str();
+        Serial.print(text);
+        if (new_line){
+            Serial.println("");
+        }
+        else{;}
+    #endif /* DIAGNOSIS */
+    }       
+    
     /*
         Print text
     */
@@ -36,7 +50,22 @@ namespace SPMB{
         }
         else{;}
     #endif /* DIAGNOSIS */
+    }    
+    
+    /*
+        Print number int
+    */
+    void util::print(volatile uint16_t number, bool new_line) {
+    #if DIAGNOSIS
+        Serial.print(number);
+        if (new_line){
+            Serial.println("");
+        }
+        else{;}
+    #endif /* DIAGNOSIS */
     }
+
+
     /*
         Print number long
     */
@@ -135,9 +164,13 @@ namespace SPMB{
 
     boolean util::IS_VALID(volatile uint16_t &period) {
         if ((PWM_LOW <= period) && (period <= PWM_HIGH)) {
+            //util::print("            is valid time period: ", false);
+            //util::print(period, true);
             return true;
         }
         else{ 
+            //util::print("            is NOT valid time period: ", false);
+            //util::print(period, true);
             return false;
         }
     }
