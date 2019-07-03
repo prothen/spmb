@@ -18,6 +18,8 @@ namespace SPMB{
                                         volatile uint8_t * interrupt_register_) {
         mLabel = labelInput_;
         mBit = bit_;
+        util::print("bit entered",false);
+        util::print(mBit,true);
         mDirectionRegister = direction_register_;
         mCfgRegister = configuration_register_; 
         mDataRegister = data_register_,
@@ -50,8 +52,7 @@ namespace SPMB{
      * Disarms the Pin for Pin Change Interrupts
      */
     void InterruptInput::disarm_interrupt(){
-        *mInterruptRegister &= ~mBit;
-        mStatus = false;
+        *mInterruptRegister = 0;//(*mInterruptRegister)& (~mBit);
 
         util::print("InterruptInput: Disarmed for ", false);
         util::print(mLabel.c_str(), true); 
@@ -63,8 +64,9 @@ namespace SPMB{
      * Arms the Pin for Pin Change Interrupts
      */
     void InterruptInput::arm_interrupt(){
+        util::print("bit ", false);
+        util::print(mBit, true);
         *mInterruptRegister |= mBit;
-        mStatus = true;
 
         util::print("InterruptInput: Armed for ", false);
         util::print(mLabel.c_str(), true); 
@@ -125,21 +127,25 @@ namespace SPMB{
 
     void InterruptGroup::rotate_interrupts(){
         if (util::IS_VALID((**mInterruptActive).mTimePeriod) && (**mInterruptActive).mNewInterruptAvailable) {
-            util::print("Disable successfully: ", true);
-            util::print((**mInterruptActive).mLabel, true);
-            //(**mInterruptActive).disarm_interrupt();
+            //util::print("Disable Interrupt successfully: ", false);
+            //util::print((**mInterruptActive).mLabel, true);
+            (**mInterruptActive).disarm_interrupt();
             
             if (mInterrupts.size() > 1) {
+                //util::print("Start rotating: ", true);
                 std::vector<InterruptInput*>::iterator tmp_root_pointer = mInterruptActive;
-                while (!(**mInterruptActive).mStatus){
+                while ((mInterruptActive == tmp_root_pointer) || (!(**mInterruptActive).mStatus)){
+                    //util::print("status good, check next element: ", true);
+                    //util::print((**mInterruptActive).mLabel, true);
                     if (mInterruptActive != mInterrupts.end()){
                         mInterruptActive++;
+                        //util::print("end not reached ", true);
                     } else{
                         mInterruptActive = mInterrupts.begin();
+                        //util::print("end reached ", true);
                     }
-                    if (mInterruptActive == tmp_root_pointer){
-                        break; // keep the same pointer, we searched all available interrupts unsuccessfully
-                    } else{;} // prepare new interrupt and reset conditions
+
+                    //util::print((**mInterruptActive).mLabel, true);
                 }
                 
             } else{;} // keep the same Interrupt
@@ -148,9 +154,7 @@ namespace SPMB{
             (**mInterruptActive).mErrorCount++;
             //util::print("FAILED fetching period: ", false);
             //util::print((**mInterruptActive).mLabel, true);
-        }
-        util::print("Disable: ", true);
-            
+        } 
         //util::print("Enable successfully: ", false);
         //util::print((**mInterruptActive).mLabel, true);
         (**mInterruptActive).arm_interrupt();
@@ -201,10 +205,10 @@ namespace SPMB{
 
     /* */
     void InterruptManager::rotate_interrupts(){
-        util::print("    start rotating", true);
+        //util::print("    start rotating", true);
         int i = 0;
         for(std::vector<InterruptGroup*>::iterator it = mInterruptGroups.begin(); it != mInterruptGroups.end(); it++){
-            util::print("        ... rotating ", false);
+            //util::print("        ... rotating ", false);
             util::print(i, true);
             i++;
             (**it).rotate_interrupts();

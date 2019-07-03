@@ -66,7 +66,7 @@ void loop()
         time_period_differential_front = interrupt_manager.get_time_period("differentialfront");
         time_period_differential_rear = interrupt_manager.get_time_period("differentialrear");
         //util::print()
-        /* util::print("Time Period Steering:", false);
+        util::print("Time Period Steering:", false);
         util::print(time_period_steering, true);
         util::print("Time Period Velocity:", false);
         util::print(time_period_velocity, true);
@@ -75,7 +75,7 @@ void loop()
         util::print("Time Period Differential Front:", false);
         util::print(time_period_differential_front, true);
         util::print("Time Period Differential Rear:", false);
-        util::print(time_period_differential_rear, true); */
+        util::print(time_period_differential_rear, true);
 
         // process interrupt measurements 
         // go through all interrupt groups and if vaild and new time period then update
