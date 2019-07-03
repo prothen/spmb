@@ -102,7 +102,7 @@ namespace SPMB{
         if (util::IS_VALID((**mInterruptActive).mTimePeriod) && (**mInterruptActive).mNewInterruptAvailable) {
             if (mInterrupts.size() > 1) {
                 std::vector<InterruptInput*>::iterator tmp_root_pointer = mInterruptActive;
-                while (!(**mInterruptActive).mStatus){
+                while (!(**mInterruptActive).mStatus && mInterruptActive == tmp_root_pointer){
                     if (mInterruptActive != mInterrupts.end()){
                         mInterruptActive++;
                     } else{
