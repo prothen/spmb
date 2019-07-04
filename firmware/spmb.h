@@ -1,4 +1,5 @@
 #pragma once
+
 #include <stdint.h>
 #include <avr/interrupt.h>
 
@@ -7,7 +8,6 @@
 #include <vector>
 #include <string>
 
-#include "setup_config.h"
 #include "setup_macros.h"
 #include "cim.h"
 #include "setup.h"

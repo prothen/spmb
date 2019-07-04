@@ -4,7 +4,6 @@
 
 /* Custom Interrupt Class */
 namespace SPMB {
-    #define ms2us 1000.
     class InterruptInput{ 
         public:
             std::string mLabel;
@@ -16,6 +15,7 @@ namespace SPMB {
 
             volatile long mTimer;
             volatile uint16_t mTimePeriod;
+            volatile uint16_t mTimePeriodDefault;
 
             volatile bool mStatus;
             volatile bool mReceivedHigh;
@@ -30,6 +30,7 @@ namespace SPMB {
                 Parse register arguments to member variables
             */
             void initialise(std::string labelInput_,
+                            uint16_t DefaultTimePeriod_,
                             uint8_t BitInput_,
                             volatile    uint8_t * DirectionRegister_,
                             volatile    uint8_t * CfgRegister_,
@@ -56,6 +57,11 @@ namespace SPMB {
             */
             void update_timer();
 
+            /*
+                Checks whether to reenable or to disable a interrupt with a certain error trigger count
+            */
+            void switch_error_status();
+
             /* 
                 Reset Interrupt 
             */
@@ -67,8 +73,10 @@ namespace SPMB {
     */
     class InterruptGroup{
         public:
+            InterruptGroup();
+            volatile uint8_t mIdx;
             std::vector<InterruptInput*> mInterrupts;
-            std::vector<InterruptInput*>::iterator mInterruptActive;
+            InterruptInput* mInterruptActive;
             void append_interrupt(InterruptInput * NewInterruptInput);
             void update_timer();
             void rotate_interrupts();
@@ -84,15 +92,6 @@ namespace SPMB {
             void rotate_interrupts();
             void arm_interrupts();
 
-            volatile uint16_t get_time_period(std::string label);
+            bool get_time_period(std::string label, volatile uint16_t &time_period);
     };
 }
-
-/*
-// Port register, shows value
-// Direction register high (output) or low (input)
-// Configuration register input: high (pull_up) or low (no pull_up)
-            // output: high(writes high) low (writes low)
-            // writing to mDATARegister (PINxn) toggles mCfgRegister (PORTxn)
-
-*/

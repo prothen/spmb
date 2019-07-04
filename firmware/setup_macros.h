@@ -1,52 +1,46 @@
 #pragma once
 
+#include "spmb.h"
+
+
+//! Parameter definition for build process
+
+/*!
+   DEFINE MACROS
+*/
+// FLASH CONFIGURATION                  // Serial print-outs INACTIVE, ACTIVE [0,1]
+#define ROS_ACTIVE 0                    // include ros publisher in build
+#define MEASUREMENT 0                   // Activate current and voltage measurement
+#define DIAGNOSIS 1                     // Allow serial-prints (only in combination with ROS_ACTIVE 0)
+// -------------------------------------------------------------------------------
+
+#define s2ms 1.e3
+#define s2us 1.e6
+#define ms2s 1.e-3
+#define us2s 1.e-6
+#define ms2us 1.e3
+#define us2ms 1.e-3
+
 // IDENTIFIERS - OUTPUT
 #define BAUD_RATE 115200   
-#define PWM_LOW 900.0
-#define PWM_NEUTRAL 1500.0
-#define PWM_HIGH 2100.0
-#define PWM_THRESHOLD 500.0
-#define PWM_CTRL_THRESHOLD 200.0                          // margin around center value for clearly defined logic states
-#define PWM_EMERGENCY_CTRL_SWITCH_LOW 1150.0              // if in CONTROL_SW mode acceleration or deceleration outside of these margins, switches immediately to CONTROL_REMOTE
-#define PWM_EMERGENCY_CTRL_SWITCH_HIGH 1850.0
-#define PWM_EXTERNAL_MIN_TICK 204.0 // 1ms --> 1/20 --> 0.05
+#define PWM_LOW 1000
+#define PWM_NEUTRAL 1500
+#define PWM_HIGH 2000
+#define PWM_LOW_TH 900
+#define PWM_HIGH_TH 2100
+
+#define PWM_EXTERNAL_MIN_TICK 204.0  // 1ms --> 1/20 --> 0.05
 #define PWM_EXTERNAL_MAX_TICK 410.0
 #define PWM_EXTERNAL_RES 4096.0
-//define PWM_INTERNAL2INTERAL //40,9-82
 
 // TIMER PERIODS
-#define T_pub 25  // [T_pub] = s 10E-3
-#define T_ctrl 1000  // [T_pub] = s 10E-3 
-#define T_idle_interrupt 3000  // [T_pub] = s 10E-3
-#define T_out 25  // [T_pub] = s 10E-3
-#define T_remote_idle 1000  // [T_remote_idle] = s 10E-3
-#define T_sw_idle 1000  // [T_remote_idle] = s 10E-3
-#define T_diag 100   // [T_diag] = s 10E-3  
-#define T_sense 1000// [T_led] = s 10E-3
-#define T_alarm 1000// [T_led] = s 10E-3
+#define T_loop_rate (1.f / 10.f)  // in seconds
 
-// IDENTIFIERS - INPUT
-//adc -- voltage
-#define ADC_VOLTAGE 0x10
-#define ADC_BIT_RES 1024.0
-#define ADC_GAIN 4.2082         // 13.3/3.3
-#define ADC_REF 5.0               //
-#define POWER_SUPPLY_VOLTAGE 20 // MAX ADC VALUE
-
-//adc -- voltage
-#define ADC_CURRENT 0x10
-
-// alarm
-#define ADC_PIN 0x10            // Port B PB4, di12
-#define F_ALARM 4000            // Hz
-#define T_ALARM1 100            // ms
-#define T_ALARM2 500            // ms
-#define T_ALARM3 1000           // ms
-#define F_IO 16000000           // Hz
-#define Prescaler 32            //
-#define ALARM_TICK_COUNT 163 //                            // (10bit)
-#define VALUE_IS(PINX,PINn) ((PINX&PINn)==PINn)
-
+// SAFETY PERIODS
+#define T_interrupt_error_switch_off .3f  // in seconds
+#define T_interrupt_error_switch_on 5.f  // in seconds
+#define n_interrupt_error_switch_off uint8_t(T_interrupt_error_switch_off / T_loop_rate)
+#define n_interrupt_error_switch_on uint8_t(T_interrupt_error_switch_on / T_loop_rate )
 
 // BIT MASK
 #define BIT0 1
@@ -57,10 +51,3 @@
 #define BIT5 32
 #define BIT6 64
 #define BIT7 128
-
-// INPUT PINS - DIGITAL         //           // (PCINT)      // timer        //common interrupt vecor       -- see setup() pin definition for interrupts
-#define INP_STEER 17            // A3        // (11)         // ti 1         //2
-#define INP_VEL 8               // PB0       // (0)          // ti 2         //1
-#define INP_TRANS 7             // PD7       // (23)         // ti 3         //3
-#define INP_DIFF_F 4            // PD4       // (20)         // ti 4         //3
-#define INP_DIFF_R 2            // PD2       // (18)         // ti 5         //3

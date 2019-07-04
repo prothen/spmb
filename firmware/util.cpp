@@ -26,7 +26,7 @@ namespace SPMB{
         else{;}
     #endif /* DIAGNOSIS */
     }       
-    
+
     /*
         Print text
     */
@@ -150,27 +150,11 @@ namespace SPMB{
             return uint16_t( (input/100.0)*float(PWM_NEUTRAL-PWM_LOW) + PWM_NEUTRAL );
     }
 
-    /*
-    saturate read pwm to keep period in range [1,2] ms and frequency 50 Hs with T=20ms
-    */
-    void util::IS_VALID(volatile uint16_t &period, volatile boolean &valid) {
-        if ((PWM_LOW < period) && (period <= PWM_HIGH)) {
-            valid = true;
-        }
-        else{ 
-            valid = false;
-        }
-    }
-
     boolean util::IS_VALID(volatile uint16_t &period) {
-        if ((PWM_LOW <= period) && (period <= PWM_HIGH)) {
-            //util::print("            is valid time period: ", false);
-            //util::print(period, true);
+        if ((PWM_LOW_TH <= period) && (period <= PWM_HIGH_TH)) {
             return true;
         }
         else{ 
-            //util::print("            is NOT valid time period: ", false);
-            //util::print(period, true);
             return false;
         }
     }

@@ -11,6 +11,7 @@ namespace SPMB{
         // reset all configuration registers
         util::print("Setup: MCUCR - ", false);
         util::print_binary(MCUCR);
+
         DDRB &= 0x00;
         DDRC &= 0x00;
         DDRD &= 0x00;
@@ -29,10 +30,12 @@ namespace SPMB{
     }
 
     void SetupManager::configure(){
+        cli();
         util::print("########################################", true);
         util::print("Setup: Starting configuration:", true);
         _common();
         _configure_interrupts();
+        sei();
         
     }
     void SetupManager::delay_start(int seconds_to_wait){
