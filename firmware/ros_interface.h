@@ -2,14 +2,11 @@
 
 #include "spmb.h"
 
-
 namespace SPMB {
-    class RosInterface{
+    class ROSInterface{
         public:
-            //create node
-            //create publisher
-            //create subscriber
-            //create callbacks and messages 
-    }
-
+            util::control signals;
+            void cb_request_(spmbv2::request data);
+            // parse to control struct 
+    };
 }
