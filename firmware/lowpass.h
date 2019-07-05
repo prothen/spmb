@@ -2,20 +2,23 @@
 
 #include "spmb.h"
 
-namespace SMPB{
-    typedef struct element {
-        float value;
-        float time_period;
-        float timestamp;
-    };
+namespace SPMB{
 
-    #define MS_SCALE 1000000.
+    template <typename T>
+    struct element{
+        T value;
+    } ;
+
+    template <typename T>
     class LowPass{	
         public:
-            std::vector<element> mStates;
-            
-            void filter (float *);
+            uint16_t time_period;
+            long timestamp;
+            std::vector<element<T>> mStates;
 
-            LowPass(uint8_t, float * time_constant);
+            void filter (T *);
+
+            LowPass(uint8_t, float time_constant);
     };
+
 }
