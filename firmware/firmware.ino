@@ -63,40 +63,15 @@ void loop()
 
     while(1){
         // use state machine and run loop while sm.alive()
-        // define these timer placeholders as array in state machine
-        // process interrupt measurements 
-        // go through all interrupt groups and if vaild and new time period then update
-        // else toggle and reset
-        // update ros time periods 
-        // select new time periods 
-        // lowpass filetr them
-        // actuate 
-        // publish 
-        // sleep
     }    
 }
 
 ISR(PCINT0_vect) { 
-    (*interrupt_manager.mInterruptGroups[0]).update_timer();
+    interrupt_manager.mInterruptGroups[0]->update_timer();
 }
 ISR(PCINT1_vect) {
-    (*interrupt_manager.mInterruptGroups[1]).update_timer();
+    interrupt_manager.mInterruptGroups[1]->update_timer();
 }
 ISR(PCINT2_vect) {
-    (*interrupt_manager.mInterruptGroups[2]).update_timer();
+    interrupt_manager.mInterruptGroups[2]->update_timer();
 }
-
-
-/* 
-    util::print("Time Period Steering: ", false);
-    util::print(time_period_steering, true);
-
-    util::print("Time Period Velocity: ", false);
-    util::print(time_period_velocity, true);
-    util::print("Time Period Transmission: ", false);
-    util::print(time_period_transmission, true);
-    util::print("Time Period Differential Front: ", false);
-    util::print(time_period_differential_front, true);
-    util::print("Time Period Differential Rear: ", false);
-    util::print(time_period_differential_rear, true);
-*/
