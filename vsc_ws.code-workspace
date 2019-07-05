@@ -5,6 +5,9 @@
         },
         {
             "path": "/home/flip/workspaces/itrl/trx/_backup_spmb/spmb_source"
+        },
+        {
+            "path": "/home/flip/Arduino/libraries"
         }
     ],
     "settings": {
