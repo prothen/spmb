@@ -2,6 +2,12 @@
 
 using namespace SPMB;
 
+StateMachine sm;
+
+ROSInterface rosi;
+
+void cb_request(const spmbv2::request& msg){util::print(msg.steering, false);}
+
 InterruptManager interrupt_manager;
 InterruptGroup B;
 InterruptGroup C;    
@@ -33,11 +39,10 @@ void setup(){
     interrupt_manager.append_group(&B);
     interrupt_manager.append_group(&C);
     interrupt_manager.append_group(&D);
-
-    SetupSPMB.mInterruptManager = &interrupt_manager;
-    SetupSPMB.configure();
+    SetupSPMB.configure(&interrupt_manager);
 
     interrupt_manager.arm_interrupts();
+
 }
 
 //! The main loop algorithm
@@ -46,52 +51,19 @@ void setup(){
 */
 
 void loop()
-{   
-    static volatile long t0 = micros();
-    static volatile long dt = micros();
+{  
+    // setup ros
+    spmbv2::actuated msg_actuated;
+    spmbv2::request msg_request;
+    ros::NodeHandle_<ArduinoHardware, 1, 1, 240, 240> Nh;
+    ros::Publisher pub("actuated", &msg_actuated);
+    ros::Subscriber<spmbv2::request> sub("request", &cb_request);
+
+    //rosi.configure(&nh, &sub, &pub);
+
     while(1){
-
+        // use state machine and run loop while sm.alive()
         // define these timer placeholders as array in state machine
-        volatile uint16_t   time_period_steering, 
-                            time_period_velocity, 
-                            time_period_transmission, 
-                            time_period_differential_rear, 
-                            time_period_differential_front;
-        
-        dt = micros() - t0;
-        if ((s2ms * T_loop_rate) < (us2ms * dt)){
-            t0 = micros();
-            util::print("Main Loop: Loop time is ", false);
-            util::print(long(us2ms*dt), false);
-            util::print(" ms - no waiting for next loop required.", false);
-        }
-        else{
-            util::print("Main Loop: Loop time is ", false);
-            util::print(long(us2ms*dt), false);
-            util::print(" ms - wait for  ", false);
-            util::print(long((s2ms * T_loop_rate) - (us2ms * dt)), false);
-            util::print(" ms.", true);
-            delay(long((s2ms * T_loop_rate) - (us2ms * dt)));
-            t0 = micros();
-        }
-
-        interrupt_manager.rotate_interrupts();
-        interrupt_manager.get_time_period("Steering", time_period_steering);
-        interrupt_manager.get_time_period("Velocity", time_period_velocity);
-        interrupt_manager.get_time_period("Transmission", time_period_transmission);
-        interrupt_manager.get_time_period("Differential Front", time_period_differential_front);
-        interrupt_manager.get_time_period("Differential Rear", time_period_differential_rear);
-        util::print("Time Period Steering: ", false);
-        util::print(time_period_steering, true);
-        util::print("Time Period Velocity: ", false);
-        util::print(time_period_velocity, true);
-        util::print("Time Period Transmission: ", false);
-        util::print(time_period_transmission, true);
-        util::print("Time Period Differential Front: ", false);
-        util::print(time_period_differential_front, true);
-        util::print("Time Period Differential Rear: ", false);
-        util::print(time_period_differential_rear, true);
-
         // process interrupt measurements 
         // go through all interrupt groups and if vaild and new time period then update
         // else toggle and reset
@@ -113,3 +85,18 @@ ISR(PCINT1_vect) {
 ISR(PCINT2_vect) {
     (*interrupt_manager.mInterruptGroups[2]).update_timer();
 }
+
+
+/* 
+    util::print("Time Period Steering: ", false);
+    util::print(time_period_steering, true);
+
+    util::print("Time Period Velocity: ", false);
+    util::print(time_period_velocity, true);
+    util::print("Time Period Transmission: ", false);
+    util::print(time_period_transmission, true);
+    util::print("Time Period Differential Front: ", false);
+    util::print(time_period_differential_front, true);
+    util::print("Time Period Differential Rear: ", false);
+    util::print(time_period_differential_rear, true);
+*/
