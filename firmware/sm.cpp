@@ -55,5 +55,17 @@ namespace SPMB{
             // switch 
             // define switch for different modes
             // define callbacks for different modes
+
+
+        // define these timer placeholders as array in state machine
+        // process interrupt measurements 
+        // go through all interrupt groups and if vaild and new time period then update
+        // else toggle and reset
+        // update ros time periods 
+        // select new time periods 
+        // lowpass filetr them
+        // actuate 
+        // publish 
+        // sleep
     }
 }
