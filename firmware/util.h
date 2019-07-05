@@ -3,7 +3,17 @@
 #include "spmb.h"
 
 namespace SPMB{
+
     namespace util{
+        
+        struct control { // switch to an enum
+            uint16_t steering;
+            uint16_t velocity;
+            uint16_t transmission;
+            uint16_t differential_front;
+            uint16_t differential_rear;
+        };
+        
         /*
         Clear Screen
         */
