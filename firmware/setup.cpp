@@ -29,21 +29,26 @@ namespace SPMB{
         PCMSK2 = 0x00; // PCINT[23:16]
     }
 
-    void SetupManager::configure(){
+    void SetupManager::configure(InterruptManager* interrupt_manager_in){
+
+        mInterruptManager = interrupt_manager_in;
+
         cli();
         util::print("########################################", true);
         util::print("Setup: Starting configuration:", true);
+
         _common();
         _configure_interrupts();
         sei();
         
     }
-    void SetupManager::delay_start(int seconds_to_wait){
+    void SetupManager::delay_start(float seconds_to_wait){
+
         util::print("Setup: Idle ", false);
         util::print(seconds_to_wait, false);
         util::print(" seconds before starting setup...", true);
 
-        unsigned long lseconds_to_wait = 1000 * seconds_to_wait;
+        unsigned long lseconds_to_wait = long(1000 * seconds_to_wait);
         long t0 = millis();
         while (millis() - t0 < lseconds_to_wait){;}
     }

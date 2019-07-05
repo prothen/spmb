@@ -9,7 +9,7 @@
    DEFINE MACROS
 */
 // FLASH CONFIGURATION                  // Serial print-outs INACTIVE, ACTIVE [0,1]
-#define ROS_ACTIVE 0                    // include ros publisher in build
+#define ROS_ACTIVE 1                    // include ros publisher in build
 #define MEASUREMENT 0                   // Activate current and voltage measurement
 #define DIAGNOSIS 1                     // Allow serial-prints (only in combination with ROS_ACTIVE 0)
 // -------------------------------------------------------------------------------
@@ -34,10 +34,10 @@
 #define PWM_EXTERNAL_RES 4096.0
 
 // TIMER PERIODS
-#define T_loop_rate (1.f / 10.f)  // in seconds
+#define T_loop_rate (1.f / 20.f)  // in seconds
 
 // SAFETY PERIODS
-#define T_interrupt_error_switch_off .3f  // in seconds
+#define T_interrupt_error_switch_off .5f  // in seconds
 #define T_interrupt_error_switch_on 5.f  // in seconds
 #define n_interrupt_error_switch_off uint8_t(T_interrupt_error_switch_off / T_loop_rate)
 #define n_interrupt_error_switch_on uint8_t(T_interrupt_error_switch_on / T_loop_rate )
