@@ -18,9 +18,9 @@ namespace SPMB{
     void LowPass<T>::filter (T * StateNew){
         uint8_t i = 0;
         for (auto state = mStates.begin(); state != mStates.end(); state++){
-            float dt = us2ms * (micros() - state->timestamp);
-            float dn = (state->time_period) + dt; 
-            state->value = (state->time_period/dn) * state->value + (dt/dn) * StateNew[i];
+            float dt = us2s * (micros() - state->timestamp);
+            float dn = (ms2s * state->time_period) + dt; 
+            state->value = T((state->time_period/dn) * state->value + (dt/dn) * StateNew[i]);
             state->timestamp = micros();
             StateNew[i] = state->value;
             i++;
