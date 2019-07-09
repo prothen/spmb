@@ -13,7 +13,15 @@ namespace SPMB{
             uint16_t differential_front;
             uint16_t differential_rear;
         };
-        
+
+        struct control_filtered {
+                LowPass<uint16_t> steering;
+                LowPass<uint16_t> velocity;
+                LowPass<uint16_t> transmission;
+                LowPass<uint16_t> differential_front;
+                LowPass<uint16_t> differential_rear;
+                control_filtered();
+        };
         /*
         Clear Screen
         */
@@ -65,6 +73,10 @@ namespace SPMB{
         void blink_led();
 
         /*
+        */
+        void correct_period(volatile uint16_t period, volatile uint16_t &period_corrected);
+
+        /*
         Transate period to pwm
         */
         int8_t period_to_pwm(volatile uint16_t input);
@@ -83,5 +95,22 @@ namespace SPMB{
         saturate read pwm to keep period in range [1,2] ms and frequency 50 Hs with T=20ms
         */
         void IS_VALID(volatile uint16_t &period, volatile boolean &valid);
+
+        /*
+        */
+        boolean HAS_CLEAR_STATE(volatile uint16_t period);
+        
+        /*
+        */
+        boolean STATE(volatile uint16_t period);
+
+        /*
+        */
+        boolean IS_IDLE(volatile long stamp_in_us, uint16_t period_in_ms);
+
+        /*
+        */
+        boolean IS_TIME(long &timestamp_in_us, uint16_t* time_period_in_ms);
+  
     }
 }

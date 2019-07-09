@@ -2,6 +2,15 @@
 
 
 namespace SPMB{
+
+    util::control_filtered::control_filtered():
+        steering(LP_T_STEERING, DEFAULT_PWM_STEERING),
+        velocity(LP_T_VELOCITY, DEFAULT_PWM_VELOCITY),
+        transmission(LP_T_TRANSMISSION, DEFAULT_PWM_TRANSMISSION),
+        differential_front(LP_T_DIFFERENTIAL_FRONT, DEFAULT_PWM_DIFFERENTIAL_FRONT),
+        differential_rear(LP_T_DIFFERENTIAL_REAR, DEFAULT_PWM_DIFFERENTIAL_REAR)
+    {;}
+
     /*
     Clear Screen
     */
@@ -137,6 +146,20 @@ namespace SPMB{
 
 
     /*
+    */
+    void util::correct_period(volatile uint16_t period, volatile uint16_t &period_corrected){
+        if (PWM_LOW <= period  && period <= PWM_HIGH){
+            period_corrected = period;
+        }
+        else if (period < PWM_LOW){
+            period_corrected = PWM_LOW;
+        }
+        else{
+            period_corrected = PWM_HIGH;
+        }
+    }
+
+    /*
     Transate period to pwm
     */
     int8_t util::period_to_pwm(volatile uint16_t input){
@@ -155,6 +178,47 @@ namespace SPMB{
             return true;
         }
         else{ 
+            return false;
+        }
+    }
+
+    boolean util::HAS_CLEAR_STATE(volatile uint16_t period){
+        if ((period < PWM_CLEAR_TH_LOW) || (PWM_CLEAR_TH_HIGH < period)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    boolean util::STATE(volatile uint16_t period){
+        if (period <= PWM_CLEAR_TH_LOW){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    /*
+    */
+    boolean util::IS_IDLE(volatile long stamp_in_us, uint16_t period_in_ms){
+        if ((micros() - stamp_in_us) > ms2us * period_in_ms ){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    /*
+        is it time for the next loop? 
+    */
+    boolean util::IS_TIME(long &timestamp_in_us, uint16_t *time_period_in_ms) {
+        if ((micros() - timestamp_in_us) >= (ms2us * (*time_period_in_ms))){
+            timestamp_in_us = micros();
+            return true;
+        }
+        else{
             return false;
         }
     }
