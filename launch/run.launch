@@ -1,0 +1,9 @@
+<launch>
+  <arg name="baud" default="57600"/>
+  <arg name="dev" default="spmb"/>
+  <arg name="output" default="screen" />
+  <node pkg="rosserial_python" type="serial_node.py" name="serial_node" output="$(arg output)">
+    <param name="port" value="/dev/$(arg dev)"/>
+    <param name="baud" value="$(arg baud)"/>
+  </node>
+</launch>
