@@ -8,7 +8,7 @@
 // FLASH CONFIGURATION                  // Serial print-outs INACTIVE, ACTIVE [0,1]
 #define ROS_ACTIVE 1                    // include ros publisher in build
 #define MEASUREMENT 0                   // Activate current and voltage measurement
-#define DIAGNOSIS 1                     // Allow serial-prints (only in combination with ROS_ACTIVE 0)
+#define DIAGNOSIS 0                     // Allow serial-prints (only in combination with ROS_ACTIVE 0)
 // -------------------------------------------------------------------------------
 
 // CONTROL SIGNALS
@@ -26,7 +26,7 @@
 #define LP_T_DIFFERENTIAL_REAR .1f
 
 // IDENTIFIERS - OUTPUT
-#define BAUD_RATE 115200   
+#define BAUD_RATE 57600   
 #define PWM_LOW 1000
 #define PWM_NEUTRAL 1500
 #define PWM_HIGH 2000
@@ -43,7 +43,7 @@
 #define PWM_EXTERNAL_RES 4096.0
 
 // TIMER PERIODS
-#define T_LOOP_RATE (1.f / 50.f)  // in seconds
+#define T_LOOP_RATE (1.f / 10.f)  // in seconds
 #define T_CONTROL_LOOP_RATE (1.f / 30.f)  // in seconds
 
 // SAFETY PERIODS
