@@ -163,7 +163,7 @@ namespace SPMB{
     Transate period to pwm
     */
     int8_t util::period_to_pwm(volatile uint16_t input){
-            return int8_t( ( float((input-PWM_NEUTRAL))/(PWM_NEUTRAL-PWM_LOW) ) * 100.0 );
+            return int8_t( ( float((input-PWM_NEUTRAL))/float(PWM_NEUTRAL-PWM_LOW) ) * 100.0 );
     }
 
     /*
