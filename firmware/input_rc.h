@@ -14,6 +14,7 @@ namespace SPMB {
             volatile uint8_t * mInterruptRegister;
 
             volatile long mTimer;
+            volatile uint16_t mTimePeriodValid;
             volatile uint16_t mTimePeriod;
             volatile uint16_t mTimePeriodDefault;
 
@@ -87,7 +88,6 @@ namespace SPMB {
     */
     class InterruptManager{
         public:
-            //util::control signals;
             std::vector<InterruptGroup*> mInterruptGroups;
             void append_group(InterruptGroup * newInterruptGroup);
             void rotate_interrupts();

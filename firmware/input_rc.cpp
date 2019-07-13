@@ -53,11 +53,13 @@ namespace SPMB{
      */
     void InterruptInput::disarm_interrupt(){
         *mInterruptRegister &= ~mBit;
-/* 
+
+        /* 
         util::print("InterruptInput: Disarmed for ", false);
         util::print(mLabel.c_str(), true); 
         util::print("InterruptInput: Interrupt ", false);
-        util::print_binary(*mInterruptRegister);  */
+        util::print_binary(*mInterruptRegister);  
+        */
     }
 
     /**
@@ -65,11 +67,13 @@ namespace SPMB{
      */
     void InterruptInput::arm_interrupt(){
         *mInterruptRegister |= mBit;
-/* 
+
+        /* 
         util::print("InterruptInput: Armed for ", false);
         util::print(mLabel.c_str(), true); 
         util::print("InterruptInput: Interrupt ", false);
-        util::print_binary(*mInterruptRegister);  */
+        util::print_binary(*mInterruptRegister);  
+        */
     }
 
     /**
@@ -78,13 +82,16 @@ namespace SPMB{
     void InterruptInput::update_timer(){
         if (!mNewInterruptAvailable && mStatus){
             long tmpTime = micros();
-            /*util::print("update timer:", false);
+
+            /*
+            util::print("update timer:", false);
             util::print(mReceivedHigh, false);
             util::print(mReceivedLow, false);
             util::print(mNewInterruptAvailable, false);
             util::print(mTimePeriod, false);
             util::print(" :", false);
             */
+
             if(((* mDataRegister) & mBit) && mReceivedLow){
                 mTimer = tmpTime;
                 mReceivedHigh = true;
@@ -99,9 +106,9 @@ namespace SPMB{
                     mNewInterruptAvailable = true;
                     //util::print("RECEIVED_LOW.(second: complete cycle): ", false);
                     //util::print(mTimePeriod, true);
-            } else{
+            } else{;
                 //util::print("should not have happened.", true);
-                ; ///reset(); // TODO: this case should never be reached in normal operation and if reached, indicates a fundamental error in the setup
+                ///reset(); // TODO: this case should never be reached in normal operation and if reached, indicates a fundamental error in the setup
             }
         } else{;}
     }
@@ -112,16 +119,18 @@ namespace SPMB{
                 mStatus = false;
                 mErrorCount = 0;
                 mTimePeriod = mTimePeriodDefault;
-                /* 
+                
+                
                 util::print("Error switch: Disabled ", false);
                 util::print(mLabel, true); 
-                */
+                
             }
         }
         else{
             if (n_interrupt_error_switch_on <= mErrorCount){
                 mStatus = true;
                 mErrorCount = 0;
+                
                 /* 
                 util::print("Error switch: Enabled ", false);
                 util::print(mLabel, true); 
@@ -135,9 +144,11 @@ namespace SPMB{
         mReceivedLow = false;
         mNewInterruptAvailable = false;
 
-        /* util::print("Interrupt ", false);
+        /* 
+        util::print("Interrupt ", false);
         util::print(mLabel, false);
-        util::print(" has been reset.", true); */
+        util::print(" has been reset.", true); 
+        */
     }
 
     /**
@@ -158,8 +169,11 @@ namespace SPMB{
         if (util::IS_VALID(mInterruptActive->mTimePeriod) && mInterruptActive->mNewInterruptAvailable) {
             //util::print("Interrupt - Rotate: Received Interrupt Time Period successfully: ", false);
             //util::print((*mInterruptActive).mLabel, true);
-            mInterruptActive->disarm_interrupt();
             
+            mInterruptActive->mErrorCount = 0.; // TODO: Decide when or how often to reset error counter, now only counting consecutive errors, reset on each valid read
+            mInterruptActive->disarm_interrupt();
+            util::correct_period(mInterruptActive->mTimePeriod, mInterruptActive->mTimePeriodValid);
+
             if (mInterrupts.size() > 1) {
                 //util::print("Start rotating: ", true);
                 uint8_t tmpIdx = mIdx;
@@ -175,35 +189,17 @@ namespace SPMB{
                     }
                     if (!(mInterrupts[mIdx]->mStatus)) {
                         mInterrupts[mIdx]->mErrorCount++;
-                        //util::print("Interrupt - Rotate: Skip disabled Interupt detected :", false);
-                        //util::print((*mInterrupts[mIdx]).mLabel, false);
-                        //util::print("Interrupt - Rotate:  with Count: ", false);
-                        //util::print((*mInterrupts[mIdx]).mErrorCount, true);
-                        //(*mInterrupts[mIdx]).switch_error_status();
+                        mInterrupts[mIdx]->switch_error_status();
+                        
+                        /*
+                        util::print("Interrupt - Rotate: Skip disabled Interupt detected :", false);
+                        util::print((*mInterrupts[mIdx]).mLabel, false);
+                        util::print("Interrupt - Rotate:  with Count: ", false);
+                        util::print((*mInterrupts[mIdx]).mErrorCount, true);
+                        */
                     }
                 }
-                mInterruptActive = mInterrupts.at(mIdx);
-                /*
-                std::vector<InterruptInput*>::iterator tmp_root_pointer = mInterruptActive;
-                while ((mInterruptActive == tmp_root_pointer) || (!(**mInterruptActive).mStatus)){
-                    util::print("Interrupt - Rotate: Interrupt Status not good or same Pointer: Check for next element: ", true);
-                    util::print((**mInterruptActive).mLabel, true);
-                    if (mInterruptActive != mInterrupts.end()){
-                        mInterruptActive++; 
-                        //util::print("end not reached ", true);
-                    } else{
-                        mInterruptActive = mInterrupts.begin();
-                        util::print("end reached ", true);
-                    }
-                    if (!(**mInterruptActive).mStatus) {
-                        //(**mInterruptActive).mErrorCount++;
-                        util::print("Interrupt - Rotate: Disabled Interupt skipped detected :", false);
-                        util::print((**mInterruptActive).mErrorCount, true);
-                        //(**mInterruptActive).switch_error_status();
-                    }
-                }
-                */
-                
+                mInterruptActive = mInterrupts.at(mIdx);                
             } else{;} // keep the same Interrupt
             
         } else{
@@ -223,6 +219,8 @@ namespace SPMB{
         mInterrupts.push_back(NewInterruptInput);
         mInterruptActive = mInterrupts.front();
     }
+
+
 
     /* append new group to interrupt via pointer*/
     void InterruptManager::append_group(InterruptGroup * NewInterruptGroup){
@@ -249,7 +247,7 @@ namespace SPMB{
                 //j++;
                 if ((**iit).mLabel == label){
                     //util::print((**iit).mLabel.c_str(), false);
-                    time_period = (**iit).mTimePeriod;
+                    time_period = (**iit).mTimePeriodValid;
                     return true;
                 } else{;}
             }
