@@ -2,12 +2,6 @@
 
 using namespace SPMB;
 
-StateMachine sm;
-
-ROSInterface rosi;
-
-void cb_request(const spmbv2::request& msg){util::print(msg.steering, false);}
-
 InterruptManager interrupt_manager;
 InterruptGroup B;
 InterruptGroup C;    
@@ -18,17 +12,43 @@ InterruptInput interrupt_transmission;
 InterruptInput interrupt_differential_front;
 InterruptInput interrupt_differential_rear;
 
-       
-void setup(){  
+/*!
+   The main logic loop algorithm
+*/
+void loop()
+{
+    StateMachine sm;
+    sm.mInterruptManager = &interrupt_manager;
+    //ROSInterfaceNh rosi("request", "actuated");
+    ROSInterface<myHardware> rosi("request", "actuated");
+    sm.configure(&interrupt_manager, &rosi);
+
+    while(1){
+        if (sm.mALIVE){
+            sm.update_output_signals();
+            sm.actuate();
+            // sm.update_sensors() // such as current sense and voltages
+            // sm.run_utilities // such as led indicator
+            sm.wait_for_next_cycle();
+        }
+        else{
+            sm.critical_error();
+        }    
+    }
+}
+
+/*
+    Configure Interrupts and pins
+*/       
+void setup(){
     SetupManager SetupSPMB;
     SetupSPMB.delay_start(1);
 
-    /* Global Interrupt Objects */
-    interrupt_steering.initialise("Steering", 1500, BIT0, &DDRB, &PORTB, &PINB, &PCMSK0);                     // PB0 - D08 - PCINT0 
-    interrupt_velocity.initialise("Velocity", 1500, BIT0, &DDRC, &PORTC, &PINC, &PCMSK1);                     // PC0 - D14 - PCINT8
-    interrupt_transmission.initialise("Transmission", 1000, BIT4, &DDRD, &PORTD, &PIND, &PCMSK2);             // PD4 - D04 - PCINT20
-    interrupt_differential_front.initialise("Differential Front", 1500, BIT5, &DDRD, &PORTD, &PIND, &PCMSK2);  // PD4 - D04 - PCINT20
-    interrupt_differential_rear.initialise("Differential Rear", 1500, BIT6, &DDRD, &PORTD, &PIND, &PCMSK2);    // PD4 - D04 - PCINT20
+    interrupt_steering.initialise("Steering", DEFAULT_PWM_STEERING, BIT0, &DDRB, &PORTB, &PINB, &PCMSK0);                               // PB0 - D08 - PCINT0 
+    interrupt_velocity.initialise("Velocity", DEFAULT_PWM_VELOCITY, BIT0, &DDRC, &PORTC, &PINC, &PCMSK1);                               // PC0 - D14 - PCINT8
+    interrupt_transmission.initialise("Transmission", DEFAULT_PWM_TRANSMISSION, BIT4, &DDRD, &PORTD, &PIND, &PCMSK2);                   // PD4 - D04 - PCINT20
+    interrupt_differential_front.initialise("Differential Front", DEFAULT_PWM_DIFFERENTIAL_FRONT, BIT5, &DDRD, &PORTD, &PIND, &PCMSK2); // PD4 - D04 - PCINT20
+    interrupt_differential_rear.initialise("Differential Rear", DEFAULT_PWM_DIFFERENTIAL_REAR, BIT6, &DDRD, &PORTD, &PIND, &PCMSK2);    // PD4 - D04 - PCINT20
 
     B.append_interrupt(&interrupt_steering);
     C.append_interrupt(&interrupt_velocity);
@@ -42,28 +62,6 @@ void setup(){
     SetupSPMB.configure(&interrupt_manager);
 
     interrupt_manager.arm_interrupts();
-
-}
-
-//! The main loop algorithm
-/*!
-   The main logic loop algorithm
-*/
-
-void loop()
-{  
-    // setup ros
-    spmbv2::actuated msg_actuated;
-    spmbv2::request msg_request;
-    ros::NodeHandle_<ArduinoHardware, 1, 1, 240, 240> Nh;
-    ros::Publisher pub("actuated", &msg_actuated);
-    ros::Subscriber<spmbv2::request> sub("request", &cb_request);
-
-    //rosi.configure(&nh, &sub, &pub);
-
-    while(1){
-        // use state machine and run loop while sm.alive()
-    }    
 }
 
 ISR(PCINT0_vect) { 
