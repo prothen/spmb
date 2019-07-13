@@ -2,11 +2,11 @@
 
 ## Notes
 - Main loop should be limited with a delay to avoid running in a unlimited loop (interrupts won't work otherwise)
-
+- ```https://github.com/maniacbug/StandardCplusplus.git``` (use 1.8.5 arduino ide compiler for this library!!!)
 
 ## Interface with ROS
 - After installing the udev rules (see below) the ROS Interface can be accessed with 
-```rosrun rosserial_python serial_node.py dev:=/dev/spmb```
+```rosrun rosserial_python serial_node.py _port:=/dev/spmb _baud:=115200```
 
 ## UDEV RULES
 - show hardware info for component, e.g. ttyACM0 ``` udevadm info /dev/ttyACM0 ``` and ```udevadm info -a -p /sys/class/tty/ttyACM0 ```
