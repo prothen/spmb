@@ -6,9 +6,8 @@
    DEFINE MACROS
 */
 // FLASH CONFIGURATION                  // Serial print-outs INACTIVE, ACTIVE [0,1]
-#define ROS_ACTIVE 1                    // include ros publisher in build
-#define MEASUREMENT 0                   // Activate current and voltage measurement
-#define DIAGNOSIS 0                     // Allow serial-prints (only in combination with ROS_ACTIVE 0)
+//#define ROS_ACTIVE true                   // include ros publisher in build
+#define DIAGNOSIS true                     // Allow serial-prints (only in combination with ROS_ACTIVE 0)
 // -------------------------------------------------------------------------------
 
 // CONTROL SIGNALS
