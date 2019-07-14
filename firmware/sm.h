@@ -7,8 +7,10 @@ namespace SPMB{
     class StateMachine{
         public:
             InterruptManager* mInterruptManager;
+
+            #ifdef ROS_ACTIVE
             ROSInterface<myHardware>* mRosi;
-            
+            #endif /* ROS_ACTIVE */
 
             util::control_filtered mControlFiltered;
             bool mALIVE;
@@ -31,9 +33,12 @@ namespace SPMB{
 
             StateMachine();
 
+            #ifdef ROS_ACTIVE
             void configure( InterruptManager* interrupt_manager_in, ROSInterface<myHardware>* ros_interface_in);
-            //void configure( InterruptManager* interrupt_manager_in, ROSInterfaceNh* ros_interface_in);
-
+            #else
+            void configure( InterruptManager* interrupt_manager_in);
+            #endif
+            
             void _update_rc_signals(util::control &signals_rc);
 
             void _swl_execute_switching_logic(util::control* signals_rc);
@@ -45,13 +50,17 @@ namespace SPMB{
             void critical_error();
 
             void _process_rc_inputs(util::control &signals_rc);
-
+            
+            #ifdef ROS_ACTIVE
             void _process_ros_inputs(util::control &signals_ros);
-
+            #endif /* ROS_ACTIVE */
+            
             void update_output_signals();
 
+            #ifdef ROS_ACTIVE
             void _expose_actuated_signals_to_ros();
-
+            #endif /* ROS_ACTIVE */
+            
             void actuate();
     };
 

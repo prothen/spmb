@@ -21,16 +21,16 @@ namespace SPMB{
         mS1_prev=mS1;
         mS2_prev=mS2;
     }
-    
+    #ifdef ROS_ACTIVE
     void StateMachine::configure(   InterruptManager* interrupt_manager_in, ROSInterface<myHardware>* ros_interface_in){
         mInterruptManager = interrupt_manager_in;
         mRosi = ros_interface_in;
     }
-    /*
-    void StateMachine::configure(   InterruptManager* interrupt_manager_in, ROSInterfaceNh* ros_interface_in){
+    #else
+    void StateMachine::configure(   InterruptManager* interrupt_manager_in){
         mInterruptManager = interrupt_manager_in;
-        mRosi = ros_interface_in;
-    } */
+    }
+    #endif
     
     void StateMachine::wait_for_next_cycle(){
         uint16_t dt = us2ms * uint16_t(micros() - mSMTimestamp);
@@ -160,10 +160,12 @@ namespace SPMB{
         _swl_execute_switching_logic(&signals_rc);
     }
     
+    #ifdef ROS_ACTIVE
     void StateMachine::_process_ros_inputs(util::control &signals_ros){
         mRosi->mNh.spinOnce();
         signals_ros = mRosi->mSignals;
     }
+    #endif /* ROS_ACTIVE */
 
 
     void StateMachine::update_output_signals(){
@@ -172,33 +174,42 @@ namespace SPMB{
         util::control signals_ros;
 
         _process_rc_inputs(signals_rc);
+        
+        #ifdef ROS_ACTIVE
         _process_ros_inputs(signals_ros);
-
+        #endif /* ROS_ACTIVE */
         if (mSW_CONTROL_ACTIVE){
+            #ifdef ROS_ACTIVE
             output_signals = signals_ros;
+            #else
+            output_signals = signals_rc;
+            #endif /* ROS_ACTIVE */
         }
         else{
             output_signals = signals_rc;
         }
          
+        mSW_CONTROL_ACTIVE = false;
         mControlFiltered.steering.update_state(output_signals.steering);
         mControlFiltered.velocity.update_state(output_signals.velocity);
         mControlFiltered.transmission.update_state(output_signals.transmission);
         mControlFiltered.differential_front.update_state(output_signals.differential_front);
         mControlFiltered.differential_rear.update_state(output_signals.differential_rear);
     }
-    
+    #ifdef ROS_ACTIVE
     void StateMachine::_expose_actuated_signals_to_ros(){
-        
-        mRosi->publish(&mControlFiltered);
         if (util::IS_TIME(mCTRLTimestamp, &mCTRLTimePeriod)){
-            ;//mRosi->publish(&mControlFiltered);
+            mRosi->publish(&mControlFiltered);
         } else{;}
     } 
+    #endif /* ROS_ACTIVE */
 
     void StateMachine::actuate(){
         // TODO: add actuate either servo library or via i2c
+
+        #ifdef ROS_ACTIVE
         _expose_actuated_signals_to_ros();
+        #endif /* ROS_ACTIVE */
     }
 
 }
