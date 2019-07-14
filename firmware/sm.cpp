@@ -61,6 +61,7 @@ namespace SPMB{
         mInterruptManager->get_time_period("Transmission", signals_rc.transmission);
         mInterruptManager->get_time_period("Differential Front", signals_rc.differential_front);
         mInterruptManager->get_time_period("Differential Rear", signals_rc.differential_rear);
+        
         /*
         util::print("diff front: ", false);
         util::print(signals_rc.differential_front, true);
@@ -71,7 +72,7 @@ namespace SPMB{
 
     void StateMachine::_swl_execute_switching_logic(util::control* signals_rc){
         
-        if (    (mSW_CONTROL_ACTIVE && (signals_rc->velocity < PWM_CLEAR_TH_LOW)) 
+        if ((mSW_CONTROL_ACTIVE && (signals_rc->velocity < PWM_CLEAR_TH_LOW)) 
                 ||!(mInterruptManager->mInterruptGroups[1]->mInterrupts.front()->mStatus)){
             mSW_CONTROL_ACTIVE = false;
             mSWLState = SWL_OFF;
@@ -131,20 +132,21 @@ namespace SPMB{
         else{;} // do nothing
         
         /*
-        util::print("mode:",false);
+        util::print("SW_CONTROL_ACTIVE:",false);
         util::print(mSW_CONTROL_ACTIVE, true);
-        util::print("swl:",false);
+        util::print("STATEMACHINE STATE:",false);
         util::print(mSWLState, true); 
         */       
     }
 
     void StateMachine::_swl_check_idle_transition(){
-        if(false && util::IS_IDLE(mSWLTimestamp, mSWLTimePeriod)){ // TODO: DEBUG test case
+        if(util::IS_IDLE(mSWLTimestamp, mSWLTimePeriod)){ // TODO: DEBUG test case
             mSWLState = SWL_OFF;
             mS1 = false;
             mS2 = false;
             mS1_prev = mS1;
             mS2_prev = mS2;
+            
             /*
             util::print("reset state machine", true);
             util::print("time_period: ", false);
@@ -152,6 +154,7 @@ namespace SPMB{
             util::print("time_period: ", false);
             util::print(mSWLTimestamp, true);
             */
+            
         } else{;}
     }
 
@@ -188,17 +191,23 @@ namespace SPMB{
         else{
             output_signals = signals_rc;
         }
-         
-        mSW_CONTROL_ACTIVE = false;
         mControlFiltered.steering.update_state(output_signals.steering);
         mControlFiltered.velocity.update_state(output_signals.velocity);
         mControlFiltered.transmission.update_state(output_signals.transmission);
         mControlFiltered.differential_front.update_state(output_signals.differential_front);
         mControlFiltered.differential_rear.update_state(output_signals.differential_rear);
+    
+        /*
+        util::print("steering: ", false);
+        util::print(signals_rc.steering, true);
+        util::print("steering filtered : ", false);
+        util::print(mControlFiltered.steering.value(), true);
+        */
     }
     #ifdef ROS_ACTIVE
     void StateMachine::_expose_actuated_signals_to_ros(){
-        if (util::IS_TIME(mCTRLTimestamp, &mCTRLTimePeriod)){
+        if (util::IS_TIME(mCTRLTimestamp, mCTRLTimePeriod)){
+            //mRosi->mNh.loginfo(mControlFiltered.steering.value());
             mRosi->publish(&mControlFiltered);
         } else{;}
     } 

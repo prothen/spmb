@@ -38,7 +38,7 @@ namespace SPMB{
      */
     void InterruptInput::configure(){
         *mDirectionRegister &= ~mBit;
-        *mCfgRegister |= mBit;
+        *mCfgRegister &= mBit; // TODO: switched to without pullup
         
         util::print("InterruptInput: Configure input and output pins for ", false);
         util::print(mLabel.c_str(), true); 

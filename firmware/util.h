@@ -110,7 +110,7 @@ namespace SPMB{
 
         /*
         */
-        boolean IS_TIME(long &timestamp_in_us, uint16_t* time_period_in_ms);
+        boolean IS_TIME(long &timestamp_in_us, uint16_t time_period_in_ms);
   
     }
 }

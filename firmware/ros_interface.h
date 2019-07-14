@@ -3,26 +3,7 @@
 #include "spmb.h"
 
 namespace SPMB {
-   /*
-    class ROSInterfaceNh{
-        public:
-            void cb_request_(const spmbv2::request& msg);
-             
-            void publish(util::control_filtered* data);
-  
-            util::control mSignals;
-
-            ros::NodeHandle mNh;
-            volatile spmbv2::actuated mMsgPub;
-            volatile spmbv2::request mMsgSub; 
-            ROSInterfaceNh(const char * subscriber_topic, const char * publisher_topic);
-            
-            ros::Subscriber<spmbv2::request, ROSInterfaceNh> mSubscriber;
-            ros::Publisher mPublisher;
-    };
-    */
-    
-    typedef ros::NodeHandle_<ArduinoHardware, 1, 1, 240, 240> myHardware;
+    typedef ros::NodeHandle_<ArduinoHardware, 1, 1, 100, 100> myHardware;
     
     
     template<typename T>
@@ -32,8 +13,9 @@ namespace SPMB {
              
             void publish(util::control_filtered* data);
   
+            void debug(const char * text);
             util::control mSignals;
-
+            int idx = 0;
             T mNh;
             spmbv2::actuated mMsgPub;
             spmbv2::request mMsgSub; 
@@ -50,6 +32,13 @@ namespace SPMB {
         mSignals.transmission = util::pwm_to_period(msg.transmission);
         mSignals.differential_front = util::pwm_to_period(msg.differential_front);
         mSignals.differential_rear = util::pwm_to_period(msg.differential_rear);
+
+    }
+
+
+    template<typename T>
+    void ROSInterface<T>::debug(const char * text){
+        mNh.loginfo(text);
     }
 
     template<typename T>

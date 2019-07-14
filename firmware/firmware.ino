@@ -21,7 +21,6 @@ void loop()
     sm.mInterruptManager = &interrupt_manager;
     
     #ifdef ROS_ACTIVE
-    util::print("test", true);
     ROSInterface<myHardware> rosi("request", "actuated");
     sm.configure(&interrupt_manager, &rosi);
     #else

@@ -37,7 +37,7 @@ namespace SPMB{
             void configure( InterruptManager* interrupt_manager_in, ROSInterface<myHardware>* ros_interface_in);
             #else
             void configure( InterruptManager* interrupt_manager_in);
-            #endif
+            #endif /* ROS_ACTIVE */
             
             void _update_rc_signals(util::control &signals_rc);
 
@@ -54,7 +54,6 @@ namespace SPMB{
             #ifdef ROS_ACTIVE
             void _process_ros_inputs(util::control &signals_ros);
             #endif /* ROS_ACTIVE */
-            
             void update_output_signals();
 
             #ifdef ROS_ACTIVE

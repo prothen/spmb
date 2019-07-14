@@ -163,7 +163,7 @@ namespace SPMB{
     Transate period to pwm
     */
     int8_t util::period_to_pwm(volatile uint16_t input){
-            return int8_t( ( float((input-PWM_NEUTRAL))/float(PWM_NEUTRAL-PWM_LOW) ) * 100.0 );
+            return int8_t( ( float((input-1500.f))/500.f ) * 100.f ); // TODO: Use Macro identifiers!
     }
 
     /*
@@ -202,7 +202,7 @@ namespace SPMB{
     /*
     */
     boolean util::IS_IDLE(volatile long stamp_in_us, uint16_t period_in_ms){
-        if ((micros() - stamp_in_us) > ms2us * period_in_ms ){
+        if ((micros() - stamp_in_us) > (ms2us * period_in_ms) ){
             return true;
         }
         else{
@@ -213,8 +213,8 @@ namespace SPMB{
     /*
         is it time for the next loop? 
     */
-    boolean util::IS_TIME(long &timestamp_in_us, uint16_t *time_period_in_ms) {
-        if ((micros() - timestamp_in_us) >= (ms2us * (*time_period_in_ms))){
+    boolean util::IS_TIME(long &timestamp_in_us, uint16_t time_period_in_ms) {
+        if ((micros() - timestamp_in_us) >= (ms2us * time_period_in_ms)){
             timestamp_in_us = micros();
             return true;
         }

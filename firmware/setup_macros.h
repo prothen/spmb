@@ -5,9 +5,9 @@
 /*!
    DEFINE MACROS
 */
-// FLASH CONFIGURATION                  // Serial print-outs INACTIVE, ACTIVE [0,1]
-//#define ROS_ACTIVE true                   // include ros publisher in build
-#define DIAGNOSIS true                     // Allow serial-prints (only in combination with ROS_ACTIVE 0)
+// FLASH CONFIGURATION                  // Comment out 
+#define ROS_ACTIVE true                   // Use ROS Interface for communication --> requires ndef of DIAGNOSIS (comment out '#define DIAGNOSIS true'!)
+//#define DIAGNOSIS true                     // Allow serial-prints (only with commented out '#define ROS_ACTIVE true' )
 // -------------------------------------------------------------------------------
 
 // CONTROL SIGNALS
@@ -18,8 +18,8 @@
 #define DEFAULT_PWM_DIFFERENTIAL_REAR 2000
 
 // OUTPUT FILTER CONSTANT
-#define LP_T_STEERING .2f
-#define LP_T_VELOCITY .2f
+#define LP_T_STEERING .1f
+#define LP_T_VELOCITY .1f
 #define LP_T_TRANSMISSION .1f
 #define LP_T_DIFFERENTIAL_FRONT .1f
 #define LP_T_DIFFERENTIAL_REAR .1f
@@ -42,8 +42,8 @@
 #define PWM_EXTERNAL_RES 4096.0
 
 // TIMER PERIODS
-#define T_LOOP_RATE (1.f / 10.f)  // in seconds
-#define T_CONTROL_LOOP_RATE (1.f / 30.f)  // in seconds
+#define T_LOOP_RATE (1.f / 20.f)  // in seconds
+#define T_CONTROL_LOOP_RATE (1.f / 20.f)  // in seconds
 
 // SAFETY PERIODS
 #define T_interrupt_error_switch_off 1.f  // in seconds
