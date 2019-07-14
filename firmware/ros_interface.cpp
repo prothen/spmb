@@ -1,7 +1,7 @@
 #include "spmb.h"
 
 namespace SPMB{
-    
+    /*
     void ROSInterfaceNh::cb_request_(const spmbv2::request& msg){
         mSignals.steering = util::pwm_to_period(msg.steering);
         mSignals.velocity = util::pwm_to_period(msg.velocity);
@@ -29,5 +29,5 @@ namespace SPMB{
         mNh.advertise(mPublisher);
         mNh.subscribe(mSubscriber); 
     }
-    
+    */
 }

@@ -3,7 +3,7 @@
 #include "spmb.h"
 
 namespace SPMB {
-   
+   /*
     class ROSInterfaceNh{
         public:
             void cb_request_(const spmbv2::request& msg);
@@ -13,13 +13,14 @@ namespace SPMB {
             util::control mSignals;
 
             ros::NodeHandle mNh;
-            spmbv2::actuated mMsgPub;
-            spmbv2::request mMsgSub; 
+            volatile spmbv2::actuated mMsgPub;
+            volatile spmbv2::request mMsgSub; 
             ROSInterfaceNh(const char * subscriber_topic, const char * publisher_topic);
             
             ros::Subscriber<spmbv2::request, ROSInterfaceNh> mSubscriber;
             ros::Publisher mPublisher;
     };
+    */
     
     typedef ros::NodeHandle_<ArduinoHardware, 1, 1, 240, 240> myHardware;
     
