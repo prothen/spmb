@@ -19,9 +19,14 @@ void loop()
 {
     StateMachine sm;
     sm.mInterruptManager = &interrupt_manager;
-    //ROSInterfaceNh rosi("request", "actuated");
+    
+    #ifdef ROS_ACTIVE
+    util::print("test", true);
     ROSInterface<myHardware> rosi("request", "actuated");
     sm.configure(&interrupt_manager, &rosi);
+    #else
+    sm.configure(&interrupt_manager);
+    #endif /* ROS_ACTIVE */
 
     while(1){
         if (sm.mALIVE){
