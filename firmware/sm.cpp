@@ -6,7 +6,7 @@ namespace SPMB{
         mControlFiltered()
     {
         mALIVE = true;
-        mSW_CONTROL_ACTIVE = true; // TODO: DEBUG test case - change back to false !
+        mSW_CONTROL_ACTIVE = false;
 
         mSMTimePeriod = uint16_t(s2ms * T_LOOP_RATE);
         mCTRLTimePeriod = uint16_t(s2ms * T_CONTROL_LOOP_RATE);
@@ -22,16 +22,20 @@ namespace SPMB{
         mS2_prev=mS2;
     }
     #ifdef ROS_ACTIVE
-    void StateMachine::configure(   InterruptManager* interrupt_manager_in, ROSInterface<myHardware>* ros_interface_in){
+    void StateMachine::configure_input(   InterruptManager* interrupt_manager_in, ROSInterface<myHardware>* ros_interface_in){
         mInterruptManager = interrupt_manager_in;
         mRosi = ros_interface_in;
     }
     #else
-    void StateMachine::configure(   InterruptManager* interrupt_manager_in){
+    void StateMachine::configure_input(   InterruptManager* interrupt_manager_in){
         mInterruptManager = interrupt_manager_in;
     }
     #endif
     
+    void StateMachine::configure_output(   OutputDriverI2C* output_in){
+        mOutput = output_in;
+    }
+
     void StateMachine::wait_for_next_cycle(){
         uint16_t dt = us2ms * uint16_t(micros() - mSMTimestamp);
         if (mSMTimePeriod < dt){
@@ -73,7 +77,11 @@ namespace SPMB{
     void StateMachine::_swl_execute_switching_logic(util::control* signals_rc){
         
         if ((mSW_CONTROL_ACTIVE && (signals_rc->velocity < PWM_CLEAR_TH_LOW)) 
-                ||!(mInterruptManager->mInterruptGroups[1]->mInterrupts.front()->mStatus)){
+                ||!(mInterruptManager->mInterruptGroups[1]->mInterrupts.front()->mStatus)
+                #ifdef ROS_ACTIVE
+                || mRosi->mIsIdle
+                #endif /*  ROS_ACTIVE */
+                ){
             mSW_CONTROL_ACTIVE = false;
             mSWLState = SWL_OFF;
         }else{;}
@@ -129,7 +137,7 @@ namespace SPMB{
                 default: ; //error
             }
         }
-        else{;} // do nothing
+        else{;} 
         
         /*
         util::print("SW_CONTROL_ACTIVE:",false);
@@ -167,6 +175,7 @@ namespace SPMB{
     void StateMachine::_process_ros_inputs(util::control &signals_ros){
         mRosi->mNh.spinOnce();
         signals_ros = mRosi->mSignals;
+        mRosi->mIsIdle = util::IS_IDLE(mRosi->mTimestamp, mRosi->mMinTimePeriod);
     }
     #endif /* ROS_ACTIVE */
 
@@ -207,14 +216,13 @@ namespace SPMB{
     #ifdef ROS_ACTIVE
     void StateMachine::_expose_actuated_signals_to_ros(){
         if (util::IS_TIME(mCTRLTimestamp, mCTRLTimePeriod)){
-            //mRosi->mNh.loginfo(mControlFiltered.steering.value());
             mRosi->publish(&mControlFiltered);
         } else{;}
     } 
     #endif /* ROS_ACTIVE */
 
     void StateMachine::actuate(){
-        // TODO: add actuate either servo library or via i2c
+        mOutput->actuate(&mControlFiltered);
 
         #ifdef ROS_ACTIVE
         _expose_actuated_signals_to_ros();

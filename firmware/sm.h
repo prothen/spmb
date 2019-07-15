@@ -6,11 +6,16 @@ namespace SPMB{
 
     class StateMachine{
         public:
+
+            // TODO: add status led for state machine mode
+
             InterruptManager* mInterruptManager;
 
             #ifdef ROS_ACTIVE
             ROSInterface<myHardware>* mRosi;
             #endif /* ROS_ACTIVE */
+
+            OutputDriverI2C* mOutput;
 
             util::control_filtered mControlFiltered;
             bool mALIVE;
@@ -34,11 +39,13 @@ namespace SPMB{
             StateMachine();
 
             #ifdef ROS_ACTIVE
-            void configure( InterruptManager* interrupt_manager_in, ROSInterface<myHardware>* ros_interface_in);
+            void configure_input( InterruptManager* interrupt_manager_in, ROSInterface<myHardware>* ros_interface_in);
             #else
-            void configure( InterruptManager* interrupt_manager_in);
+            void configure_input( InterruptManager* interrupt_manager_in);
             #endif /* ROS_ACTIVE */
-            
+
+            void configure_output(OutputDriverI2C* output_in);
+
             void _update_rc_signals(util::control &signals_rc);
 
             void _swl_execute_switching_logic(util::control* signals_rc);
