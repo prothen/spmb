@@ -14,9 +14,7 @@ InterruptInput interrupt_differential_rear;
 
 OutputDriverI2C output;
 
-/*!
-   The main logic loop algorithm
-*/
+/*! The main logic loop algorithm */
 void loop()
 {
     StateMachine sm;
@@ -35,8 +33,6 @@ void loop()
         if (sm.mALIVE){
             sm.update_output_signals();
             sm.actuate();
-            // sm.update_sensors() // such as current sense and voltages
-            // sm.run_utilities // such as led indicator
             sm.wait_for_next_cycle();
         }
         else{
@@ -45,9 +41,7 @@ void loop()
     }
 }
 
-/*
-    Configure Interrupts and pins
-*/       
+/*! Configure Interrupts and pins */       
 void setup(){
     SetupManager SetupSPMB;
     SetupSPMB.delay_start(1);
