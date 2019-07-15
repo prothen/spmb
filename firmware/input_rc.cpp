@@ -2,13 +2,8 @@
 
 namespace SPMB{
 
-    /**
-     * Defines a Interrupt pin and all its properties (needs to be in global namespace during runtime)
-     */
     InterruptInput::InterruptInput(){;}            
-    /**
-     * Defines a Interrupt pin and all its properties (needs to be in global namespace during runtime)
-     */
+
     void InterruptInput::initialise(    std::string labelInput_,
                                         uint16_t TimePeriodDefault_,
                                         uint8_t bit_,
@@ -33,12 +28,10 @@ namespace SPMB{
         
         disarm_interrupt();
     } 
-    /**
-     * Takes care of setting up all the pins for input definitions and pull-up configuration of respective pin
-     */
+
     void InterruptInput::configure(){
         *mDirectionRegister &= ~mBit;
-        *mCfgRegister &= mBit; // TODO: switched to without pullup
+        *mCfgRegister |= mBit; 
         
         util::print("InterruptInput: Configure input and output pins for ", false);
         util::print(mLabel.c_str(), true); 
@@ -48,9 +41,6 @@ namespace SPMB{
         util::print_binary(*mCfgRegister);
     }
 
-    /**
-     * Disarms the Pin for Pin Change Interrupts
-     */
     void InterruptInput::disarm_interrupt(){
         *mInterruptRegister &= ~mBit;
 
@@ -62,9 +52,6 @@ namespace SPMB{
         */
     }
 
-    /**
-     * Arms the Pin for Pin Change Interrupts
-     */
     void InterruptInput::arm_interrupt(){
         *mInterruptRegister |= mBit;
 
@@ -76,9 +63,6 @@ namespace SPMB{
         */
     }
 
-    /**
-     * Handles complete interrupt logic (is called by CustomisedInterruptManager)
-     */
     void InterruptInput::update_timer(){
         if (!mNewInterruptAvailable && mStatus){
             long tmpTime = micros();
@@ -106,10 +90,7 @@ namespace SPMB{
                     mNewInterruptAvailable = true;
                     //util::print("RECEIVED_LOW.(second: complete cycle): ", false);
                     //util::print(mTimePeriod, true);
-            } else{;
-                //util::print("should not have happened.", true);
-                ///reset(); // TODO: this case should never be reached in normal operation and if reached, indicates a fundamental error in the setup
-            }
+            } else{;}
         } else{;}
     }
 
@@ -151,15 +132,10 @@ namespace SPMB{
         */
     }
 
-    /**
-     * Collects Interrupts with same properties
-    */
     InterruptGroup::InterruptGroup(){
         mIdx = 0;
     }
-    /**
-     * Collects Interrupts with same properties
-    */
+
     void InterruptGroup::update_timer(){
         //util::print("INT: update timer from interrupt group", true);
         (*mInterruptActive).update_timer();
@@ -214,15 +190,11 @@ namespace SPMB{
         mInterruptActive->reset();
     }
 
-    /* append new interrupt to group */
     void InterruptGroup::append_interrupt(InterruptInput * NewInterruptInput){
         mInterrupts.push_back(NewInterruptInput);
         mInterruptActive = mInterrupts.front();
     }
 
-
-
-    /* append new group to interrupt via pointer*/
     void InterruptManager::append_group(InterruptGroup * NewInterruptGroup){
         mInterruptGroups.push_back(NewInterruptGroup);
     }
@@ -255,7 +227,6 @@ namespace SPMB{
         return false;
     }
 
-    /* */
     void InterruptManager::rotate_interrupts(){
         //util::print("    start rotating", true);
         //int i = 0;
@@ -267,7 +238,6 @@ namespace SPMB{
         }
     }
 
-    /* */
     void InterruptManager::arm_interrupts(){
         util::print("Start arming all active interrupts:", true);
         for(std::vector<InterruptGroup*>::iterator it = mInterruptGroups.begin(); it != mInterruptGroups.end(); it++){
