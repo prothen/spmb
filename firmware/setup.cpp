@@ -29,18 +29,32 @@ namespace SPMB{
         PCMSK2 = 0x00; // PCINT[23:16]
     }
 
-    void SetupManager::configure(InterruptManager* interrupt_manager_in){
+    void SetupManager::configure_common(){
+        util::print("########################################", true);
+        util::print("Setup: Initialise Pins:", true);
+
+        _common();
+    }
+
+
+    void SetupManager::configure_interrupts(InterruptManager* interrupt_manager_in){
 
         mInterruptManager = interrupt_manager_in;
 
-        cli();
-        util::print("########################################", true);
-        util::print("Setup: Starting configuration:", true);
-
-        _common();
-        _configure_interrupts();
-        sei();
         
+        util::print("########################################", true);
+        util::print("Setup: Starting configuration of Interrupts:", true);
+
+        _configure_interrupts();     
+    }
+    void SetupManager::configure_output(OutputDriverI2C* output_in){
+
+        mOutput = output_in;
+
+        util::print("########################################", true);
+        util::print("Setup: Starting configuration of Output Driver:", true);
+
+        mOutput->configure();
     }
     void SetupManager::delay_start(float seconds_to_wait){
 
