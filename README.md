@@ -23,7 +23,20 @@ Go to `cd ~/Arduino/libraries`
 
 - Run `roslaunch spmbv2 run.launch`
 
-(*If any configuration parameters regarding baudrate have been adjusted then parse the corresponding parameter in the launch file e.g. `roslaunch spmbv2 run.launch baud:=yourbaudrateinteger`*) 
+(*If any configuration parameters regarding baudrate have been adjusted then parse the corresponding parameter in the launch file e.g. `roslaunch spmbv2 run.launch baud:=yourbaudrateinteger`*)
+
+- After approximately 3-4 seconds the terminal will output 
+
+```
+process[serial_node-1]: started with pid [10506]
+[INFO] [1563182250.327048]: ROS Serial Python Node
+[INFO] [1563182250.351442]: Connecting to /dev/spmb at 57600 baud
+[ERROR] [1563182267.573225]: Unable to sync with device; possible link problem or link software version mismatch such as hydro rosserial_python with groovy Arduino
+[INFO] [1563182267.619900]: Note: publish buffer size is 100 bytes
+[INFO] [1563182267.620545]: Setup publisher on actuated [spmbv2/actuated]
+[INFO] [1563182267.636111]: Note: subscribe buffer size is 100 bytes
+[INFO] [1563182267.636602]: Setup subscriber on request [spmbv2/request]
+```
 
 ## Notes
 - Main loop should be limited with a delay to avoid running in a unlimited loop (interrupts won't work otherwise)
