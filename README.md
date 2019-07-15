@@ -1,5 +1,30 @@
 # SPMB
 
+## Dependencies
+**Install Libraries into `~/Arduino/libraries`:**
+
+Go to `cd ~/Arduino/libraries`
+
+- `git clone https://github.com/adafruit/Adafruit-PWM-Servo-Driver-Library.git`
+
+- `git clone https://github.com/maniacbug/StandardCplusplus.git`
+
+- Download and install Arduino (v1.8.5)
+
+- Build the repository to generate header files for messages with `catkin build` in any directory of your catkin workspace
+
+- Source your workspace with `source ~/your_workspace/devel/setup.bash`
+
+- Run the `make_library.sh` script in the root of this repository
+
+- If desired install the udev rule file under `resources/99-spmb.rules`, which will install the permanent device node `dev/spmb` to avoid the deviating node identifier ttyACMx with x changing based on the amount of ttyACM devices or reconnections of the same device) 
+
+## Execute the ROS Interface
+
+- Run `roslaunch spmbv2 run.launch`
+
+(*If any configuration parameters regarding baudrate have been adjusted then parse the corresponding parameter in the launch file e.g. `roslaunch spmbv2 run.launch baud:=yourbaudrateinteger`*) 
+
 ## Notes
 - Main loop should be limited with a delay to avoid running in a unlimited loop (interrupts won't work otherwise)
 - ```https://github.com/maniacbug/StandardCplusplus.git``` (use 1.8.5 arduino ide compiler for this library!!!)
