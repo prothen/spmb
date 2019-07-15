@@ -5,6 +5,13 @@
 namespace SPMB{
 
     namespace util{
+
+        struct status_led{
+            uint8_t off;
+            uint8_t idle;
+            uint8_t sw_active;
+            uint8_t rc_intervention; //switch out after xx time
+        };
         
         struct control { // switch to an enum
             uint16_t steering;

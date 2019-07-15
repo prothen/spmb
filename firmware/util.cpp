@@ -11,6 +11,15 @@ namespace SPMB{
         differential_rear(LP_T_DIFFERENTIAL_REAR, DEFAULT_PWM_DIFFERENTIAL_REAR)
     {;}
 
+    /* initialise
+    util::status_led{
+            uint8_t off;
+            uint8_t idle;
+            uint8_t sw_active;
+            uint8_t rc_intervention; //switch out after xx time
+        }
+    */
+
     /*
     Clear Screen
     */
