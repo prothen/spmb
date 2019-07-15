@@ -5,9 +5,9 @@
 /*!
    DEFINE MACROS
 */
-// FLASH CONFIGURATION                  // Comment out 
-#define ROS_ACTIVE true                   // Use ROS Interface for communication --> requires ndef of DIAGNOSIS (comment out '#define DIAGNOSIS true'!)
-//#define DIAGNOSIS true                     // Allow serial-prints (only with commented out '#define ROS_ACTIVE true' )
+// FLASH CONFIGURATION                      // Comment out 
+#define ROS_ACTIVE true                     // Use ROS Interface for communication --> requires ndef of DIAGNOSIS (comment out '#define DIAGNOSIS true'!)
+//#define DIAGNOSIS true                    // Allow serial-prints (only with commented out '#define ROS_ACTIVE true' )
 // -------------------------------------------------------------------------------
 
 // CONTROL SIGNALS
@@ -18,11 +18,21 @@
 #define DEFAULT_PWM_DIFFERENTIAL_REAR 2000
 
 // OUTPUT FILTER CONSTANT
-#define LP_T_STEERING .1f
-#define LP_T_VELOCITY .1f
+#define LP_T_STEERING .07f
+#define LP_T_VELOCITY .07f
 #define LP_T_TRANSMISSION .1f
 #define LP_T_DIFFERENTIAL_FRONT .1f
 #define LP_T_DIFFERENTIAL_REAR .1f
+
+// OUTPUT DRIVER CONFIGURATION
+#define M_OUT_STEERING 0
+#define M_OUT_VELOCITY 1
+#define M_OUT_TRANSMISSION 4
+#define M_OUT_DIFFERENTIAL_FRONT 5
+#define M_OUT_DIFFERENTIAL_REAR 6
+
+// INPUT ROS CONFIGURATION
+#define T_ROS_MIN_RATE 0.1f // minimum 10Hz 
 
 // IDENTIFIERS - OUTPUT
 #define BAUD_RATE 57600   
@@ -37,17 +47,13 @@
 #define PWM_CLEAR_TH_LOW PWM_LOW + PWM_CLEAR_TH
 #define PWM_CLEAR_TH_HIGH PWM_HIGH - PWM_CLEAR_TH
 
-#define PWM_EXTERNAL_MIN_TICK 204.0  // 1ms --> 1/20 --> 0.05
-#define PWM_EXTERNAL_MAX_TICK 410.0
-#define PWM_EXTERNAL_RES 4096.0
-
 // TIMER PERIODS
-#define T_LOOP_RATE (1.f / 20.f)  // in seconds
-#define T_CONTROL_LOOP_RATE (1.f / 20.f)  // in seconds
+#define T_LOOP_RATE (1.f / 50.f)  // in seconds
+#define T_CONTROL_LOOP_RATE (1.f / 50.f)  // in seconds
 
 // SAFETY PERIODS
-#define T_interrupt_error_switch_off 1.f  // in seconds
-#define T_interrupt_error_switch_on 5.f  // in seconds
+#define T_interrupt_error_switch_off .5f  // in seconds
+#define T_interrupt_error_switch_on 2.f  // in seconds
 #define n_interrupt_error_switch_off uint8_t(T_interrupt_error_switch_off / T_LOOP_RATE)
 #define n_interrupt_error_switch_on uint8_t(T_interrupt_error_switch_on / T_LOOP_RATE )
 
