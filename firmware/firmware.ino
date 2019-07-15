@@ -12,6 +12,8 @@ InterruptInput interrupt_transmission;
 InterruptInput interrupt_differential_front;
 InterruptInput interrupt_differential_rear;
 
+OutputDriverI2C output;
+
 /*!
    The main logic loop algorithm
 */
@@ -22,10 +24,12 @@ void loop()
     
     #ifdef ROS_ACTIVE
     ROSInterface<myHardware> rosi("request", "actuated");
-    sm.configure(&interrupt_manager, &rosi);
+    sm.configure_input(&interrupt_manager, &rosi);
     #else
-    sm.configure(&interrupt_manager);
+    sm.configure_input(&interrupt_manager);
     #endif /* ROS_ACTIVE */
+
+    sm.configure_output(&output);
 
     while(1){
         if (sm.mALIVE){
@@ -63,7 +67,10 @@ void setup(){
     interrupt_manager.append_group(&B);
     interrupt_manager.append_group(&C);
     interrupt_manager.append_group(&D);
-    SetupSPMB.configure(&interrupt_manager);
+
+    SetupSPMB.configure_common();
+    SetupSPMB.configure_interrupts(&interrupt_manager);
+    SetupSPMB.configure_output(&output);
 
     interrupt_manager.arm_interrupts();
 }
