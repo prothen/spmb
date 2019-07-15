@@ -1,0 +1,104 @@
+\hypertarget{classSPMB_1_1ROSInterface}{}\section{S\+P\+MB\+:\+:R\+O\+S\+Interface$<$ T $>$ Class Template Reference}
+\label{classSPMB_1_1ROSInterface}\index{S\+P\+M\+B\+::\+R\+O\+S\+Interface$<$ T $>$@{S\+P\+M\+B\+::\+R\+O\+S\+Interface$<$ T $>$}}
+
+
+{\ttfamily \#include $<$ros\+\_\+interface.\+h$>$}
+
+
+
+Collaboration diagram for S\+P\+MB\+:\+:R\+O\+S\+Interface$<$ T $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{classSPMB_1_1ROSInterface__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classSPMB_1_1ROSInterface_a35478a3b15d22289c6820e70e5cec671}{R\+O\+S\+Interface} (const char $\ast$subscriber\+\_\+topic, const char $\ast$publisher\+\_\+topic)\hypertarget{classSPMB_1_1ROSInterface_a35478a3b15d22289c6820e70e5cec671}{}\label{classSPMB_1_1ROSInterface_a35478a3b15d22289c6820e70e5cec671}
+
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \hyperlink{classSPMB_1_1ROSInterface_a24592b40d99ca3ed071b8ef9ab918f4d}{cb\+\_\+request\+\_\+} (const spmbv2\+::request \&msg)
+\item 
+void \hyperlink{classSPMB_1_1ROSInterface_abb8a72d72e30a8475793200c730e26e6}{publish} (\hyperlink{structSPMB_1_1util_1_1control__filtered}{util\+::control\+\_\+filtered} $\ast$data)
+\item 
+void \hyperlink{classSPMB_1_1ROSInterface_a6e220ac2a41d61b6185190cc372b1e42}{debug} (const char $\ast$text)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+T {\bfseries m\+Nh}\hypertarget{classSPMB_1_1ROSInterface_a8a0d97d194910287787071f0bba2f874}{}\label{classSPMB_1_1ROSInterface_a8a0d97d194910287787071f0bba2f874}
+
+\item 
+spmbv2\+::actuated {\bfseries m\+Msg\+Pub}\hypertarget{classSPMB_1_1ROSInterface_a808aa2a8f9ddeef7a64271ba48886b8e}{}\label{classSPMB_1_1ROSInterface_a808aa2a8f9ddeef7a64271ba48886b8e}
+
+\item 
+spmbv2\+::request {\bfseries m\+Msg\+Sub}\hypertarget{classSPMB_1_1ROSInterface_a1c7beeb4a066a0e3810bc17730f21e44}{}\label{classSPMB_1_1ROSInterface_a1c7beeb4a066a0e3810bc17730f21e44}
+
+\item 
+\hyperlink{structSPMB_1_1util_1_1control}{util\+::control} {\bfseries m\+Signals}\hypertarget{classSPMB_1_1ROSInterface_ae6913bbbc7b866f368bed451b782e407}{}\label{classSPMB_1_1ROSInterface_ae6913bbbc7b866f368bed451b782e407}
+
+\item 
+boolean {\bfseries m\+Is\+Idle}\hypertarget{classSPMB_1_1ROSInterface_a90fe56a55e9599b2d6c87435c3d9fc23}{}\label{classSPMB_1_1ROSInterface_a90fe56a55e9599b2d6c87435c3d9fc23}
+
+\item 
+long {\bfseries m\+Timestamp}\hypertarget{classSPMB_1_1ROSInterface_a66af2aff77df71c0e937ce713117cac4}{}\label{classSPMB_1_1ROSInterface_a66af2aff77df71c0e937ce713117cac4}
+
+\item 
+uint16\+\_\+t {\bfseries m\+Min\+Time\+Period}\hypertarget{classSPMB_1_1ROSInterface_a7a7df0454febf2d53aab44d82e3e2e15}{}\label{classSPMB_1_1ROSInterface_a7a7df0454febf2d53aab44d82e3e2e15}
+
+\item 
+ros\+::\+Subscriber$<$ spmbv2\+::request, \hyperlink{classSPMB_1_1ROSInterface}{R\+O\+S\+Interface}$<$ T $>$ $>$ {\bfseries m\+Subscriber}\hypertarget{classSPMB_1_1ROSInterface_ab24835b7a571abc2ba3c559d94118bf0}{}\label{classSPMB_1_1ROSInterface_ab24835b7a571abc2ba3c559d94118bf0}
+
+\item 
+ros\+::\+Publisher {\bfseries m\+Publisher}\hypertarget{classSPMB_1_1ROSInterface_a26a3aac13b059a5fe61d73beb81ca040}{}\label{classSPMB_1_1ROSInterface_a26a3aac13b059a5fe61d73beb81ca040}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\\*
+class S\+P\+M\+B\+::\+R\+O\+S\+Interface$<$ T $>$}
+
+R\+OS Interface class providing interface functions and facilitating publishing and subscribing 
+
+Definition at line 13 of file ros\+\_\+interface.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\index{S\+P\+M\+B\+::\+R\+O\+S\+Interface@{S\+P\+M\+B\+::\+R\+O\+S\+Interface}!cb\+\_\+request\+\_\+@{cb\+\_\+request\+\_\+}}
+\index{cb\+\_\+request\+\_\+@{cb\+\_\+request\+\_\+}!S\+P\+M\+B\+::\+R\+O\+S\+Interface@{S\+P\+M\+B\+::\+R\+O\+S\+Interface}}
+\subsubsection[{\texorpdfstring{cb\+\_\+request\+\_\+(const spmbv2\+::request \&msg)}{cb_request_(const spmbv2::request &msg)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ void {\bf S\+P\+M\+B\+::\+R\+O\+S\+Interface}$<$ T $>$\+::cb\+\_\+request\+\_\+ (
+\begin{DoxyParamCaption}
+\item[{const spmbv2\+::request \&}]{msg}
+\end{DoxyParamCaption}
+)}\hypertarget{classSPMB_1_1ROSInterface_a24592b40d99ca3ed071b8ef9ab918f4d}{}\label{classSPMB_1_1ROSInterface_a24592b40d99ca3ed071b8ef9ab918f4d}
+Callback for command request via R\+OS 
+
+Definition at line 41 of file ros\+\_\+interface.\+h.
+
+\index{S\+P\+M\+B\+::\+R\+O\+S\+Interface@{S\+P\+M\+B\+::\+R\+O\+S\+Interface}!debug@{debug}}
+\index{debug@{debug}!S\+P\+M\+B\+::\+R\+O\+S\+Interface@{S\+P\+M\+B\+::\+R\+O\+S\+Interface}}
+\subsubsection[{\texorpdfstring{debug(const char $\ast$text)}{debug(const char *text)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ void {\bf S\+P\+M\+B\+::\+R\+O\+S\+Interface}$<$ T $>$\+::debug (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{text}
+\end{DoxyParamCaption}
+)}\hypertarget{classSPMB_1_1ROSInterface_a6e220ac2a41d61b6185190cc372b1e42}{}\label{classSPMB_1_1ROSInterface_a6e220ac2a41d61b6185190cc372b1e42}
+Print convenience function for debugging 
+
+Definition at line 52 of file ros\+\_\+interface.\+h.
+
+\index{S\+P\+M\+B\+::\+R\+O\+S\+Interface@{S\+P\+M\+B\+::\+R\+O\+S\+Interface}!publish@{publish}}
+\index{publish@{publish}!S\+P\+M\+B\+::\+R\+O\+S\+Interface@{S\+P\+M\+B\+::\+R\+O\+S\+Interface}}
+\subsubsection[{\texorpdfstring{publish(util\+::control\+\_\+filtered $\ast$data)}{publish(util::control_filtered *data)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ void {\bf S\+P\+M\+B\+::\+R\+O\+S\+Interface}$<$ T $>$\+::publish (
+\begin{DoxyParamCaption}
+\item[{{\bf util\+::control\+\_\+filtered} $\ast$}]{data}
+\end{DoxyParamCaption}
+)}\hypertarget{classSPMB_1_1ROSInterface_abb8a72d72e30a8475793200c730e26e6}{}\label{classSPMB_1_1ROSInterface_abb8a72d72e30a8475793200c730e26e6}
+Parsing to publish control\+\_\+filtered to R\+OS message actuated 
+
+Definition at line 57 of file ros\+\_\+interface.\+h.
+

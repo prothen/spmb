@@ -1,0 +1,244 @@
+\hypertarget{classSPMB_1_1StateMachine}{}\section{S\+P\+MB\+:\+:State\+Machine Class Reference}
+\label{classSPMB_1_1StateMachine}\index{S\+P\+M\+B\+::\+State\+Machine@{S\+P\+M\+B\+::\+State\+Machine}}
+
+
+{\ttfamily \#include $<$sm.\+h$>$}
+
+
+
+Collaboration diagram for S\+P\+MB\+:\+:State\+Machine\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSPMB_1_1StateMachine__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classSPMB_1_1StateMachine_a435a2eb92508aa038a0df64b4edd3ff2}{configure\+\_\+input} (\hyperlink{classSPMB_1_1InterruptManager}{Interrupt\+Manager} $\ast$interrupt\+\_\+manager\+\_\+in, \hyperlink{classSPMB_1_1ROSInterface}{R\+O\+S\+Interface}$<$ my\+Hardware $>$ $\ast$ros\+\_\+interface\+\_\+in)
+\item 
+void \hyperlink{classSPMB_1_1StateMachine_a1e1f84c67c0db8422a17c6d0f76f70a8}{configure\+\_\+output} (\hyperlink{classSPMB_1_1OutputDriverI2C}{Output\+Driver\+I2C} $\ast$output\+\_\+in)
+\item 
+void \hyperlink{classSPMB_1_1StateMachine_af1812d19f20f020a1635a96da3e8e048}{\+\_\+update\+\_\+rc\+\_\+signals} (\hyperlink{structSPMB_1_1util_1_1control}{util\+::control} \&signals\+\_\+rc)
+\item 
+void \hyperlink{classSPMB_1_1StateMachine_a1c01752d1ec267a1dc85924d453db6ce}{\+\_\+swl\+\_\+execute\+\_\+switching\+\_\+logic} (\hyperlink{structSPMB_1_1util_1_1control}{util\+::control} $\ast$signals\+\_\+rc)
+\item 
+void \hyperlink{classSPMB_1_1StateMachine_aefec64633728ccc393ff10752fe76243}{\+\_\+swl\+\_\+check\+\_\+idle\+\_\+transition} ()
+\item 
+void \hyperlink{classSPMB_1_1StateMachine_ad5b8e99beb2d19a29491429c45249179}{wait\+\_\+for\+\_\+next\+\_\+cycle} ()
+\item 
+void \hyperlink{classSPMB_1_1StateMachine_a8e7447f352e2a9b3f8d451bc834faaa2}{critical\+\_\+error} ()
+\item 
+void \hyperlink{classSPMB_1_1StateMachine_a46daaffbfb6385c230685dcba703314f}{\+\_\+process\+\_\+rc\+\_\+inputs} (\hyperlink{structSPMB_1_1util_1_1control}{util\+::control} \&signals\+\_\+rc)
+\item 
+void \hyperlink{classSPMB_1_1StateMachine_a6ffc09455280e241a558f1b46441aa9d}{\+\_\+process\+\_\+ros\+\_\+inputs} (\hyperlink{structSPMB_1_1util_1_1control}{util\+::control} \&signals\+\_\+ros)
+\item 
+void \hyperlink{classSPMB_1_1StateMachine_a651fcd0d71e1ce2ec7dfc72255ff8af7}{update\+\_\+output\+\_\+signals} ()
+\item 
+void \hyperlink{classSPMB_1_1StateMachine_a887475df9c15df2defce01f36030f931}{\+\_\+expose\+\_\+actuated\+\_\+signals\+\_\+to\+\_\+ros} ()
+\item 
+void \hyperlink{classSPMB_1_1StateMachine_a46d01bf4a019982fee4188d7434e38fa}{actuate} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classSPMB_1_1InterruptManager}{Interrupt\+Manager} $\ast$ \hyperlink{classSPMB_1_1StateMachine_a3e5c36f8ceb94e6f8913e7475cce2c40}{m\+Interrupt\+Manager}\hypertarget{classSPMB_1_1StateMachine_a3e5c36f8ceb94e6f8913e7475cce2c40}{}\label{classSPMB_1_1StateMachine_a3e5c36f8ceb94e6f8913e7475cce2c40}
+
+\begin{DoxyCompactList}\small\item\em Pointer to interrupt manager provides access to all interrupt results. \end{DoxyCompactList}\item 
+\hyperlink{classSPMB_1_1ROSInterface}{R\+O\+S\+Interface}$<$ my\+Hardware $>$ $\ast$ \hyperlink{classSPMB_1_1StateMachine_ab653add6890a51701f9d3a3760008e15}{m\+Rosi}\hypertarget{classSPMB_1_1StateMachine_ab653add6890a51701f9d3a3760008e15}{}\label{classSPMB_1_1StateMachine_ab653add6890a51701f9d3a3760008e15}
+
+\begin{DoxyCompactList}\small\item\em Pointer to R\+OS interface that provides access to all R\+OS related actions. \end{DoxyCompactList}\item 
+\hyperlink{classSPMB_1_1OutputDriverI2C}{Output\+Driver\+I2C} $\ast$ \hyperlink{classSPMB_1_1StateMachine_aecac5b27c3a5daa5331d367f55bed915}{m\+Output}\hypertarget{classSPMB_1_1StateMachine_aecac5b27c3a5daa5331d367f55bed915}{}\label{classSPMB_1_1StateMachine_aecac5b27c3a5daa5331d367f55bed915}
+
+\begin{DoxyCompactList}\small\item\em Pointer to output driver that provides access to all hardware related actuation actions. \end{DoxyCompactList}\item 
+\hyperlink{structSPMB_1_1util_1_1control__filtered}{util\+::control\+\_\+filtered} \hyperlink{classSPMB_1_1StateMachine_ac073bedbf77604e5df582b14e2a610cb}{m\+Control\+Filtered}\hypertarget{classSPMB_1_1StateMachine_ac073bedbf77604e5df582b14e2a610cb}{}\label{classSPMB_1_1StateMachine_ac073bedbf77604e5df582b14e2a610cb}
+
+\begin{DoxyCompactList}\small\item\em Filtered control output for actuation via output driver. \end{DoxyCompactList}\item 
+bool \hyperlink{classSPMB_1_1StateMachine_a856ca0d82b6c3da4d60c1a52d6982faf}{m\+A\+L\+I\+VE}\hypertarget{classSPMB_1_1StateMachine_a856ca0d82b6c3da4d60c1a52d6982faf}{}\label{classSPMB_1_1StateMachine_a856ca0d82b6c3da4d60c1a52d6982faf}
+
+\begin{DoxyCompactList}\small\item\em Indicates state machine health status. \end{DoxyCompactList}\item 
+bool \hyperlink{classSPMB_1_1StateMachine_ac0318161d8396b4190dfc57f2d7ca3e5}{m\+S\+W\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+A\+C\+T\+I\+VE}\hypertarget{classSPMB_1_1StateMachine_ac0318161d8396b4190dfc57f2d7ca3e5}{}\label{classSPMB_1_1StateMachine_ac0318161d8396b4190dfc57f2d7ca3e5}
+
+\begin{DoxyCompactList}\small\item\em Activation boolean for software control loop. \end{DoxyCompactList}\item 
+long \hyperlink{classSPMB_1_1StateMachine_a372848ebc671d9a34982345bc90a255d}{m\+S\+M\+Timestamp}\hypertarget{classSPMB_1_1StateMachine_a372848ebc671d9a34982345bc90a255d}{}\label{classSPMB_1_1StateMachine_a372848ebc671d9a34982345bc90a255d}
+
+\begin{DoxyCompactList}\small\item\em Timestamp of last main loop iteration. \end{DoxyCompactList}\item 
+long \hyperlink{classSPMB_1_1StateMachine_ab8b439f683f473ae15201e3928a279b1}{m\+C\+T\+R\+L\+Timestamp}\hypertarget{classSPMB_1_1StateMachine_ab8b439f683f473ae15201e3928a279b1}{}\label{classSPMB_1_1StateMachine_ab8b439f683f473ae15201e3928a279b1}
+
+\begin{DoxyCompactList}\small\item\em Timestamp of last control actuation. \end{DoxyCompactList}\item 
+uint16\+\_\+t \hyperlink{classSPMB_1_1StateMachine_af09b596c6c80e052807b56779d14903d}{m\+S\+M\+Time\+Period}\hypertarget{classSPMB_1_1StateMachine_af09b596c6c80e052807b56779d14903d}{}\label{classSPMB_1_1StateMachine_af09b596c6c80e052807b56779d14903d}
+
+\begin{DoxyCompactList}\small\item\em Time period of main logic loop. \end{DoxyCompactList}\item 
+uint16\+\_\+t \hyperlink{classSPMB_1_1StateMachine_a57244a6945d6a7442f67563dea8f1754}{m\+C\+T\+R\+L\+Time\+Period}\hypertarget{classSPMB_1_1StateMachine_a57244a6945d6a7442f67563dea8f1754}{}\label{classSPMB_1_1StateMachine_a57244a6945d6a7442f67563dea8f1754}
+
+\begin{DoxyCompactList}\small\item\em Timp period of control loop. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{classSPMB_1_1StateMachine_a4ef617b6025ddafc0c3d033cb59935d7}{m\+S\+W\+L\+State}\hypertarget{classSPMB_1_1StateMachine_a4ef617b6025ddafc0c3d033cb59935d7}{}\label{classSPMB_1_1StateMachine_a4ef617b6025ddafc0c3d033cb59935d7}
+
+\begin{DoxyCompactList}\small\item\em State of switching logic, see macros for states. \end{DoxyCompactList}\item 
+uint16\+\_\+t \hyperlink{classSPMB_1_1StateMachine_a9736947bcb2c289d85c7588434fb93c8}{m\+S\+W\+L\+Time\+Period}\hypertarget{classSPMB_1_1StateMachine_a9736947bcb2c289d85c7588434fb93c8}{}\label{classSPMB_1_1StateMachine_a9736947bcb2c289d85c7588434fb93c8}
+
+\begin{DoxyCompactList}\small\item\em Time period of switching logic to detect idle. \end{DoxyCompactList}\item 
+long \hyperlink{classSPMB_1_1StateMachine_acd7bdae2efc3414abcf4e0eba1b3ac59}{m\+S\+W\+L\+Timestamp}\hypertarget{classSPMB_1_1StateMachine_acd7bdae2efc3414abcf4e0eba1b3ac59}{}\label{classSPMB_1_1StateMachine_acd7bdae2efc3414abcf4e0eba1b3ac59}
+
+\begin{DoxyCompactList}\small\item\em Timestamp of switching logic. \end{DoxyCompactList}\item 
+boolean \hyperlink{classSPMB_1_1StateMachine_af37ba6ce3ef9826cd025a6259c42449d}{m\+S1}\hypertarget{classSPMB_1_1StateMachine_af37ba6ce3ef9826cd025a6259c42449d}{}\label{classSPMB_1_1StateMachine_af37ba6ce3ef9826cd025a6259c42449d}
+
+\begin{DoxyCompactList}\small\item\em Channel 4 (differential\+\_\+front) state. \end{DoxyCompactList}\item 
+boolean \hyperlink{classSPMB_1_1StateMachine_af7fcd1aec80eb5b7397b163db2e7c2ed}{m\+S2}\hypertarget{classSPMB_1_1StateMachine_af7fcd1aec80eb5b7397b163db2e7c2ed}{}\label{classSPMB_1_1StateMachine_af7fcd1aec80eb5b7397b163db2e7c2ed}
+
+\begin{DoxyCompactList}\small\item\em Channel 5 (differential\+\_\+rear) state. \end{DoxyCompactList}\item 
+boolean \hyperlink{classSPMB_1_1StateMachine_af6ffc5aa94ef7f423d217f8fba9cb998}{m\+S1\+\_\+prev}\hypertarget{classSPMB_1_1StateMachine_af6ffc5aa94ef7f423d217f8fba9cb998}{}\label{classSPMB_1_1StateMachine_af6ffc5aa94ef7f423d217f8fba9cb998}
+
+\begin{DoxyCompactList}\small\item\em Previous Channel 4 (differential\+\_\+front) state. \end{DoxyCompactList}\item 
+boolean \hyperlink{classSPMB_1_1StateMachine_a1d0a5cbe9d61f50e3d0ac3bdca99b936}{m\+S2\+\_\+prev}\hypertarget{classSPMB_1_1StateMachine_a1d0a5cbe9d61f50e3d0ac3bdca99b936}{}\label{classSPMB_1_1StateMachine_a1d0a5cbe9d61f50e3d0ac3bdca99b936}
+
+\begin{DoxyCompactList}\small\item\em Previous Channel 5 (differential\+\_\+rear) state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A test class
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000001}{Todo}]Add status L\+ED class \end{DoxyRefDesc}
+
+
+Definition at line 13 of file sm.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\index{S\+P\+M\+B\+::\+State\+Machine@{S\+P\+M\+B\+::\+State\+Machine}!\+\_\+expose\+\_\+actuated\+\_\+signals\+\_\+to\+\_\+ros@{\+\_\+expose\+\_\+actuated\+\_\+signals\+\_\+to\+\_\+ros}}
+\index{\+\_\+expose\+\_\+actuated\+\_\+signals\+\_\+to\+\_\+ros@{\+\_\+expose\+\_\+actuated\+\_\+signals\+\_\+to\+\_\+ros}!S\+P\+M\+B\+::\+State\+Machine@{S\+P\+M\+B\+::\+State\+Machine}}
+\subsubsection[{\texorpdfstring{\+\_\+expose\+\_\+actuated\+\_\+signals\+\_\+to\+\_\+ros()}{_expose_actuated_signals_to_ros()}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+P\+M\+B\+::\+State\+Machine\+::\+\_\+expose\+\_\+actuated\+\_\+signals\+\_\+to\+\_\+ros (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classSPMB_1_1StateMachine_a887475df9c15df2defce01f36030f931}{}\label{classSPMB_1_1StateMachine_a887475df9c15df2defce01f36030f931}
+expose ros 
+
+Definition at line 217 of file sm.\+cpp.
+
+\index{S\+P\+M\+B\+::\+State\+Machine@{S\+P\+M\+B\+::\+State\+Machine}!\+\_\+process\+\_\+rc\+\_\+inputs@{\+\_\+process\+\_\+rc\+\_\+inputs}}
+\index{\+\_\+process\+\_\+rc\+\_\+inputs@{\+\_\+process\+\_\+rc\+\_\+inputs}!S\+P\+M\+B\+::\+State\+Machine@{S\+P\+M\+B\+::\+State\+Machine}}
+\subsubsection[{\texorpdfstring{\+\_\+process\+\_\+rc\+\_\+inputs(util\+::control \&signals\+\_\+rc)}{_process_rc_inputs(util::control &signals_rc)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+P\+M\+B\+::\+State\+Machine\+::\+\_\+process\+\_\+rc\+\_\+inputs (
+\begin{DoxyParamCaption}
+\item[{{\bf util\+::control} \&}]{signals\+\_\+rc}
+\end{DoxyParamCaption}
+)}\hypertarget{classSPMB_1_1StateMachine_a46daaffbfb6385c230685dcba703314f}{}\label{classSPMB_1_1StateMachine_a46daaffbfb6385c230685dcba703314f}
+taestestetest 
+
+Definition at line 169 of file sm.\+cpp.
+
+\index{S\+P\+M\+B\+::\+State\+Machine@{S\+P\+M\+B\+::\+State\+Machine}!\+\_\+process\+\_\+ros\+\_\+inputs@{\+\_\+process\+\_\+ros\+\_\+inputs}}
+\index{\+\_\+process\+\_\+ros\+\_\+inputs@{\+\_\+process\+\_\+ros\+\_\+inputs}!S\+P\+M\+B\+::\+State\+Machine@{S\+P\+M\+B\+::\+State\+Machine}}
+\subsubsection[{\texorpdfstring{\+\_\+process\+\_\+ros\+\_\+inputs(util\+::control \&signals\+\_\+ros)}{_process_ros_inputs(util::control &signals_ros)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+P\+M\+B\+::\+State\+Machine\+::\+\_\+process\+\_\+ros\+\_\+inputs (
+\begin{DoxyParamCaption}
+\item[{{\bf util\+::control} \&}]{signals\+\_\+ros}
+\end{DoxyParamCaption}
+)}\hypertarget{classSPMB_1_1StateMachine_a6ffc09455280e241a558f1b46441aa9d}{}\label{classSPMB_1_1StateMachine_a6ffc09455280e241a558f1b46441aa9d}
+test ros 
+
+Definition at line 175 of file sm.\+cpp.
+
+\index{S\+P\+M\+B\+::\+State\+Machine@{S\+P\+M\+B\+::\+State\+Machine}!\+\_\+swl\+\_\+check\+\_\+idle\+\_\+transition@{\+\_\+swl\+\_\+check\+\_\+idle\+\_\+transition}}
+\index{\+\_\+swl\+\_\+check\+\_\+idle\+\_\+transition@{\+\_\+swl\+\_\+check\+\_\+idle\+\_\+transition}!S\+P\+M\+B\+::\+State\+Machine@{S\+P\+M\+B\+::\+State\+Machine}}
+\subsubsection[{\texorpdfstring{\+\_\+swl\+\_\+check\+\_\+idle\+\_\+transition()}{_swl_check_idle_transition()}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+P\+M\+B\+::\+State\+Machine\+::\+\_\+swl\+\_\+check\+\_\+idle\+\_\+transition (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classSPMB_1_1StateMachine_aefec64633728ccc393ff10752fe76243}{}\label{classSPMB_1_1StateMachine_aefec64633728ccc393ff10752fe76243}
+oeoauu 
+
+Definition at line 150 of file sm.\+cpp.
+
+\index{S\+P\+M\+B\+::\+State\+Machine@{S\+P\+M\+B\+::\+State\+Machine}!\+\_\+swl\+\_\+execute\+\_\+switching\+\_\+logic@{\+\_\+swl\+\_\+execute\+\_\+switching\+\_\+logic}}
+\index{\+\_\+swl\+\_\+execute\+\_\+switching\+\_\+logic@{\+\_\+swl\+\_\+execute\+\_\+switching\+\_\+logic}!S\+P\+M\+B\+::\+State\+Machine@{S\+P\+M\+B\+::\+State\+Machine}}
+\subsubsection[{\texorpdfstring{\+\_\+swl\+\_\+execute\+\_\+switching\+\_\+logic(util\+::control $\ast$signals\+\_\+rc)}{_swl_execute_switching_logic(util::control *signals_rc)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+P\+M\+B\+::\+State\+Machine\+::\+\_\+swl\+\_\+execute\+\_\+switching\+\_\+logic (
+\begin{DoxyParamCaption}
+\item[{{\bf util\+::control} $\ast$}]{signals\+\_\+rc}
+\end{DoxyParamCaption}
+)}\hypertarget{classSPMB_1_1StateMachine_a1c01752d1ec267a1dc85924d453db6ce}{}\label{classSPMB_1_1StateMachine_a1c01752d1ec267a1dc85924d453db6ce}
+taehu 
+
+Definition at line 77 of file sm.\+cpp.
+
+\index{S\+P\+M\+B\+::\+State\+Machine@{S\+P\+M\+B\+::\+State\+Machine}!\+\_\+update\+\_\+rc\+\_\+signals@{\+\_\+update\+\_\+rc\+\_\+signals}}
+\index{\+\_\+update\+\_\+rc\+\_\+signals@{\+\_\+update\+\_\+rc\+\_\+signals}!S\+P\+M\+B\+::\+State\+Machine@{S\+P\+M\+B\+::\+State\+Machine}}
+\subsubsection[{\texorpdfstring{\+\_\+update\+\_\+rc\+\_\+signals(util\+::control \&signals\+\_\+rc)}{_update_rc_signals(util::control &signals_rc)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+P\+M\+B\+::\+State\+Machine\+::\+\_\+update\+\_\+rc\+\_\+signals (
+\begin{DoxyParamCaption}
+\item[{{\bf util\+::control} \&}]{signals\+\_\+rc}
+\end{DoxyParamCaption}
+)}\hypertarget{classSPMB_1_1StateMachine_af1812d19f20f020a1635a96da3e8e048}{}\label{classSPMB_1_1StateMachine_af1812d19f20f020a1635a96da3e8e048}
+update rc signals 
+
+Definition at line 61 of file sm.\+cpp.
+
+\index{S\+P\+M\+B\+::\+State\+Machine@{S\+P\+M\+B\+::\+State\+Machine}!actuate@{actuate}}
+\index{actuate@{actuate}!S\+P\+M\+B\+::\+State\+Machine@{S\+P\+M\+B\+::\+State\+Machine}}
+\subsubsection[{\texorpdfstring{actuate()}{actuate()}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+P\+M\+B\+::\+State\+Machine\+::actuate (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classSPMB_1_1StateMachine_a46d01bf4a019982fee4188d7434e38fa}{}\label{classSPMB_1_1StateMachine_a46d01bf4a019982fee4188d7434e38fa}
+actuate 
+
+Definition at line 224 of file sm.\+cpp.
+
+\index{S\+P\+M\+B\+::\+State\+Machine@{S\+P\+M\+B\+::\+State\+Machine}!configure\+\_\+input@{configure\+\_\+input}}
+\index{configure\+\_\+input@{configure\+\_\+input}!S\+P\+M\+B\+::\+State\+Machine@{S\+P\+M\+B\+::\+State\+Machine}}
+\subsubsection[{\texorpdfstring{configure\+\_\+input(\+Interrupt\+Manager $\ast$interrupt\+\_\+manager\+\_\+in, R\+O\+S\+Interface$<$ my\+Hardware $>$ $\ast$ros\+\_\+interface\+\_\+in)}{configure_input(InterruptManager *interrupt_manager_in, ROSInterface< myHardware > *ros_interface_in)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+P\+M\+B\+::\+State\+Machine\+::configure\+\_\+input (
+\begin{DoxyParamCaption}
+\item[{{\bf Interrupt\+Manager} $\ast$}]{interrupt\+\_\+manager\+\_\+in, }
+\item[{{\bf R\+O\+S\+Interface}$<$ my\+Hardware $>$ $\ast$}]{ros\+\_\+interface\+\_\+in}
+\end{DoxyParamCaption}
+)}\hypertarget{classSPMB_1_1StateMachine_a435a2eb92508aa038a0df64b4edd3ff2}{}\label{classSPMB_1_1StateMachine_a435a2eb92508aa038a0df64b4edd3ff2}
+configure input 
+
+Definition at line 25 of file sm.\+cpp.
+
+\index{S\+P\+M\+B\+::\+State\+Machine@{S\+P\+M\+B\+::\+State\+Machine}!configure\+\_\+output@{configure\+\_\+output}}
+\index{configure\+\_\+output@{configure\+\_\+output}!S\+P\+M\+B\+::\+State\+Machine@{S\+P\+M\+B\+::\+State\+Machine}}
+\subsubsection[{\texorpdfstring{configure\+\_\+output(\+Output\+Driver\+I2\+C $\ast$output\+\_\+in)}{configure_output(OutputDriverI2C *output_in)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+P\+M\+B\+::\+State\+Machine\+::configure\+\_\+output (
+\begin{DoxyParamCaption}
+\item[{{\bf Output\+Driver\+I2C} $\ast$}]{output\+\_\+in}
+\end{DoxyParamCaption}
+)}\hypertarget{classSPMB_1_1StateMachine_a1e1f84c67c0db8422a17c6d0f76f70a8}{}\label{classSPMB_1_1StateMachine_a1e1f84c67c0db8422a17c6d0f76f70a8}
+Brief description 
+
+Definition at line 35 of file sm.\+cpp.
+
+\index{S\+P\+M\+B\+::\+State\+Machine@{S\+P\+M\+B\+::\+State\+Machine}!critical\+\_\+error@{critical\+\_\+error}}
+\index{critical\+\_\+error@{critical\+\_\+error}!S\+P\+M\+B\+::\+State\+Machine@{S\+P\+M\+B\+::\+State\+Machine}}
+\subsubsection[{\texorpdfstring{critical\+\_\+error()}{critical_error()}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+P\+M\+B\+::\+State\+Machine\+::critical\+\_\+error (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classSPMB_1_1StateMachine_a8e7447f352e2a9b3f8d451bc834faaa2}{}\label{classSPMB_1_1StateMachine_a8e7447f352e2a9b3f8d451bc834faaa2}
+thaeu 
+
+Definition at line 57 of file sm.\+cpp.
+
+\index{S\+P\+M\+B\+::\+State\+Machine@{S\+P\+M\+B\+::\+State\+Machine}!update\+\_\+output\+\_\+signals@{update\+\_\+output\+\_\+signals}}
+\index{update\+\_\+output\+\_\+signals@{update\+\_\+output\+\_\+signals}!S\+P\+M\+B\+::\+State\+Machine@{S\+P\+M\+B\+::\+State\+Machine}}
+\subsubsection[{\texorpdfstring{update\+\_\+output\+\_\+signals()}{update_output_signals()}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+P\+M\+B\+::\+State\+Machine\+::update\+\_\+output\+\_\+signals (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classSPMB_1_1StateMachine_a651fcd0d71e1ce2ec7dfc72255ff8af7}{}\label{classSPMB_1_1StateMachine_a651fcd0d71e1ce2ec7dfc72255ff8af7}
+update output 
+
+Definition at line 183 of file sm.\+cpp.
+
+\index{S\+P\+M\+B\+::\+State\+Machine@{S\+P\+M\+B\+::\+State\+Machine}!wait\+\_\+for\+\_\+next\+\_\+cycle@{wait\+\_\+for\+\_\+next\+\_\+cycle}}
+\index{wait\+\_\+for\+\_\+next\+\_\+cycle@{wait\+\_\+for\+\_\+next\+\_\+cycle}!S\+P\+M\+B\+::\+State\+Machine@{S\+P\+M\+B\+::\+State\+Machine}}
+\subsubsection[{\texorpdfstring{wait\+\_\+for\+\_\+next\+\_\+cycle()}{wait_for_next_cycle()}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+P\+M\+B\+::\+State\+Machine\+::wait\+\_\+for\+\_\+next\+\_\+cycle (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classSPMB_1_1StateMachine_ad5b8e99beb2d19a29491429c45249179}{}\label{classSPMB_1_1StateMachine_ad5b8e99beb2d19a29491429c45249179}
+oeauoeu 
+
+Definition at line 39 of file sm.\+cpp.
+

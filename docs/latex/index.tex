@@ -1,0 +1,132 @@
+\subsection*{Brief}
+
+The Signal\&Power Management Board ({\bfseries S\+P\+MB}) provides firmware for Arduino U\+NO devices using Atmega328p microcontrollers facilitating a Robot Operating System ({\bfseries R\+OS}) interface for a radio controlled ({\bfseries RC}) supervised vehicle. Here the current configuration is based on the {\bfseries T\+R\+A\+X\+X\+AS} platforms (in specific T\+R\+X4). The S\+P\+MB provides direct RC forwarding and publishing of actuated control signals to the R\+OS interface. With a predefined fast switching sequence of channels the software based control algorithms are activated. Furthermore a failsafe for idled software connections is embedded such that RC operation is activated if less than {\itshape 10\+Hz} control frequency is present. If a RC channel is not read successfully, e.\+g. broken wires or empty batteries, the channel is deactivated and the output goes in the channels default control signal. In case of velocity and steering this corresponds to 0 actuation. In addition lowpass filtering of all control signals, both remote and software based is included and can be customised by adapting the parameters under {\ttfamily \hyperlink{setup__macros_8h_source}{firmware/setup\+\_\+macros.\+h}}. The main and control loop time is configured and tested at {\itshape 50\+Hz}. Theoretically much higher frequencies are possible, however interrupt reading capability greatly deteriorates with a fast main loop frequency. Therefore it is recommended to not vary these frequencies to higher values or otherwise stable performance can not be guaranteed. Also the firmware provides a led signaling class which provides easily accessible information about the current S\+P\+MB\textquotesingle{}s state machine status.
+
+\subsection*{Features}
+
+
+\begin{DoxyItemize}
+\item RC Forwarding
+\item Safety logic for both R\+O\+S-\/ and R\+C-\/based control
+\item Actuation output via R\+OS for debugging and learning of manual controlled maneuvers or continuation of actuation-\/based estimator while supervised intervention
+\item Switching logic with state machine considering idle conditions, various error cases and providing supervisor interrupt via braking maneuver
+\item {\itshape 50 Hz} actuation and lowpass filtered control
+\item O\+OP based modules with independent use cases both with and without R\+OS usage (serial and ros nodehandle.\+loginfo debugging possible)
+\item Installation of udev rules for unique device node under {\ttfamily /dev/spmb}
+\item Scripts for installing ros libraries to Arduino library folder {\ttfamily $\sim$/\+Arduino/libraries/}
+\item Doxygen based A\+PI as reference as basis for continuoous integration
+\end{DoxyItemize}
+
+\subsection*{Dependencies}
+
+{\bfseries Install Libraries into {\ttfamily $\sim$/\+Arduino/libraries}\+:}
+
+Go to {\ttfamily cd $\sim$/\+Arduino/libraries}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily git clone \href{https://github.com/adafruit/Adafruit-PWM-Servo-Driver-Library.git}{\tt https\+://github.\+com/adafruit/\+Adafruit-\/\+P\+W\+M-\/\+Servo-\/\+Driver-\/\+Library.\+git}}
+\item {\ttfamily git clone \href{https://github.com/maniacbug/StandardCplusplus.git}{\tt https\+://github.\+com/maniacbug/\+Standard\+Cplusplus.\+git}}
+\item Download and install Arduino (v1.\+8.\+5) (x64 \href{https://www.arduino.cc/download_handler.php?f=/arduino-1.8.5-linux64.tar.xz}{\tt https\+://www.\+arduino.\+cc/download\+\_\+handler.\+php?f=/arduino-\/1.\+8.\+5-\/linux64.\+tar.\+xz})
+\item Build the repository to generate header files for messages with {\ttfamily catkin build} in any directory of your catkin workspace
+\item Source your workspace with {\ttfamily source $\sim$/your\+\_\+workspace/devel/setup.bash}
+\item Run the {\ttfamily make\+\_\+library.\+sh} script in the root of this repository
+\item If desired install the udev rule file under {\ttfamily resources/99-\/spmb.\+rules}, which will install the permanent device node {\ttfamily dev/spmb} to avoid the deviating node identifier tty\+A\+C\+Mx with x changing based on the amount of tty\+A\+CM devices or reconnections of the same device)
+\end{DoxyItemize}
+
+\subsection*{Execute the R\+OS Interface}
+
+
+\begin{DoxyItemize}
+\item Run {\ttfamily roslaunch spmbv2 run.\+launch}
+\end{DoxyItemize}
+
+({\itshape If any configuration parameters regarding baudrate have been adjusted then parse the corresponding parameter in the launch file e.\+g. {\ttfamily roslaunch spmbv2 run.\+launch baud\+:=yourbaudrateinteger}})
+
+
+\begin{DoxyItemize}
+\item After approximately 3-\/4 seconds the terminal will output
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}
+1 process[serial\_node-1]: started with pid [10506]
+2 [INFO] [1563182250.327048]: ROS Serial Python Node
+3 [INFO] [1563182250.351442]: Connecting to /dev/spmb at 57600 baud
+4 [ERROR] [1563182267.573225]: Unable to sync with device; possible link problem or link software version
+       mismatch such as hydro rosserial\_python with groovy Arduino
+5 [INFO] [1563182267.619900]: Note: publish buffer size is 100 bytes
+6 [INFO] [1563182267.620545]: Setup publisher on actuated [spmbv2/actuated]
+7 [INFO] [1563182267.636111]: Note: subscribe buffer size is 100 bytes
+8 [INFO] [1563182267.636602]: Setup subscriber on request [spmbv2/request]
+\end{DoxyCode}
+
+
+\subsection*{Interface with R\+OS}
+
+
+\begin{DoxyItemize}
+\item After installing the udev rules (see below) the R\+OS Interface can be accessed with {\ttfamily rosrun rosserial\+\_\+python serial\+\_\+node.\+py \+\_\+port\+:=/dev/spmb \+\_\+baud\+:=57600}
+\item The {\ttfamily rosrun} command is conveniently embedded into the launch file under {\ttfamily launch/run.\+launch} (see {\itshape Execute the R\+OS Interface} section above)
+\end{DoxyItemize}
+
+\subsection*{Install udev-\/rules}
+
+
+\begin{DoxyItemize}
+\item You can find the rules under the folder {\ttfamily resources} with the name {\ttfamily 99-\/spmb.\+rules}
+\item Easiest way to identify the device node is to unplug all usb devices from your work station except the Arduino U\+NO. Then before connecting the Arduino you can list the devices with {\ttfamily ls /dev} and then after connecting the Arduino entering the command {\ttfamily ls /dev} should show a new device node entry. (Usually {\ttfamily /dev/tty\+A\+C\+Mx} where x is some number relating to the amount of currently registered tty\+A\+CM devices)
+\item Assuming that your Arduino identifies with {\ttfamily /dev/tty\+A\+C\+M0} you can list the hardware information with the command
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}
+1 udevadm info -ap /sys/class/tty/ttyACM0
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item From there extract the serial attribute with
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}
+1 udevadm info -ap /sys/class/tty/ttyACM0 | grep "^    ATTRS\{serial\}=="
+\end{DoxyCode}
+
+
+which should show something similar to
+
+
+\begin{DoxyCode}
+1 $ udevadm info -ap /sys/class/tty/ttyACM0 | grep "^    ATTRS\{serial\}=="
+2     ATTRS\{serial\}=="**85430353331351E0D120**"
+3     ATTRS\{serial\}=="0000:00:14.0"
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item Open the file {\ttfamily 99-\/spmb.\+rules} under {\ttfamily resources/} and replace the default entry for serial {\ttfamily A\+T\+T\+RS\{serial\}==\char`\"{}55736313238351219281\char`\"{}} with your terminal output e.\+g. {\ttfamily A\+T\+T\+RS\{serial\}==\char`\"{}85430353331351\+E0\+D120\char`\"{}}
+\item Copy the file into the udev folder using super user privileges
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}
+1 sudo cp resources/99-spmb.rules /etc/udev/rules.d/
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item Reload and trigger the rules using
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}
+1 udevadm control --reload-rules && udevadm trigger
+\end{DoxyCode}
+
+
+$\ast$(if {\ttfamily ls /dev} doesn\textquotesingle{}t show the entry $\ast$$\ast$/dev/spmb$\ast$$\ast$ try rebooting your work station and if the entry still doesn`t show reiterate throught the instructions to make sure you followed them correctly)$\ast$ 
