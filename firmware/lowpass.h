@@ -4,21 +4,25 @@
 
 namespace SPMB{
     
+    /*! class */
     template <typename T>
     class LowPass{	
         public:
-            uint16_t mTimeConstant;
-            long mTimestamp;
-            T mValue;
+            uint16_t mTimeConstant; /*!< filter constant */
+            long mTimestamp; /*!< timestamp since last update */
+            T mValue; /*!< most recent value after last filter update */
 
-            /*
-            */
+            /*! aeu */
             void _correct_period(volatile uint16_t &period_corrected);
 
+            /*! aoeu */
             void update_state (T NewState);
+
+            /*! eaou */
             T value();
             LowPass(float time_constant_in_seconds, T default_value);
     };
+
     template <typename T>
     void LowPass<T>::_correct_period(volatile uint16_t &period){
         if (PWM_LOW <= period  && period <= PWM_HIGH){

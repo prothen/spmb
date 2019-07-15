@@ -1,7 +1,7 @@
 #include "spmb.h"
 
 namespace SPMB{
-  
+    
     StateMachine::StateMachine():
         mControlFiltered()
     {

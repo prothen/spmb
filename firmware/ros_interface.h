@@ -3,19 +3,24 @@
 #include "spmb.h"
 
 namespace SPMB {
+    /*! Typedefinition of Arduino Serial ROS interface specifying maximum transmission and buffer allocation */
     typedef ros::NodeHandle_<ArduinoHardware, 1, 1, 100, 100> myHardware;
     
-    
+    /*! ROS Interface class providing interface functions and facilitating publishing and subscribing */
+    // \Todo Provide interface functions for int, float, double and string to parse into char * for loginfo
+    // \Todo Remove util::control mSignals and provide interface based on call-by-reference with util::control to parse ROS message
     template<typename T>
     class ROSInterface{
         public:
+            ROSInterface(const char * subscriber_topic, const char * publisher_topic); //!< Constructor
 
-            ROSInterface(const char * subscriber_topic, const char * publisher_topic);
-
+            /*! Callback for command request via ROS */
             void cb_request_(const spmbv2::request& msg);
              
+            /*! Parsing to publish control_filtered to ROS message actuated */
             void publish(util::control_filtered* data);
   
+            /*! Print convenience function for debugging */
             void debug(const char * text);
 
             T mNh;
