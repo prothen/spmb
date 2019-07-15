@@ -9,18 +9,25 @@ namespace SPMB {
     template<typename T>
     class ROSInterface{
         public:
+
+            ROSInterface(const char * subscriber_topic, const char * publisher_topic);
+
             void cb_request_(const spmbv2::request& msg);
              
             void publish(util::control_filtered* data);
   
             void debug(const char * text);
-            util::control mSignals;
-            int idx = 0;
+
             T mNh;
             spmbv2::actuated mMsgPub;
             spmbv2::request mMsgSub; 
-            ROSInterface(const char * subscriber_topic, const char * publisher_topic);
-            
+                        
+            util::control mSignals;
+
+            boolean mIsIdle;
+            long mTimestamp;
+            uint16_t mMinTimePeriod;
+
             ros::Subscriber<spmbv2::request, ROSInterface<T>> mSubscriber;
             ros::Publisher mPublisher;
     };
@@ -32,7 +39,7 @@ namespace SPMB {
         mSignals.transmission = util::pwm_to_period(msg.transmission);
         mSignals.differential_front = util::pwm_to_period(msg.differential_front);
         mSignals.differential_rear = util::pwm_to_period(msg.differential_rear);
-
+        mTimestamp = micros();
     }
 
 
@@ -59,5 +66,8 @@ namespace SPMB {
         mNh.initNode();
         mNh.advertise(mPublisher);
         mNh.subscribe(mSubscriber); 
+        mIsIdle = true;
+        mTimestamp = micros();
+        mMinTimePeriod =  uint16_t(s2ms * T_ROS_MIN_RATE);
     }  
 }
