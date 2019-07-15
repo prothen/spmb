@@ -1,4 +1,9 @@
 # SPMB
+## Brief
+The Signal&Power Management Board (**SPMB**) provides a ROS interface for a RC supervised vehicle. Here the current configuration is based on the *TRAXXAS*  platforms (in specific TRX4). The SPMB provides direct RC forwarding and publishing of actuated control signals to the ROS interface.  With a predefined fast switching sequence of channels the software based control algorithms are activated. Furthermore a failsafe for idled software connections is embedded such that RC operation is activated if less than *10Hz* control frequency is present. If a RC channel is not read successfully, e.g. broken wires or empty batteries, the channel is deactivated and the output goes in the channels default control signal. In case of velocity and steering this corresponds to 0 actuation.
+In addition lowpass filtering of all control signals, both remote and software based is included and can be customised by adapting the parameters under `firmware/setup_macros.h`. The main and control loop time is configured and tested at *50Hz*. Theoretically much higher frequencies are possible, however interrupt reading capability greatly deteriorates with a fast main loop frequency. Therefore it is recommended to not vary these frequencies to higher values or otherwise stable performance can not be guaranteed.
+Also the firmware provides a led signaling class which provides easily accessible information about the current SPMB's state machine status.  
+
 
 ## Dependencies
 **Install Libraries into `~/Arduino/libraries`:**
@@ -38,15 +43,34 @@ process[serial_node-1]: started with pid [10506]
 [INFO] [1563182267.636602]: Setup subscriber on request [spmbv2/request]
 ```
 
-## Notes
-- Main loop should be limited with a delay to avoid running in a unlimited loop (interrupts won't work otherwise)
-- ```https://github.com/maniacbug/StandardCplusplus.git``` (use 1.8.5 arduino ide compiler for this library!!!)
-
 ## Interface with ROS
 - After installing the udev rules (see below) the ROS Interface can be accessed with 
-```rosrun rosserial_python serial_node.py _port:=/dev/spmb _baud:=115200```
+```rosrun rosserial_python serial_node.py _port:=/dev/spmb _baud:=57600```
 
-## UDEV RULES
-- show hardware info for component, e.g. ttyACM0 ``` udevadm info /dev/ttyACM0 ``` and ```udevadm info -a -p /sys/class/tty/ttyACM0 ```
-- reload and trigger rules ```udevadm control --reload-rules && udevadm trigger```
-- connecting several usb devices to embedded devices can cause non-static assignment of device ports. This likely causes incompatibility once a fixed port is chosen. Hence it is recommended to install .rules that assign a unique identifier once a know device is reconnected. You can find such a rule that can be copied in the corresponding folder below.
+- The `rosrun` command is conveniently embedded into the launch file under `launch/run.launch` (see *Execute the ROS Interface* section above)
+
+## Install udev-rules
+- You can find the rules under the folder `resources` with the name `99-spmb.rules`
+- Easiest way to identify the device node is to unplug all usb devices from your work station except the Arduino UNO. Then before connecting the Arduino you can list the devices with `ls /dev` and then after connecting the Arduino entering the command `ls /dev` should show a new device node entry. (Usually `/dev/ttyACMx` where x is some number relating to the amount of currently registered ttyACM devices)
+
+- Assuming that your Arduino identifies with `/dev/ttyACM0` you can list the hardware information with the command 
+```udevadm info -ap /sys/class/tty/ttyACM0```
+
+- From there extract the serial attribute with 
+```udevadm info -ap /sys/class/tty/ttyACM0 | grep "^    ATTRS{serial}=="```
+which should show something similar to 
+```
+$ udevadm info -ap /sys/class/tty/ttyACM0 | grep "^    ATTRS{serial}=="
+    ATTRS{serial}=="**85430353331351E0D120**"
+    ATTRS{serial}=="0000:00:14.0"
+```
+
+- Open the file `99-spmb.rules` under `resources/` and replace the default entry for serial `ATTRS{serial}=="55736313238351219281"` with your terminal output e.g. `ATTRS{serial}=="85430353331351E0D120"`
+
+- Copy the file into the udev folder using super user privileges
+``` sudo cp resources/99-spmb.rules /etc/udev/rules.d/ ```
+
+- Reload and trigger the rulse using 
+ ```udevadm control --reload-rules && udevadm trigger``` 
+ 
+ *(if `ls /dev` doesn't show the entry **/dev/spmb** try rebooting your work station and if the entry still doesn`t show reiterate throught the instructions to make sure you followed them correctly)*
