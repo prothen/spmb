@@ -11,18 +11,6 @@ namespace SPMB{
         differential_rear(LP_T_DIFFERENTIAL_REAR, DEFAULT_PWM_DIFFERENTIAL_REAR)
     {;}
 
-    /* initialise
-    util::status_led{
-            uint8_t off;
-            uint8_t idle;
-            uint8_t sw_active;
-            uint8_t rc_intervention; //switch out after xx time
-        }
-    */
-
-    /*
-    Clear Screen
-    */
     void util::clear_screen() {
     #if DIAGNOSIS
     for (int i = 0;i<15;i++){
@@ -31,9 +19,6 @@ namespace SPMB{
     #endif /* DIAGNOSIS */
     } 
 
-    /*
-        Print text
-    */
     void util::print(std::string text_in, bool new_line) {
     #if DIAGNOSIS
         const char * text = text_in.c_str();
@@ -45,9 +30,6 @@ namespace SPMB{
     #endif /* DIAGNOSIS */
     }       
 
-    /*
-        Print text
-    */
     void util::print(const char* text, bool new_line) {
     #if DIAGNOSIS
         Serial.print(text);
@@ -57,9 +39,7 @@ namespace SPMB{
         else{;}
     #endif /* DIAGNOSIS */
     }
-    /*
-        Print number int
-    */
+
     void util::print(int number, bool new_line) {
     #if DIAGNOSIS
         Serial.print(number);
@@ -69,10 +49,7 @@ namespace SPMB{
         else{;}
     #endif /* DIAGNOSIS */
     }    
-    
-    /*
-        Print number int
-    */
+
     void util::print(volatile uint16_t number, bool new_line) {
     #if DIAGNOSIS
         Serial.print(number);
@@ -83,10 +60,6 @@ namespace SPMB{
     #endif /* DIAGNOSIS */
     }
 
-
-    /*
-        Print number long
-    */
     void util::print(long number, bool new_line) {
     #if DIAGNOSIS
         Serial.print(number);
@@ -96,9 +69,7 @@ namespace SPMB{
         else{;}
     #endif /* DIAGNOSIS */
     }
-    /*
-        Print number float
-    */
+
     void util::print(float number, bool new_line) {
     #if DIAGNOSIS
         Serial.print(number);
@@ -108,9 +79,7 @@ namespace SPMB{
         else{;}
     #endif /* DIAGNOSIS */
     }
-    /*
-    Print binary
-    */
+
     void util::print_binary(uint8_t binary_number) {
     #if DIAGNOSIS
     for (uint8_t k = 0x80; k; k >>= 1) {
@@ -125,9 +94,6 @@ namespace SPMB{
     #endif /* DIAGNOSIS */
     }
 
-    /*
-    * Alarm - easy pin toggle Interrupt - 4kHz //TODO: Write quick Macro
-    */
     void util::toggle(uint8_t reg, uint8_t port){
             static boolean state = false;
             if (state){
@@ -138,24 +104,6 @@ namespace SPMB{
             }
     }
 
-
-    /*
-    Adapting LED signaling state
-    */
-    void util::blink_led() {
-        static boolean STATUS = 0;
-        static boolean ti_led = millis();
-        if (( millis() - ti_led) > 1000 ) {
-            STATUS = !STATUS;
-            digitalWrite(LED_BUILTIN, STATUS);
-            ti_led = millis();
-        }
-        else {;}
-    }
-
-
-    /*
-    */
     void util::correct_period(volatile uint16_t period, volatile uint16_t &period_corrected){
         if (PWM_LOW <= period  && period <= PWM_HIGH){
             period_corrected = period;
@@ -168,16 +116,10 @@ namespace SPMB{
         }
     }
 
-    /*
-    Transate period to pwm
-    */
     int8_t util::period_to_pwm(volatile uint16_t input){
-            return int8_t( ( float((input-1500.f))/500.f ) * 100.f ); // TODO: Use Macro identifiers!
+            return int8_t( ( float((input-1500.f))/500.f ) * 100.f ); // \Todo: Use Macro identifiers from setup_macro.h 
     }
 
-    /*
-    Translate pwm to period
-    */
     uint16_t util::pwm_to_period(volatile int8_t input){
             return uint16_t( (input/100.0)*float(PWM_NEUTRAL-PWM_LOW) + PWM_NEUTRAL );
     }
@@ -208,8 +150,6 @@ namespace SPMB{
         }
     }
 
-    /*
-    */
     boolean util::IS_IDLE(volatile long stamp_in_us, uint16_t period_in_ms){
         if ((micros() - stamp_in_us) > (ms2us * period_in_ms) ){
             return true;
@@ -219,12 +159,19 @@ namespace SPMB{
         }
     }
 
-    /*
-        is it time for the next loop? 
-    */
     boolean util::IS_TIME(long &timestamp_in_us, uint16_t time_period_in_ms) {
         if ((micros() - timestamp_in_us) >= (ms2us * time_period_in_ms)){
             timestamp_in_us = micros();
+            return true;
+        }
+        else{
+            return false;
+        }
+    }    
+
+    boolean util::IS_TIME_IN_MS(long &timestamp_in_ms, uint16_t time_period_in_ms) {
+        if ((millis() - timestamp_in_ms) >= long(time_period_in_ms)){
+            timestamp_in_ms = millis();
             return true;
         }
         else{

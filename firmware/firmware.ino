@@ -2,6 +2,8 @@
 
 using namespace SPMB;
 
+StatusIndicator status_indicator;
+
 InterruptManager interrupt_manager;
 InterruptGroup B;
 InterruptGroup C;    
@@ -18,7 +20,8 @@ OutputDriverI2C output;
 void loop()
 {
     StateMachine sm;
-    sm.mInterruptManager = &interrupt_manager;
+
+    sm.configure_status_indicator(&status_indicator);
     
     #ifdef ROS_ACTIVE
     ROSInterface<myHardware> rosi("request", "actuated");
@@ -28,11 +31,12 @@ void loop()
     #endif /* ROS_ACTIVE */
 
     sm.configure_output(&output);
-
+    
     while(1){
         if (sm.mALIVE){
             sm.update_output_signals();
             sm.actuate();
+            sm.indicate_status();
             sm.wait_for_next_cycle();
         }
         else{
@@ -46,11 +50,30 @@ void setup(){
     SetupManager SetupSPMB;
     SetupSPMB.delay_start(1);
 
-    interrupt_steering.initialise("Steering", DEFAULT_PWM_STEERING, BIT0, &DDRB, &PORTB, &PINB, &PCMSK0);                               // PB0 - D08 - PCINT0 
-    interrupt_velocity.initialise("Velocity", DEFAULT_PWM_VELOCITY, BIT0, &DDRC, &PORTC, &PINC, &PCMSK1);                               // PC0 - D14 - PCINT8
-    interrupt_transmission.initialise("Transmission", DEFAULT_PWM_TRANSMISSION, BIT4, &DDRD, &PORTD, &PIND, &PCMSK2);                   // PD4 - D04 - PCINT20
-    interrupt_differential_front.initialise("Differential Front", DEFAULT_PWM_DIFFERENTIAL_FRONT, BIT5, &DDRD, &PORTD, &PIND, &PCMSK2); // PD4 - D04 - PCINT20
-    interrupt_differential_rear.initialise("Differential Rear", DEFAULT_PWM_DIFFERENTIAL_REAR, BIT6, &DDRD, &PORTD, &PIND, &PCMSK2);    // PD4 - D04 - PCINT20
+    // PB0 - D08 - PCINT0 
+    interrupt_steering.initialise(              "Steering", 
+                                                DEFAULT_PWM_STEERING, 
+                                                BIT0, &DDRB, &PORTB, &PINB, &PCMSK0); 
+
+    // PC0 - D14 - PCINT8                 
+    interrupt_velocity.initialise(              "Velocity", 
+                                                DEFAULT_PWM_VELOCITY, 
+                                                BIT0, &DDRC, &PORTC, &PINC, &PCMSK1);     
+
+    // PD4 - D04 - PCINT20                          
+    interrupt_transmission.initialise(          "Transmission", 
+                                                DEFAULT_PWM_TRANSMISSION, 
+                                                BIT4, &DDRD, &PORTD, &PIND, &PCMSK2);                  
+
+     // PD4 - D04 - PCINT20 
+    interrupt_differential_front.initialise(    "Differential Front", 
+                                                DEFAULT_PWM_DIFFERENTIAL_FRONT, 
+                                                BIT5, &DDRD, &PORTD, &PIND, &PCMSK2);
+
+     // PD4 - D04 - PCINT20
+    interrupt_differential_rear.initialise(     "Differential Rear", 
+                                                DEFAULT_PWM_DIFFERENTIAL_REAR, 
+                                                BIT6, &DDRD, &PORTD, &PIND, &PCMSK2);   
 
     B.append_interrupt(&interrupt_steering);
     C.append_interrupt(&interrupt_velocity);
@@ -63,10 +86,10 @@ void setup(){
     interrupt_manager.append_group(&D);
 
     SetupSPMB.configure_common();
+    SetupSPMB.configure_status_indicator(&status_indicator);
     SetupSPMB.configure_interrupts(&interrupt_manager);
     SetupSPMB.configure_output(&output);
-
-    interrupt_manager.arm_interrupts();
+    SetupSPMB.arm_system();
 }
 
 ISR(PCINT0_vect) { 

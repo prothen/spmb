@@ -2,10 +2,8 @@
 
 //! Parameter definition for build process
 
-/*!
-   DEFINE MACROS
-*/
-// FLASH CONFIGURATION                      // Comment out 
+/*! DEFINE MACROS */
+// FLASH CONFIGURATION                      // Comment out to deactivate 
 #define ROS_ACTIVE true                     // Use ROS Interface for communication --> requires ndef of DIAGNOSIS (comment out '#define DIAGNOSIS true'!)
 //#define DIAGNOSIS true                    // Allow serial-prints (only with commented out '#define ROS_ACTIVE true' )
 // -------------------------------------------------------------------------------
@@ -18,11 +16,11 @@
 #define DEFAULT_PWM_DIFFERENTIAL_REAR 2000
 
 // OUTPUT FILTER CONSTANT
-#define LP_T_STEERING .07f
-#define LP_T_VELOCITY .07f
-#define LP_T_TRANSMISSION .1f
-#define LP_T_DIFFERENTIAL_FRONT .1f
-#define LP_T_DIFFERENTIAL_REAR .1f
+#define LP_T_STEERING .06f
+#define LP_T_VELOCITY .06f
+#define LP_T_TRANSMISSION .15f
+#define LP_T_DIFFERENTIAL_FRONT .15f
+#define LP_T_DIFFERENTIAL_REAR .15f
 
 // OUTPUT DRIVER CONFIGURATION
 #define M_OUT_STEERING 0
@@ -54,14 +52,12 @@
 // SAFETY PERIODS
 #define T_interrupt_error_switch_off .5f  // in seconds
 #define T_interrupt_error_switch_on 2.f  // in seconds
-#define n_interrupt_error_switch_off uint8_t(T_interrupt_error_switch_off / T_LOOP_RATE)
-#define n_interrupt_error_switch_on uint8_t(T_interrupt_error_switch_on / T_LOOP_RATE )
+#define n_interrupt_error_switch_off uint16_t(T_interrupt_error_switch_off / T_LOOP_RATE)
+#define n_interrupt_error_switch_on uint16_t(T_interrupt_error_switch_on / T_LOOP_RATE )
 
-// SWITCHING LOGIC
+// SWITCHING LOGIC \Todo move to a enumeration in state machine
 #define SWL_TIME_PERIOD_RESET 0.5f // in seconds
-#define SWL_OFF 0
-#define SWL_ARM 1
-#define SWL_SWITCH 2
+
 
 // IDENTIFIERS - TIME
 #define s2ms 1.e3

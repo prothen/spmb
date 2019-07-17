@@ -6,13 +6,18 @@
 
 namespace SPMB{
     
-    /*! Output driver using I2C via PCA9688 */
+    //! Output driver using I2C via PCA9688
     class OutputDriverI2C{
         public:    
-            double      mUsBit;                         //!< Amount of microseconds per bit of 4096 bits total resolution
-            double      mOffsetDriver;                  //! Compensation of output driver period deviation from input in microseconds        
-            Adafruit_PWMServoDriver mDriver;            //! Adafruit driver to interface with timer chip
+            //!< Amount of microseconds per bit of 4096 bits total resolution
+            double      mUsBit;                         
 
+            //! Compensation of output driver period deviation from input in microseconds        
+            double      mOffsetDriver;                  
+
+            //! Adafruit driver to interface with timer chip
+            Adafruit_PWMServoDriver mDriver;    
+                    
             /*! configure pins and frequencies */
             void configure();
 

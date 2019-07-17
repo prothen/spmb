@@ -36,6 +36,10 @@ namespace SPMB{
         _common();
     }
 
+    void SetupManager::configure_status_indicator(StatusIndicator* status_indicator_in){
+        mStatusIndicator = status_indicator_in;
+        mStatusIndicator->configure();
+    }
 
     void SetupManager::configure_interrupts(InterruptManager* interrupt_manager_in){
 
@@ -87,5 +91,9 @@ namespace SPMB{
             util::print((**it).mInterrupts.size(),false);
             util::print(" Interrupts", true);
         }
+    }
+
+    void SetupManager::arm_system(){
+        mInterruptManager->arm_interrupts();
     }
 }

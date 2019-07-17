@@ -99,12 +99,12 @@ namespace SPMB{
             if (n_interrupt_error_switch_off <= mErrorCount){
                 mStatus = false;
                 mErrorCount = 0;
-                mTimePeriod = mTimePeriodDefault;
+                mTimePeriodValid = mTimePeriodDefault;
                 
-                
+                /*
                 util::print("Error switch: Disabled ", false);
-                util::print(mLabel, true); 
-                
+                util::print(mLabel, true);     
+                */
             }
         }
         else{
@@ -138,19 +138,11 @@ namespace SPMB{
 
     void InterruptGroup::update_timer(){
         //util::print("INT: update timer from interrupt group", true);
-        (*mInterruptActive).update_timer();
+        mInterruptActive->update_timer();
     }
 
-    void InterruptGroup::rotate_interrupts(){
-        if (util::IS_VALID(mInterruptActive->mTimePeriod) && mInterruptActive->mNewInterruptAvailable) {
-            //util::print("Interrupt - Rotate: Received Interrupt Time Period successfully: ", false);
-            //util::print((*mInterruptActive).mLabel, true);
-            
-            mInterruptActive->mErrorCount = 0.; // TODO: Decide when or how often to reset error counter, now only counting consecutive errors, reset on each valid read
-            mInterruptActive->disarm_interrupt();
-            util::correct_period(mInterruptActive->mTimePeriod, mInterruptActive->mTimePeriodValid);
-
-            if (mInterrupts.size() > 1) {
+    void InterruptGroup::_attempt_rotating(){
+        if (mInterrupts.size() > 1) {
                 //util::print("Start rotating: ", true);
                 uint8_t tmpIdx = mIdx;
                 while ((mInterrupts[tmpIdx]->mLabel == mInterrupts[mIdx]->mLabel) || (!(mInterrupts[mIdx]->mStatus))){
@@ -176,15 +168,34 @@ namespace SPMB{
                     }
                 }
                 mInterruptActive = mInterrupts.at(mIdx);                
-            } else{;} // keep the same Interrupt
+            } else{
+                mInterrupts[mIdx]->mErrorCount = 0;
+                mInterrupts[mIdx]->mStatus = true;
+            } // keep the same Interrupt
+    }
+
+    void InterruptGroup::rotate_interrupts(){
+        if (util::IS_VALID(mInterruptActive->mTimePeriod) && mInterruptActive->mNewInterruptAvailable) {
+            //util::print("Interrupt - Rotate: Received Interrupt Time Period successfully: ", false);
+            //util::print((*mInterruptActive).mLabel, true);
+            
+            mInterruptActive->mErrorCount = 0.; // \Todo Decide when or how often to reset error counter, now only counting consecutive errors, reset on each valid read
+            mInterruptActive->disarm_interrupt();
+            util::correct_period(mInterruptActive->mTimePeriod, mInterruptActive->mTimePeriodValid);
+            mInterruptActive->mTimePeriod = 0;
+            _attempt_rotating();
             
         } else{
-            //util::print("Interrupt: Error detected : Count ", false);
-            mInterruptActive->mErrorCount++;
-            //util::print((*mInterruptActive).mErrorCount, true);
-            mInterruptActive->switch_error_status();
-            //util::print("FAILED fetching period: ", false);
-            //util::print((**mInterruptActive).mLabel, true);
+            if (mInterruptActive->mStatus){
+                //util::print("Interrupt: Error detected : Count ", false);
+                mInterruptActive->mErrorCount++;
+                //util::print((*mInterruptActive).mErrorCount, true);
+                mInterruptActive->switch_error_status();
+                //util::print("FAILED fetching period: ", false);
+                //util::print((**mInterruptActive).mLabel, true);
+            } else{
+                _attempt_rotating();
+            }
         } 
         mInterruptActive->arm_interrupt();
         mInterruptActive->reset();

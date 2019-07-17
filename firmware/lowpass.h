@@ -4,21 +4,21 @@
 
 namespace SPMB{
     
-    /*! class */
+    //! Provides a templated lowpass filter class for scalar elements.
     template <typename T>
     class LowPass{	
-        public:
-            uint16_t mTimeConstant; /*!< filter constant */
-            long mTimestamp; /*!< timestamp since last update */
-            T mValue; /*!< most recent value after last filter update */
-
-            /*! aeu */
+        public: 
+            uint16_t    mTimeConstant;      //!< filter constant 
+            long        mTimestamp;         //!< timestamp since last update
+            T           mValue;             //!< most recent value after last filter update
+            
+            //! Correct period  
             void _correct_period(volatile uint16_t &period_corrected);
 
-            /*! aoeu */
+            //! Update State  
             void update_state (T NewState);
 
-            /*! eaou */
+            //! Constructor  
             T value();
             LowPass(float time_constant_in_seconds, T default_value);
     };

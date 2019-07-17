@@ -16,12 +16,13 @@
     #ifndef ROS_LOADED
     #define ROS_LOADED
             #include <ros.h>
-            #include <spmbv2/request.h>
-            #include <spmbv2/actuated.h>
+            #include <spmb/request.h>
+            #include <spmb/actuated.h>
             #include "ros_interface.h"
     #endif /* ROS_LOADED */
 #endif /* ROS_ACTIVE */
 
+#include "si.h"
 #include "input_rc.h"
 #include "output_i2c.h"
 #include "sm.h"
