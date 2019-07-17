@@ -4,6 +4,8 @@ The Signal&Power Management Board (**SPMB**) provides firmware for Arduino UNO d
 In addition lowpass filtering of all control signals, both remote and software based is included and can be customised by adapting the parameters under `firmware/setup_macros.h`. The main and control loop time is configured and tested at *50Hz*. Theoretically much higher frequencies are possible, however interrupt reading capability greatly deteriorates with a fast main loop frequency. Therefore it is recommended to not vary these frequencies to higher values or otherwise stable performance can not be guaranteed.
 Also the firmware provides a led signaling class which provides easily accessible information about the current SPMB's state machine status.  
 
+More detailed **Documentation** can be found under https://prothen.github.io/spmb/index.html.
+
 - **Main loop** in firmware.ino depending on
     - **StatusIndicator**       
         + si.h - LED signaling and exposing information to environment
@@ -18,7 +20,7 @@ Also the firmware provides a led signaling class which provides easily accessibl
     - **SetupSPMB**
         + setup.h - Initial pin configurations and setup of objects
     - **StateMachine**          
-        + sm.h - Execute main logic loop and interface with all involved elements
+        + sm.h - Execute main logic loop and interface with all involved elements (see [here](https://prothen.github.io/spmb/classSPMB_1_1StateMachine.html))
 
 ***
 
