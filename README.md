@@ -4,6 +4,22 @@ The Signal&Power Management Board (**SPMB**) provides firmware for Arduino UNO d
 In addition lowpass filtering of all control signals, both remote and software based is included and can be customised by adapting the parameters under `firmware/setup_macros.h`. The main and control loop time is configured and tested at *50Hz*. Theoretically much higher frequencies are possible, however interrupt reading capability greatly deteriorates with a fast main loop frequency. Therefore it is recommended to not vary these frequencies to higher values or otherwise stable performance can not be guaranteed.
 Also the firmware provides a led signaling class which provides easily accessible information about the current SPMB's state machine status.  
 
+- **Main loop** in firmware.ino depending on
+    - **StatusIndicator**       
+        + si.h - LED signaling and exposing information to environment
+    - **InterruptManager**      
+        + input_rc.h - Input via RC
+    - **ROSInterface**          
+        + ros_interface.h - Input via ROS and publish actuated control
+    - **LowPass**               
+        + lowpass.h - Filter for output elements
+    - **OutputDriverI2C** 
+        + output_i2c.h - Output via I2C to timer PCB
+    - **SetupSPMB**
+        + setup.h - Initial pin configurations and setup of objects
+    - **StateMachine**          
+        + sm.h - Execute main logic loop and interface with all involved elements
+
 ## Features
 - RC Forwarding
 - Safety logic for both ROS- and RC-based control
@@ -37,21 +53,24 @@ Go to `cd ~/Arduino/libraries`
 
 ## Execute the ROS Interface
 
-- Run `roslaunch spmbv2 run.launch`
+- Run `roslaunch spmb run.launch`
 
-(*If any configuration parameters regarding baudrate have been adjusted then parse the corresponding parameter in the launch file e.g. `roslaunch spmbv2 run.launch baud:=yourbaudrateinteger`*)
+(*If any configuration parameters regarding baudrate have been adjusted then parse the corresponding parameter in the launch file e.g. `roslaunch spmb run.launch baud:=yourbaudrateinteger`*)
 
 - After approximately 3-4 seconds the terminal will output 
 
 ```
-process[serial_node-1]: started with pid [10506]
-[INFO] [1563182250.327048]: ROS Serial Python Node
-[INFO] [1563182250.351442]: Connecting to /dev/spmb at 57600 baud
-[ERROR] [1563182267.573225]: Unable to sync with device; possible link problem or link software version mismatch such as hydro rosserial_python with groovy Arduino
-[INFO] [1563182267.619900]: Note: publish buffer size is 100 bytes
-[INFO] [1563182267.620545]: Setup publisher on actuated [spmbv2/actuated]
-[INFO] [1563182267.636111]: Note: subscribe buffer size is 100 bytes
-[INFO] [1563182267.636602]: Setup subscriber on request [spmbv2/request]
+setting /run_id to 4e4bd514-a7b2-11e9-a7b3-4485007bad36
+process[rosout-1]: started with pid [25122]
+started core service [/rosout]
+process[serial_node-2]: started with pid [25128]
+[INFO] [1563271988.137866]: ROS Serial Python Node
+[INFO] [1563271988.149294]: Connecting to /dev/spmb at 57600 baud
+[ERROR] [1563272005.372626]: Unable to sync with device; possible link problem or link software version mismatch such as hydro rosserial_python with groovy Arduino
+[INFO] [1563272005.404425]: Note: publish buffer size is 100 bytes
+[INFO] [1563272005.406264]: Setup publisher on actuated [spmb/actuated]
+[INFO] [1563272005.418630]: Note: subscribe buffer size is 100 bytes
+[INFO] [1563272005.419878]: Setup subscriber on request [spmb/request]
 ```
 
 ## Interface with ROS
@@ -80,7 +99,7 @@ which should show something similar to
 
 ```
 $ udevadm info -ap /sys/class/tty/ttyACM0 | grep "^    ATTRS{serial}=="
-    ATTRS{serial}=="**85430353331351E0D120**"
+    ATTRS{serial}=="85430353331351E0D120"
     ATTRS{serial}=="0000:00:14.0"
 ```
 
@@ -98,4 +117,10 @@ sudo cp resources/99-spmb.rules /etc/udev/rules.d/
  udevadm control --reload-rules && udevadm trigger
  ```
  
-*(if `ls /dev` doesn't show the entry **/dev/spmb** try rebooting your work station and if the entry still doesn`t show reiterate throught the instructions to make sure you followed them correctly)*
+*If `ls /dev` doesn't show the entry* **dev/spmb** *try rebooting your work station and if the entry still doesn't show reiterate throught the instructions to make sure you followed them correctly.*
+
+## Contribution
+
+Pull requests from forked repositories and opening new issues are very welcome and much appreciated.
+
+**Maintainer:** Philipp Rothenhäusler (*phirot a t kth.se | philipp.rothenhaeusler a t gmail.com*)
