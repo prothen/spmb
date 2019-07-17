@@ -39,7 +39,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -83,7 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>SPMB</b></li><li class="navelem"><a class="el" href="classSPMB_1_1InterruptManager.html">InterruptManager</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceSPMB.html">SPMB</a></li><li class="navelem"><a class="el" href="classSPMB_1_1InterruptManager.html">InterruptManager</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -96,33 +96,41 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>Collection of Interrupt Groups (e.g. sorted as time sensitive and non-time sensitive ).  
+ <a href="classSPMB_1_1InterruptManager.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="input__rc_8h_source.html">input_rc.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a7848e944d851bf3bcc251e03e673433c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7848e944d851bf3bcc251e03e673433c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>append_group</b> (<a class="el" href="classSPMB_1_1InterruptGroup.html">InterruptGroup</a> *newInterruptGroup)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1InterruptManager.html#a7848e944d851bf3bcc251e03e673433c">append_group</a> (<a class="el" href="classSPMB_1_1InterruptGroup.html">InterruptGroup</a> *newInterruptGroup)</td></tr>
+<tr class="memdesc:a7848e944d851bf3bcc251e03e673433c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append a new interrupt group to the interrupt manager. <br /></td></tr>
 <tr class="separator:a7848e944d851bf3bcc251e03e673433c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a281ff95c62f2c714024009fbdfad560e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a281ff95c62f2c714024009fbdfad560e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>rotate_interrupts</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1InterruptManager.html#a281ff95c62f2c714024009fbdfad560e">rotate_interrupts</a> ()</td></tr>
+<tr class="memdesc:a281ff95c62f2c714024009fbdfad560e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rotate all interrupts or attempt to rotate in case some are idle or in an erroneous state. <br /></td></tr>
 <tr class="separator:a281ff95c62f2c714024009fbdfad560e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6d936207409563b307e3f0bbced7dbc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae6d936207409563b307e3f0bbced7dbc"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>arm_interrupts</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1InterruptManager.html#ae6d936207409563b307e3f0bbced7dbc">arm_interrupts</a> ()</td></tr>
+<tr class="memdesc:ae6d936207409563b307e3f0bbced7dbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arm all interrupts. <br /></td></tr>
 <tr class="separator:ae6d936207409563b307e3f0bbced7dbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abef4d7dfc94ed70cb9b137803d75ebe4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abef4d7dfc94ed70cb9b137803d75ebe4"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>get_time_period</b> (std::string label, volatile uint16_t &amp;time_period)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1InterruptManager.html#abef4d7dfc94ed70cb9b137803d75ebe4">get_time_period</a> (std::string label, volatile uint16_t &amp;time_period)</td></tr>
+<tr class="memdesc:abef4d7dfc94ed70cb9b137803d75ebe4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get time period for a interrupt identified with the provided label argument and store result in time_period argument. <br /></td></tr>
 <tr class="separator:abef4d7dfc94ed70cb9b137803d75ebe4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a103e2348c57eecaab0605c196f3b924b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a103e2348c57eecaab0605c196f3b924b"></a>
-std::vector&lt; <a class="el" href="classSPMB_1_1InterruptGroup.html">InterruptGroup</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mInterruptGroups</b></td></tr>
+std::vector&lt; <a class="el" href="classSPMB_1_1InterruptGroup.html">InterruptGroup</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1InterruptManager.html#a103e2348c57eecaab0605c196f3b924b">mInterruptGroups</a></td></tr>
+<tr class="memdesc:a103e2348c57eecaab0605c196f3b924b"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt; Collection of all interrupt groups storing their pointers. <br /></td></tr>
 <tr class="separator:a103e2348c57eecaab0605c196f3b924b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Collection of Interrupt Groups (e.g. sorted as time sensitive and non-time sensitive ). </p>
 
-<p>Definition at line <a class="el" href="input__rc_8h_source.html#l00071">71</a> of file <a class="el" href="input__rc_8h_source.html">input_rc.h</a>.</p>
+<p>Definition at line <a class="el" href="input__rc_8h_source.html#l00087">87</a> of file <a class="el" href="input__rc_8h_source.html">input_rc.h</a>.</p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

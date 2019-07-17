@@ -1,0 +1,77 @@
+\hypertarget{classSPMB_1_1StatusIndicator}{}\section{S\+P\+MB\+:\+:Status\+Indicator Class Reference}
+\label{classSPMB_1_1StatusIndicator}\index{S\+P\+M\+B\+::\+Status\+Indicator@{S\+P\+M\+B\+::\+Status\+Indicator}}
+
+
+Provides interface and actuation wrapper for status indicator output pins.  
+
+
+
+
+{\ttfamily \#include $<$si.\+h$>$}
+
+
+
+Collaboration diagram for S\+P\+MB\+:\+:Status\+Indicator\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=208pt]{classSPMB_1_1StatusIndicator__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structSPMB_1_1StatusIndicator_1_1StatusOutput}{Status\+Output}
+\begin{DoxyCompactList}\small\item\em Collection of output references and status assignment. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classSPMB_1_1StatusIndicator_a6d5ae5d45a9147ec76bd72da143fb4de}{S\+I\+Status} \{ {\bfseries O\+FF}, 
+{\bfseries R\+C\+\_\+\+ON}, 
+{\bfseries S\+W\+\_\+\+ON}, 
+{\bfseries E\+M\+E\+R\+G\+E\+N\+CY}
+ \}\hypertarget{classSPMB_1_1StatusIndicator_a6d5ae5d45a9147ec76bd72da143fb4de}{}\label{classSPMB_1_1StatusIndicator_a6d5ae5d45a9147ec76bd72da143fb4de}
+\begin{DoxyCompactList}\small\item\em Enumeration of all possible modes. \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classSPMB_1_1StatusIndicator_a61172be891cb8ee07d1b5367c986f939}{Status\+Indicator} ()\hypertarget{classSPMB_1_1StatusIndicator_a61172be891cb8ee07d1b5367c986f939}{}\label{classSPMB_1_1StatusIndicator_a61172be891cb8ee07d1b5367c986f939}
+
+\begin{DoxyCompactList}\small\item\em Add pins as outputs. \end{DoxyCompactList}\item 
+void \hyperlink{classSPMB_1_1StatusIndicator_a735be6f013a87f9b184d15d3b39a070e}{configure} ()\hypertarget{classSPMB_1_1StatusIndicator_a735be6f013a87f9b184d15d3b39a070e}{}\label{classSPMB_1_1StatusIndicator_a735be6f013a87f9b184d15d3b39a070e}
+
+\begin{DoxyCompactList}\small\item\em Set desired output pins and configure member variables. \end{DoxyCompactList}\item 
+void \hyperlink{classSPMB_1_1StatusIndicator_a95b0c01f39a5e9d50a6741d362e44131}{switch\+\_\+status} (\hyperlink{classSPMB_1_1StatusIndicator_a6d5ae5d45a9147ec76bd72da143fb4de}{S\+I\+Status} new\+\_\+status)\hypertarget{classSPMB_1_1StatusIndicator_a95b0c01f39a5e9d50a6741d362e44131}{}\label{classSPMB_1_1StatusIndicator_a95b0c01f39a5e9d50a6741d362e44131}
+
+\begin{DoxyCompactList}\small\item\em Change m\+Active\+Output pointer. \end{DoxyCompactList}\item 
+void \hyperlink{classSPMB_1_1StatusIndicator_a85075f19ea24e2f1a9f44c37b2d5d901}{blink} ()\hypertarget{classSPMB_1_1StatusIndicator_a85075f19ea24e2f1a9f44c37b2d5d901}{}\label{classSPMB_1_1StatusIndicator_a85075f19ea24e2f1a9f44c37b2d5d901}
+
+\begin{DoxyCompactList}\small\item\em Toggle the L\+ED status according to the current output. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classSPMB_1_1StatusIndicator_a6d5ae5d45a9147ec76bd72da143fb4de}{S\+I\+Status} \hyperlink{classSPMB_1_1StatusIndicator_a66a8ca80e4744a85b3e9fe82cd17eab0}{m\+Status}\hypertarget{classSPMB_1_1StatusIndicator_a66a8ca80e4744a85b3e9fe82cd17eab0}{}\label{classSPMB_1_1StatusIndicator_a66a8ca80e4744a85b3e9fe82cd17eab0}
+
+\begin{DoxyCompactList}\small\item\em Indicates the current status. \end{DoxyCompactList}\item 
+std\+::vector$<$ \hyperlink{structSPMB_1_1StatusIndicator_1_1StatusOutput}{Status\+Output} $>$ \hyperlink{classSPMB_1_1StatusIndicator_a75ad3ac60f256cfc30628f127ee3c912}{m\+Output}\hypertarget{classSPMB_1_1StatusIndicator_a75ad3ac60f256cfc30628f127ee3c912}{}\label{classSPMB_1_1StatusIndicator_a75ad3ac60f256cfc30628f127ee3c912}
+
+\begin{DoxyCompactList}\small\item\em Reference to output indicator. \end{DoxyCompactList}\item 
+\hyperlink{structSPMB_1_1StatusIndicator_1_1StatusOutput}{Status\+Output} $\ast$ \hyperlink{classSPMB_1_1StatusIndicator_a67002509cc1601da177d99224650ab70}{m\+Active\+Output}\hypertarget{classSPMB_1_1StatusIndicator_a67002509cc1601da177d99224650ab70}{}\label{classSPMB_1_1StatusIndicator_a67002509cc1601da177d99224650ab70}
+
+\begin{DoxyCompactList}\small\item\em Pointer to current active status output. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{classSPMB_1_1StatusIndicator_aae255bc53c256d49785d469cdff463c1}{m\+Value}\hypertarget{classSPMB_1_1StatusIndicator_aae255bc53c256d49785d469cdff463c1}{}\label{classSPMB_1_1StatusIndicator_aae255bc53c256d49785d469cdff463c1}
+
+\begin{DoxyCompactList}\small\item\em Stores the current value of the indication output device  might to be included in output struct. \end{DoxyCompactList}\item 
+long \hyperlink{classSPMB_1_1StatusIndicator_aa9dd16e77150efc043b42db209adb4e4}{m\+Timestamp}\hypertarget{classSPMB_1_1StatusIndicator_aa9dd16e77150efc043b42db209adb4e4}{}\label{classSPMB_1_1StatusIndicator_aa9dd16e77150efc043b42db209adb4e4}
+
+\begin{DoxyCompactList}\small\item\em Timestamp of last update of L\+ED status. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Provides interface and actuation wrapper for status indicator output pins. 
+
+Status indicator switching status L\+E\+Ds to visualise internal states and information. 
+
+Definition at line 8 of file si.\+h.
+

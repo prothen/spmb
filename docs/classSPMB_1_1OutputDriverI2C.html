@@ -39,7 +39,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -83,7 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>SPMB</b></li><li class="navelem"><a class="el" href="classSPMB_1_1OutputDriverI2C.html">OutputDriverI2C</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceSPMB.html">SPMB</a></li><li class="navelem"><a class="el" href="classSPMB_1_1OutputDriverI2C.html">OutputDriverI2C</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -96,12 +96,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>Output driver using I2C via PCA9688.  
+ <a href="classSPMB_1_1OutputDriverI2C.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="output__i2c_8h_source.html">output_i2c.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a65b12f0a0b98851d21ad863fd1584725"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1OutputDriverI2C.html#a65b12f0a0b98851d21ad863fd1584725">configure</a> ()</td></tr>
-<tr class="memdesc:a65b12f0a0b98851d21ad863fd1584725"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adafruit driver to interface with timer chip.  <a href="#a65b12f0a0b98851d21ad863fd1584725">More...</a><br /></td></tr>
 <tr class="separator:a65b12f0a0b98851d21ad863fd1584725"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b82addf2f9101b22cf8bfca160132cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1OutputDriverI2C.html#a8b82addf2f9101b22cf8bfca160132cb">actuate</a> (<a class="el" href="structSPMB_1_1util_1_1control__filtered.html">util::control_filtered</a> *output)</td></tr>
 <tr class="separator:a8b82addf2f9101b22cf8bfca160132cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -110,18 +112,19 @@ Public Member Functions</h2></td></tr>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a1dc1d614d4e099105b124656a871aa83"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1dc1d614d4e099105b124656a871aa83"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1OutputDriverI2C.html#a1dc1d614d4e099105b124656a871aa83">mUsBit</a></td></tr>
-<tr class="memdesc:a1dc1d614d4e099105b124656a871aa83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Amount of microseconds per bit of 4096 bits total resolution. <br /></td></tr>
+<tr class="memdesc:a1dc1d614d4e099105b124656a871aa83"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt; Amount of microseconds per bit of 4096 bits total resolution <br /></td></tr>
 <tr class="separator:a1dc1d614d4e099105b124656a871aa83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ab5bd3883d50cca560313b5275b81e5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8ab5bd3883d50cca560313b5275b81e5"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>mOffsetDriver</b></td></tr>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1OutputDriverI2C.html#a8ab5bd3883d50cca560313b5275b81e5">mOffsetDriver</a></td></tr>
+<tr class="memdesc:a8ab5bd3883d50cca560313b5275b81e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compensation of output driver period deviation from input in microseconds. <br /></td></tr>
 <tr class="separator:a8ab5bd3883d50cca560313b5275b81e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aecd74104de6faf86afbc9c1f9cd0b50a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aecd74104de6faf86afbc9c1f9cd0b50a"></a>
 Adafruit_PWMServoDriver&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1OutputDriverI2C.html#aecd74104de6faf86afbc9c1f9cd0b50a">mDriver</a></td></tr>
-<tr class="memdesc:aecd74104de6faf86afbc9c1f9cd0b50a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compensation of output driver period deviation from input in microseconds. <br /></td></tr>
+<tr class="memdesc:aecd74104de6faf86afbc9c1f9cd0b50a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adafruit driver to interface with timer chip. <br /></td></tr>
 <tr class="separator:aecd74104de6faf86afbc9c1f9cd0b50a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Output driver using I2C via PCA9688 </p>
+<div class="textblock"><p>Output driver using I2C via PCA9688. </p>
 
 <p>Definition at line <a class="el" href="output__i2c_8h_source.html#l00010">10</a> of file <a class="el" href="output__i2c_8h_source.html">output_i2c.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
@@ -156,8 +159,6 @@ Adafruit_PWMServoDriver&#160;</td><td class="memItemRight" valign="bottom"><a cl
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Adafruit driver to interface with timer chip. </p>
 <p>configure pins and frequencies </p>
 
 <p>Definition at line <a class="el" href="output__i2c_8cpp_source.html#l00005">5</a> of file <a class="el" href="output__i2c_8cpp_source.html">output_i2c.cpp</a>.</p>

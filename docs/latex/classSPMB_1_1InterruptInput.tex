@@ -1,27 +1,41 @@
 \hypertarget{classSPMB_1_1InterruptInput}{}\section{S\+P\+MB\+:\+:Interrupt\+Input Class Reference}
 \label{classSPMB_1_1InterruptInput}\index{S\+P\+M\+B\+::\+Interrupt\+Input@{S\+P\+M\+B\+::\+Interrupt\+Input}}
+
+
+Collection of all register necessary for interfacing with an interrupt pin.  
+
+
+
+
+{\ttfamily \#include $<$input\+\_\+rc.\+h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classSPMB_1_1InterruptInput_a1d7054c59edcd2989088eda0d6615370}{Interrupt\+Input} ()\hypertarget{classSPMB_1_1InterruptInput_a1d7054c59edcd2989088eda0d6615370}{}\label{classSPMB_1_1InterruptInput_a1d7054c59edcd2989088eda0d6615370}
 
 \begin{DoxyCompactList}\small\item\em Default Constructor. \end{DoxyCompactList}\item 
-void {\bfseries initialise} (std\+::string label\+Input\+\_\+, uint16\+\_\+t Default\+Time\+Period\+\_\+, uint8\+\_\+t Bit\+Input\+\_\+, volatile uint8\+\_\+t $\ast$Direction\+Register\+\_\+, volatile uint8\+\_\+t $\ast$Cfg\+Register\+\_\+, volatile uint8\+\_\+t $\ast$Data\+Register\+\_\+, volatile uint8\+\_\+t $\ast$Interrupt\+Register\+\_\+)\hypertarget{classSPMB_1_1InterruptInput_a537b9601886237322cd01b4d66a1cae3}{}\label{classSPMB_1_1InterruptInput_a537b9601886237322cd01b4d66a1cae3}
+void \hyperlink{classSPMB_1_1InterruptInput_a537b9601886237322cd01b4d66a1cae3}{initialise} (std\+::string label\+Input\+\_\+, uint16\+\_\+t Default\+Time\+Period\+\_\+, uint8\+\_\+t Bit\+Input\+\_\+, volatile uint8\+\_\+t $\ast$Direction\+Register\+\_\+, volatile uint8\+\_\+t $\ast$Cfg\+Register\+\_\+, volatile uint8\+\_\+t $\ast$Data\+Register\+\_\+, volatile uint8\+\_\+t $\ast$Interrupt\+Register\+\_\+)\hypertarget{classSPMB_1_1InterruptInput_a537b9601886237322cd01b4d66a1cae3}{}\label{classSPMB_1_1InterruptInput_a537b9601886237322cd01b4d66a1cae3}
 
-\item 
-void \hyperlink{classSPMB_1_1InterruptInput_af458652456481ec1ee7af3381f4df732}{configure} ()
-\item 
-void \hyperlink{classSPMB_1_1InterruptInput_a434a4a22e379f9d3e70340ca638ef0d9}{disarm\+\_\+interrupt} ()
-\item 
-void {\bfseries arm\+\_\+interrupt} ()\hypertarget{classSPMB_1_1InterruptInput_a6f677f7648a3252791ab61df4c5e64b6}{}\label{classSPMB_1_1InterruptInput_a6f677f7648a3252791ab61df4c5e64b6}
+\begin{DoxyCompactList}\small\item\em Parse register arguments to member variables. \end{DoxyCompactList}\item 
+void \hyperlink{classSPMB_1_1InterruptInput_af458652456481ec1ee7af3381f4df732}{configure} ()\hypertarget{classSPMB_1_1InterruptInput_af458652456481ec1ee7af3381f4df732}{}\label{classSPMB_1_1InterruptInput_af458652456481ec1ee7af3381f4df732}
 
-\item 
-void \hyperlink{classSPMB_1_1InterruptInput_af827e44330f1054bdfdb28861dbd6505}{update\+\_\+timer} ()
-\item 
-void \hyperlink{classSPMB_1_1InterruptInput_a454efe88ea6a9c5047e5c34b9d1f7e4b}{switch\+\_\+error\+\_\+status} ()
-\item 
-void \hyperlink{classSPMB_1_1InterruptInput_adb38e98b59d2c4487bedd00eba453ab2}{reset} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Takes care of setting up all the pins for input definitions and pull-\/up configuration of respective pin. \end{DoxyCompactList}\item 
+void \hyperlink{classSPMB_1_1InterruptInput_a434a4a22e379f9d3e70340ca638ef0d9}{disarm\+\_\+interrupt} ()\hypertarget{classSPMB_1_1InterruptInput_a434a4a22e379f9d3e70340ca638ef0d9}{}\label{classSPMB_1_1InterruptInput_a434a4a22e379f9d3e70340ca638ef0d9}
+
+\begin{DoxyCompactList}\small\item\em Disarms the Pin for Pin Change Interrupts. \end{DoxyCompactList}\item 
+void \hyperlink{classSPMB_1_1InterruptInput_a6f677f7648a3252791ab61df4c5e64b6}{arm\+\_\+interrupt} ()\hypertarget{classSPMB_1_1InterruptInput_a6f677f7648a3252791ab61df4c5e64b6}{}\label{classSPMB_1_1InterruptInput_a6f677f7648a3252791ab61df4c5e64b6}
+
+\begin{DoxyCompactList}\small\item\em Arms the Pin for Pin Change Interrupts. \end{DoxyCompactList}\item 
+void \hyperlink{classSPMB_1_1InterruptInput_af827e44330f1054bdfdb28861dbd6505}{update\+\_\+timer} ()\hypertarget{classSPMB_1_1InterruptInput_af827e44330f1054bdfdb28861dbd6505}{}\label{classSPMB_1_1InterruptInput_af827e44330f1054bdfdb28861dbd6505}
+
+\begin{DoxyCompactList}\small\item\em Handles complete interrupt logic (is called by \hyperlink{classSPMB_1_1InterruptManager}{Interrupt\+Manager}) \end{DoxyCompactList}\item 
+void \hyperlink{classSPMB_1_1InterruptInput_a454efe88ea6a9c5047e5c34b9d1f7e4b}{switch\+\_\+error\+\_\+status} ()\hypertarget{classSPMB_1_1InterruptInput_a454efe88ea6a9c5047e5c34b9d1f7e4b}{}\label{classSPMB_1_1InterruptInput_a454efe88ea6a9c5047e5c34b9d1f7e4b}
+
+\begin{DoxyCompactList}\small\item\em Checks whether to reenable or to disable a interrupt with a certain error trigger count. \end{DoxyCompactList}\item 
+void \hyperlink{classSPMB_1_1InterruptInput_adb38e98b59d2c4487bedd00eba453ab2}{reset} ()\hypertarget{classSPMB_1_1InterruptInput_adb38e98b59d2c4487bedd00eba453ab2}{}\label{classSPMB_1_1InterruptInput_adb38e98b59d2c4487bedd00eba453ab2}
+
+\begin{DoxyCompactList}\small\item\em Reset Interrupt. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -73,65 +87,7 @@ volatile uint8\+\_\+t \hyperlink{classSPMB_1_1InterruptInput_a76da8c6e70323bdfd0
 
 
 \subsection{Detailed Description}
-
+Collection of all register necessary for interfacing with an interrupt pin. 
 
 Definition at line 7 of file input\+\_\+rc.\+h.
-
-
-
-\subsection{Member Function Documentation}
-\index{S\+P\+M\+B\+::\+Interrupt\+Input@{S\+P\+M\+B\+::\+Interrupt\+Input}!configure@{configure}}
-\index{configure@{configure}!S\+P\+M\+B\+::\+Interrupt\+Input@{S\+P\+M\+B\+::\+Interrupt\+Input}}
-\subsubsection[{\texorpdfstring{configure()}{configure()}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+P\+M\+B\+::\+Interrupt\+Input\+::configure (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{classSPMB_1_1InterruptInput_af458652456481ec1ee7af3381f4df732}{}\label{classSPMB_1_1InterruptInput_af458652456481ec1ee7af3381f4df732}
-Takes care of setting up all the pins for input definitions and pull-\/up configuration of respective pin. 
-
-Definition at line 32 of file input\+\_\+rc.\+cpp.
-
-\index{S\+P\+M\+B\+::\+Interrupt\+Input@{S\+P\+M\+B\+::\+Interrupt\+Input}!disarm\+\_\+interrupt@{disarm\+\_\+interrupt}}
-\index{disarm\+\_\+interrupt@{disarm\+\_\+interrupt}!S\+P\+M\+B\+::\+Interrupt\+Input@{S\+P\+M\+B\+::\+Interrupt\+Input}}
-\subsubsection[{\texorpdfstring{disarm\+\_\+interrupt()}{disarm_interrupt()}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+P\+M\+B\+::\+Interrupt\+Input\+::disarm\+\_\+interrupt (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{classSPMB_1_1InterruptInput_a434a4a22e379f9d3e70340ca638ef0d9}{}\label{classSPMB_1_1InterruptInput_a434a4a22e379f9d3e70340ca638ef0d9}
-Disarms the Pin for Pin Change Interrupts. 
-
-Definition at line 44 of file input\+\_\+rc.\+cpp.
-
-\index{S\+P\+M\+B\+::\+Interrupt\+Input@{S\+P\+M\+B\+::\+Interrupt\+Input}!reset@{reset}}
-\index{reset@{reset}!S\+P\+M\+B\+::\+Interrupt\+Input@{S\+P\+M\+B\+::\+Interrupt\+Input}}
-\subsubsection[{\texorpdfstring{reset()}{reset()}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+P\+M\+B\+::\+Interrupt\+Input\+::reset (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{classSPMB_1_1InterruptInput_adb38e98b59d2c4487bedd00eba453ab2}{}\label{classSPMB_1_1InterruptInput_adb38e98b59d2c4487bedd00eba453ab2}
-Reset Interrupt 
-
-Definition at line 123 of file input\+\_\+rc.\+cpp.
-
-\index{S\+P\+M\+B\+::\+Interrupt\+Input@{S\+P\+M\+B\+::\+Interrupt\+Input}!switch\+\_\+error\+\_\+status@{switch\+\_\+error\+\_\+status}}
-\index{switch\+\_\+error\+\_\+status@{switch\+\_\+error\+\_\+status}!S\+P\+M\+B\+::\+Interrupt\+Input@{S\+P\+M\+B\+::\+Interrupt\+Input}}
-\subsubsection[{\texorpdfstring{switch\+\_\+error\+\_\+status()}{switch_error_status()}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+P\+M\+B\+::\+Interrupt\+Input\+::switch\+\_\+error\+\_\+status (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{classSPMB_1_1InterruptInput_a454efe88ea6a9c5047e5c34b9d1f7e4b}{}\label{classSPMB_1_1InterruptInput_a454efe88ea6a9c5047e5c34b9d1f7e4b}
-Checks whether to reenable or to disable a interrupt with a certain error trigger count 
-
-Definition at line 97 of file input\+\_\+rc.\+cpp.
-
-\index{S\+P\+M\+B\+::\+Interrupt\+Input@{S\+P\+M\+B\+::\+Interrupt\+Input}!update\+\_\+timer@{update\+\_\+timer}}
-\index{update\+\_\+timer@{update\+\_\+timer}!S\+P\+M\+B\+::\+Interrupt\+Input@{S\+P\+M\+B\+::\+Interrupt\+Input}}
-\subsubsection[{\texorpdfstring{update\+\_\+timer()}{update_timer()}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+P\+M\+B\+::\+Interrupt\+Input\+::update\+\_\+timer (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{classSPMB_1_1InterruptInput_af827e44330f1054bdfdb28861dbd6505}{}\label{classSPMB_1_1InterruptInput_af827e44330f1054bdfdb28861dbd6505}
-Handles complete interrupt logic (is called by \hyperlink{classSPMB_1_1InterruptManager}{Interrupt\+Manager}) 
-
-Definition at line 66 of file input\+\_\+rc.\+cpp.
 

@@ -39,7 +39,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -83,7 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>SPMB</b></li><li class="navelem"><a class="el" href="classSPMB_1_1InterruptInput.html">InterruptInput</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceSPMB.html">SPMB</a></li><li class="navelem"><a class="el" href="classSPMB_1_1InterruptInput.html">InterruptInput</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -95,6 +95,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">SPMB::InterruptInput Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Collection of all register necessary for interfacing with an interrupt pin.  
+ <a href="classSPMB_1_1InterruptInput.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="input__rc_8h_source.html">input_rc.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -103,20 +108,32 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a1d7054c59edcd2989088eda0d6615370"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default Constructor. <br /></td></tr>
 <tr class="separator:a1d7054c59edcd2989088eda0d6615370"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a537b9601886237322cd01b4d66a1cae3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a537b9601886237322cd01b4d66a1cae3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>initialise</b> (std::string labelInput_, uint16_t DefaultTimePeriod_, uint8_t BitInput_, volatile uint8_t *DirectionRegister_, volatile uint8_t *CfgRegister_, volatile uint8_t *DataRegister_, volatile uint8_t *InterruptRegister_)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1InterruptInput.html#a537b9601886237322cd01b4d66a1cae3">initialise</a> (std::string labelInput_, uint16_t DefaultTimePeriod_, uint8_t BitInput_, volatile uint8_t *DirectionRegister_, volatile uint8_t *CfgRegister_, volatile uint8_t *DataRegister_, volatile uint8_t *InterruptRegister_)</td></tr>
+<tr class="memdesc:a537b9601886237322cd01b4d66a1cae3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse register arguments to member variables. <br /></td></tr>
 <tr class="separator:a537b9601886237322cd01b4d66a1cae3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af458652456481ec1ee7af3381f4df732"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1InterruptInput.html#af458652456481ec1ee7af3381f4df732">configure</a> ()</td></tr>
+<tr class="memitem:af458652456481ec1ee7af3381f4df732"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af458652456481ec1ee7af3381f4df732"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1InterruptInput.html#af458652456481ec1ee7af3381f4df732">configure</a> ()</td></tr>
+<tr class="memdesc:af458652456481ec1ee7af3381f4df732"><td class="mdescLeft">&#160;</td><td class="mdescRight">Takes care of setting up all the pins for input definitions and pull-up configuration of respective pin. <br /></td></tr>
 <tr class="separator:af458652456481ec1ee7af3381f4df732"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a434a4a22e379f9d3e70340ca638ef0d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1InterruptInput.html#a434a4a22e379f9d3e70340ca638ef0d9">disarm_interrupt</a> ()</td></tr>
+<tr class="memitem:a434a4a22e379f9d3e70340ca638ef0d9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a434a4a22e379f9d3e70340ca638ef0d9"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1InterruptInput.html#a434a4a22e379f9d3e70340ca638ef0d9">disarm_interrupt</a> ()</td></tr>
+<tr class="memdesc:a434a4a22e379f9d3e70340ca638ef0d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disarms the Pin for Pin Change Interrupts. <br /></td></tr>
 <tr class="separator:a434a4a22e379f9d3e70340ca638ef0d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f677f7648a3252791ab61df4c5e64b6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6f677f7648a3252791ab61df4c5e64b6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>arm_interrupt</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1InterruptInput.html#a6f677f7648a3252791ab61df4c5e64b6">arm_interrupt</a> ()</td></tr>
+<tr class="memdesc:a6f677f7648a3252791ab61df4c5e64b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arms the Pin for Pin Change Interrupts. <br /></td></tr>
 <tr class="separator:a6f677f7648a3252791ab61df4c5e64b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af827e44330f1054bdfdb28861dbd6505"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1InterruptInput.html#af827e44330f1054bdfdb28861dbd6505">update_timer</a> ()</td></tr>
+<tr class="memitem:af827e44330f1054bdfdb28861dbd6505"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af827e44330f1054bdfdb28861dbd6505"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1InterruptInput.html#af827e44330f1054bdfdb28861dbd6505">update_timer</a> ()</td></tr>
+<tr class="memdesc:af827e44330f1054bdfdb28861dbd6505"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles complete interrupt logic (is called by <a class="el" href="classSPMB_1_1InterruptManager.html" title="Collection of Interrupt Groups (e.g. sorted as time sensitive and non-time sensitive )...">InterruptManager</a>) <br /></td></tr>
 <tr class="separator:af827e44330f1054bdfdb28861dbd6505"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a454efe88ea6a9c5047e5c34b9d1f7e4b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1InterruptInput.html#a454efe88ea6a9c5047e5c34b9d1f7e4b">switch_error_status</a> ()</td></tr>
+<tr class="memitem:a454efe88ea6a9c5047e5c34b9d1f7e4b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a454efe88ea6a9c5047e5c34b9d1f7e4b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1InterruptInput.html#a454efe88ea6a9c5047e5c34b9d1f7e4b">switch_error_status</a> ()</td></tr>
+<tr class="memdesc:a454efe88ea6a9c5047e5c34b9d1f7e4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether to reenable or to disable a interrupt with a certain error trigger count. <br /></td></tr>
 <tr class="separator:a454efe88ea6a9c5047e5c34b9d1f7e4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb38e98b59d2c4487bedd00eba453ab2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1InterruptInput.html#adb38e98b59d2c4487bedd00eba453ab2">reset</a> ()</td></tr>
+<tr class="memitem:adb38e98b59d2c4487bedd00eba453ab2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adb38e98b59d2c4487bedd00eba453ab2"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1InterruptInput.html#adb38e98b59d2c4487bedd00eba453ab2">reset</a> ()</td></tr>
+<tr class="memdesc:adb38e98b59d2c4487bedd00eba453ab2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset Interrupt. <br /></td></tr>
 <tr class="separator:adb38e98b59d2c4487bedd00eba453ab2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -183,100 +200,10 @@ volatile uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el
 <tr class="separator:a76da8c6e70323bdfd0219f63e23529e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
+<div class="textblock"><p>Collection of all register necessary for interfacing with an interrupt pin. </p>
+
 <p>Definition at line <a class="el" href="input__rc_8h_source.html#l00007">7</a> of file <a class="el" href="input__rc_8h_source.html">input_rc.h</a>.</p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="af458652456481ec1ee7af3381f4df732"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SPMB::InterruptInput::configure </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Takes care of setting up all the pins for input definitions and pull-up configuration of respective pin. </p>
-
-<p>Definition at line <a class="el" href="input__rc_8cpp_source.html#l00032">32</a> of file <a class="el" href="input__rc_8cpp_source.html">input_rc.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a434a4a22e379f9d3e70340ca638ef0d9"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SPMB::InterruptInput::disarm_interrupt </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Disarms the Pin for Pin Change Interrupts. </p>
-
-<p>Definition at line <a class="el" href="input__rc_8cpp_source.html#l00044">44</a> of file <a class="el" href="input__rc_8cpp_source.html">input_rc.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="adb38e98b59d2c4487bedd00eba453ab2"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SPMB::InterruptInput::reset </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Reset Interrupt </p>
-
-<p>Definition at line <a class="el" href="input__rc_8cpp_source.html#l00123">123</a> of file <a class="el" href="input__rc_8cpp_source.html">input_rc.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a454efe88ea6a9c5047e5c34b9d1f7e4b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SPMB::InterruptInput::switch_error_status </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Checks whether to reenable or to disable a interrupt with a certain error trigger count </p>
-
-<p>Definition at line <a class="el" href="input__rc_8cpp_source.html#l00097">97</a> of file <a class="el" href="input__rc_8cpp_source.html">input_rc.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="af827e44330f1054bdfdb28861dbd6505"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SPMB::InterruptInput::update_timer </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Handles complete interrupt logic (is called by <a class="el" href="classSPMB_1_1InterruptManager.html">InterruptManager</a>) </p>
-
-<p>Definition at line <a class="el" href="input__rc_8cpp_source.html#l00066">66</a> of file <a class="el" href="input__rc_8cpp_source.html">input_rc.cpp</a>.</p>
-
-</div>
-</div>
-</div><!-- contents -->
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

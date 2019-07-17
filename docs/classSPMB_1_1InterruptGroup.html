@@ -39,7 +39,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -83,7 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>SPMB</b></li><li class="navelem"><a class="el" href="classSPMB_1_1InterruptGroup.html">InterruptGroup</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceSPMB.html">SPMB</a></li><li class="navelem"><a class="el" href="classSPMB_1_1InterruptGroup.html">InterruptGroup</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -96,42 +96,59 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>Collects Interrupts with same properties in groups and.  
+ <a href="classSPMB_1_1InterruptGroup.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="input__rc_8h_source.html">input_rc.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for SPMB::InterruptGroup:</div>
 <div class="dyncontent">
 <div class="center"><img src="classSPMB_1_1InterruptGroup__coll__graph.png" border="0" usemap="#SPMB_1_1InterruptGroup_coll__map" alt="Collaboration graph"/></div>
 <map name="SPMB_1_1InterruptGroup_coll__map" id="SPMB_1_1InterruptGroup_coll__map">
-<area shape="rect" id="node2" href="classSPMB_1_1InterruptInput.html" title="SPMB::InterruptInput" alt="" coords="8,5,153,32"/>
+<area shape="rect" id="node2" href="classSPMB_1_1InterruptInput.html" title="Collection of all register necessary for interfacing with an interrupt pin. " alt="" coords="8,5,153,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:ae9b011533b9da5bf30a761a9807a81fd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae9b011533b9da5bf30a761a9807a81fd"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1InterruptGroup.html#ae9b011533b9da5bf30a761a9807a81fd">InterruptGroup</a> ()</td></tr>
+<tr class="memdesc:ae9b011533b9da5bf30a761a9807a81fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor. <br /></td></tr>
+<tr class="separator:ae9b011533b9da5bf30a761a9807a81fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af657eec701e542ca195e2ac8fe817527"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af657eec701e542ca195e2ac8fe817527"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>append_interrupt</b> (<a class="el" href="classSPMB_1_1InterruptInput.html">InterruptInput</a> *NewInterruptInput)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1InterruptGroup.html#af657eec701e542ca195e2ac8fe817527">append_interrupt</a> (<a class="el" href="classSPMB_1_1InterruptInput.html">InterruptInput</a> *NewInterruptInput)</td></tr>
+<tr class="memdesc:af657eec701e542ca195e2ac8fe817527"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append new interrupt to vector. <br /></td></tr>
 <tr class="separator:af657eec701e542ca195e2ac8fe817527"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40e413db26817d4381295fbe0cc41f85"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a40e413db26817d4381295fbe0cc41f85"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>update_timer</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1InterruptGroup.html#a40e413db26817d4381295fbe0cc41f85">update_timer</a> ()</td></tr>
+<tr class="memdesc:a40e413db26817d4381295fbe0cc41f85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update timer for each interrupt. <br /></td></tr>
 <tr class="separator:a40e413db26817d4381295fbe0cc41f85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb1097331ab9adc74cfc49405d313e94"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acb1097331ab9adc74cfc49405d313e94"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1InterruptGroup.html#acb1097331ab9adc74cfc49405d313e94">_attempt_rotating</a> ()</td></tr>
+<tr class="memdesc:acb1097331ab9adc74cfc49405d313e94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempt to rotate and search for a good status in one of the interrupts and update skipped interrupts with bad status flag. <br /></td></tr>
+<tr class="separator:acb1097331ab9adc74cfc49405d313e94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0636f92ce6b96c7e3c2c93dd8b8352f9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0636f92ce6b96c7e3c2c93dd8b8352f9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>rotate_interrupts</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1InterruptGroup.html#a0636f92ce6b96c7e3c2c93dd8b8352f9">rotate_interrupts</a> ()</td></tr>
+<tr class="memdesc:a0636f92ce6b96c7e3c2c93dd8b8352f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rotate active interrupt to next interrupt in interrupt group with good status flag and update error flags. <br /></td></tr>
 <tr class="separator:a0636f92ce6b96c7e3c2c93dd8b8352f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a390d762b5aaa808d07aef963fa5296ed"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a390d762b5aaa808d07aef963fa5296ed"></a>
-volatile uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>mIdx</b></td></tr>
+volatile uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1InterruptGroup.html#a390d762b5aaa808d07aef963fa5296ed">mIdx</a></td></tr>
+<tr class="memdesc:a390d762b5aaa808d07aef963fa5296ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Index for current iterated interrupt  replace with iterators. <br /></td></tr>
 <tr class="separator:a390d762b5aaa808d07aef963fa5296ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0eff897d66e69f20cbc4c83d05a64293"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0eff897d66e69f20cbc4c83d05a64293"></a>
-std::vector&lt; <a class="el" href="classSPMB_1_1InterruptInput.html">InterruptInput</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mInterrupts</b></td></tr>
+std::vector&lt; <a class="el" href="classSPMB_1_1InterruptInput.html">InterruptInput</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1InterruptGroup.html#a0eff897d66e69f20cbc4c83d05a64293">mInterrupts</a></td></tr>
+<tr class="memdesc:a0eff897d66e69f20cbc4c83d05a64293"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupt pountires. <br /></td></tr>
 <tr class="separator:a0eff897d66e69f20cbc4c83d05a64293"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a894e60cb901974f3b2731c5638245340"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a894e60cb901974f3b2731c5638245340"></a>
-<a class="el" href="classSPMB_1_1InterruptInput.html">InterruptInput</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>mInterruptActive</b></td></tr>
+<a class="el" href="classSPMB_1_1InterruptInput.html">InterruptInput</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1InterruptGroup.html#a894e60cb901974f3b2731c5638245340">mInterruptActive</a></td></tr>
+<tr class="memdesc:a894e60cb901974f3b2731c5638245340"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to current interrupt. <br /></td></tr>
 <tr class="separator:a894e60cb901974f3b2731c5638245340"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Collects Interrupts with same properties </p>
+<div class="textblock"><p>Collects Interrupts with same properties in groups and. </p>
 
 <p>Definition at line <a class="el" href="input__rc_8h_source.html#l00059">59</a> of file <a class="el" href="input__rc_8h_source.html">input_rc.h</a>.</p>
 </div></div><!-- contents -->

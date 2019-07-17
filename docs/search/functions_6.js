@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['reset',['reset',['../classSPMB_1_1InterruptInput.html#adb38e98b59d2c4487bedd00eba453ab2',1,'SPMB::InterruptInput']]],
-  ['rosinterface',['ROSInterface',['../classSPMB_1_1ROSInterface.html#a35478a3b15d22289c6820e70e5cec671',1,'SPMB::ROSInterface']]]
+  ['has_5fclear_5fstate',['HAS_CLEAR_STATE',['../namespaceSPMB_1_1util.html#a9602ed8ba5ebb3d4ef020c25d881f9c7',1,'SPMB::util']]]
 ];

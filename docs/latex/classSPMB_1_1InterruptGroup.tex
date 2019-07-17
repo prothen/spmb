@@ -2,12 +2,16 @@
 \label{classSPMB_1_1InterruptGroup}\index{S\+P\+M\+B\+::\+Interrupt\+Group@{S\+P\+M\+B\+::\+Interrupt\+Group}}
 
 
+Collects Interrupts with same properties in groups and.  
+
+
+
+
 {\ttfamily \#include $<$input\+\_\+rc.\+h$>$}
 
 
 
-Collaboration diagram for S\+P\+MB\+:\+:Interrupt\+Group\+:
-\nopagebreak
+Collaboration diagram for S\+P\+MB\+:\+:Interrupt\+Group\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -17,31 +21,37 @@ Collaboration diagram for S\+P\+MB\+:\+:Interrupt\+Group\+:
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void {\bfseries append\+\_\+interrupt} (\hyperlink{classSPMB_1_1InterruptInput}{Interrupt\+Input} $\ast$New\+Interrupt\+Input)\hypertarget{classSPMB_1_1InterruptGroup_af657eec701e542ca195e2ac8fe817527}{}\label{classSPMB_1_1InterruptGroup_af657eec701e542ca195e2ac8fe817527}
+\hyperlink{classSPMB_1_1InterruptGroup_ae9b011533b9da5bf30a761a9807a81fd}{Interrupt\+Group} ()\hypertarget{classSPMB_1_1InterruptGroup_ae9b011533b9da5bf30a761a9807a81fd}{}\label{classSPMB_1_1InterruptGroup_ae9b011533b9da5bf30a761a9807a81fd}
 
-\item 
-void {\bfseries update\+\_\+timer} ()\hypertarget{classSPMB_1_1InterruptGroup_a40e413db26817d4381295fbe0cc41f85}{}\label{classSPMB_1_1InterruptGroup_a40e413db26817d4381295fbe0cc41f85}
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \hyperlink{classSPMB_1_1InterruptGroup_af657eec701e542ca195e2ac8fe817527}{append\+\_\+interrupt} (\hyperlink{classSPMB_1_1InterruptInput}{Interrupt\+Input} $\ast$New\+Interrupt\+Input)\hypertarget{classSPMB_1_1InterruptGroup_af657eec701e542ca195e2ac8fe817527}{}\label{classSPMB_1_1InterruptGroup_af657eec701e542ca195e2ac8fe817527}
 
-\item 
-void {\bfseries rotate\+\_\+interrupts} ()\hypertarget{classSPMB_1_1InterruptGroup_a0636f92ce6b96c7e3c2c93dd8b8352f9}{}\label{classSPMB_1_1InterruptGroup_a0636f92ce6b96c7e3c2c93dd8b8352f9}
+\begin{DoxyCompactList}\small\item\em Append new interrupt to vector. \end{DoxyCompactList}\item 
+void \hyperlink{classSPMB_1_1InterruptGroup_a40e413db26817d4381295fbe0cc41f85}{update\+\_\+timer} ()\hypertarget{classSPMB_1_1InterruptGroup_a40e413db26817d4381295fbe0cc41f85}{}\label{classSPMB_1_1InterruptGroup_a40e413db26817d4381295fbe0cc41f85}
 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Update timer for each interrupt. \end{DoxyCompactList}\item 
+void \hyperlink{classSPMB_1_1InterruptGroup_acb1097331ab9adc74cfc49405d313e94}{\+\_\+attempt\+\_\+rotating} ()\hypertarget{classSPMB_1_1InterruptGroup_acb1097331ab9adc74cfc49405d313e94}{}\label{classSPMB_1_1InterruptGroup_acb1097331ab9adc74cfc49405d313e94}
+
+\begin{DoxyCompactList}\small\item\em Attempt to rotate and search for a good status in one of the interrupts and update skipped interrupts with bad status flag. \end{DoxyCompactList}\item 
+void \hyperlink{classSPMB_1_1InterruptGroup_a0636f92ce6b96c7e3c2c93dd8b8352f9}{rotate\+\_\+interrupts} ()\hypertarget{classSPMB_1_1InterruptGroup_a0636f92ce6b96c7e3c2c93dd8b8352f9}{}\label{classSPMB_1_1InterruptGroup_a0636f92ce6b96c7e3c2c93dd8b8352f9}
+
+\begin{DoxyCompactList}\small\item\em Rotate active interrupt to next interrupt in interrupt group with good status flag and update error flags. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-volatile uint8\+\_\+t {\bfseries m\+Idx}\hypertarget{classSPMB_1_1InterruptGroup_a390d762b5aaa808d07aef963fa5296ed}{}\label{classSPMB_1_1InterruptGroup_a390d762b5aaa808d07aef963fa5296ed}
+volatile uint8\+\_\+t \hyperlink{classSPMB_1_1InterruptGroup_a390d762b5aaa808d07aef963fa5296ed}{m\+Idx}\hypertarget{classSPMB_1_1InterruptGroup_a390d762b5aaa808d07aef963fa5296ed}{}\label{classSPMB_1_1InterruptGroup_a390d762b5aaa808d07aef963fa5296ed}
 
-\item 
-std\+::vector$<$ \hyperlink{classSPMB_1_1InterruptInput}{Interrupt\+Input} $\ast$ $>$ {\bfseries m\+Interrupts}\hypertarget{classSPMB_1_1InterruptGroup_a0eff897d66e69f20cbc4c83d05a64293}{}\label{classSPMB_1_1InterruptGroup_a0eff897d66e69f20cbc4c83d05a64293}
+\begin{DoxyCompactList}\small\item\em Index for current iterated interrupt  replace with iterators. \end{DoxyCompactList}\item 
+std\+::vector$<$ \hyperlink{classSPMB_1_1InterruptInput}{Interrupt\+Input} $\ast$ $>$ \hyperlink{classSPMB_1_1InterruptGroup_a0eff897d66e69f20cbc4c83d05a64293}{m\+Interrupts}\hypertarget{classSPMB_1_1InterruptGroup_a0eff897d66e69f20cbc4c83d05a64293}{}\label{classSPMB_1_1InterruptGroup_a0eff897d66e69f20cbc4c83d05a64293}
 
-\item 
-\hyperlink{classSPMB_1_1InterruptInput}{Interrupt\+Input} $\ast$ {\bfseries m\+Interrupt\+Active}\hypertarget{classSPMB_1_1InterruptGroup_a894e60cb901974f3b2731c5638245340}{}\label{classSPMB_1_1InterruptGroup_a894e60cb901974f3b2731c5638245340}
+\begin{DoxyCompactList}\small\item\em Interrupt pountires. \end{DoxyCompactList}\item 
+\hyperlink{classSPMB_1_1InterruptInput}{Interrupt\+Input} $\ast$ \hyperlink{classSPMB_1_1InterruptGroup_a894e60cb901974f3b2731c5638245340}{m\+Interrupt\+Active}\hypertarget{classSPMB_1_1InterruptGroup_a894e60cb901974f3b2731c5638245340}{}\label{classSPMB_1_1InterruptGroup_a894e60cb901974f3b2731c5638245340}
 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Pointer to current interrupt. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Collects Interrupts with same properties 
+Collects Interrupts with same properties in groups and. 
 
 Definition at line 59 of file input\+\_\+rc.\+h.
 

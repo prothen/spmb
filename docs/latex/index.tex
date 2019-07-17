@@ -1,6 +1,41 @@
 \subsection*{Brief}
 
-The Signal\&Power Management Board ({\bfseries S\+P\+MB}) provides firmware for Arduino U\+NO devices using Atmega328p microcontrollers facilitating a Robot Operating System ({\bfseries R\+OS}) interface for a radio controlled ({\bfseries RC}) supervised vehicle. Here the current configuration is based on the {\bfseries T\+R\+A\+X\+X\+AS} platforms (in specific T\+R\+X4). The S\+P\+MB provides direct RC forwarding and publishing of actuated control signals to the R\+OS interface. With a predefined fast switching sequence of channels the software based control algorithms are activated. Furthermore a failsafe for idled software connections is embedded such that RC operation is activated if less than {\itshape 10\+Hz} control frequency is present. If a RC channel is not read successfully, e.\+g. broken wires or empty batteries, the channel is deactivated and the output goes in the channels default control signal. In case of velocity and steering this corresponds to 0 actuation. In addition lowpass filtering of all control signals, both remote and software based is included and can be customised by adapting the parameters under {\ttfamily \hyperlink{setup__macros_8h_source}{firmware/setup\+\_\+macros.\+h}}. The main and control loop time is configured and tested at {\itshape 50\+Hz}. Theoretically much higher frequencies are possible, however interrupt reading capability greatly deteriorates with a fast main loop frequency. Therefore it is recommended to not vary these frequencies to higher values or otherwise stable performance can not be guaranteed. Also the firmware provides a led signaling class which provides easily accessible information about the current S\+P\+MB\textquotesingle{}s state machine status.
+The Signal\&Power Management Board ({\bfseries \hyperlink{namespaceSPMB}{S\+P\+MB}}) provides firmware for Arduino U\+NO devices using Atmega328p microcontrollers facilitating a Robot Operating System ({\bfseries R\+OS}) interface for a radio controlled ({\bfseries RC}) supervised vehicle. Here the current configuration is based on the {\bfseries T\+R\+A\+X\+X\+AS} platforms (in specific T\+R\+X4). The \hyperlink{namespaceSPMB}{S\+P\+MB} provides direct RC forwarding and publishing of actuated control signals to the R\+OS interface. With a predefined fast switching sequence of channels the software based control algorithms are activated. Furthermore a failsafe for idled software connections is embedded such that RC operation is activated if less than {\itshape 10\+Hz} control frequency is present. If a RC channel is not read successfully, e.\+g. broken wires or empty batteries, the channel is deactivated and the output goes in the channels default control signal. In case of velocity and steering this corresponds to 0 actuation. In addition lowpass filtering of all control signals, both remote and software based is included and can be customised by adapting the parameters under {\ttfamily \hyperlink{setup__macros_8h_source}{firmware/setup\+\_\+macros.\+h}}. The main and control loop time is configured and tested at {\itshape 50\+Hz}. Theoretically much higher frequencies are possible, however interrupt reading capability greatly deteriorates with a fast main loop frequency. Therefore it is recommended to not vary these frequencies to higher values or otherwise stable performance can not be guaranteed. Also the firmware provides a led signaling class which provides easily accessible information about the current \hyperlink{namespaceSPMB}{S\+P\+MB}\textquotesingle{}s state machine status.
+
+
+\begin{DoxyItemize}
+\item {\bfseries Main loop} in \hyperlink{firmware_8ino_source}{firmware.\+ino} depending on
+\begin{DoxyItemize}
+\item {\bfseries Status\+Indicator}
+\begin{DoxyItemize}
+\item \hyperlink{si_8h_source}{si.\+h} -\/ L\+ED signaling and exposing information to environment
+\end{DoxyItemize}
+\item {\bfseries Interrupt\+Manager}
+\begin{DoxyItemize}
+\item \hyperlink{input__rc_8h_source}{input\+\_\+rc.\+h} -\/ Input via RC
+\end{DoxyItemize}
+\item {\bfseries R\+O\+S\+Interface}
+\begin{DoxyItemize}
+\item \hyperlink{ros__interface_8h_source}{ros\+\_\+interface.\+h} -\/ Input via R\+OS and publish actuated control
+\end{DoxyItemize}
+\item {\bfseries Low\+Pass}
+\begin{DoxyItemize}
+\item \hyperlink{lowpass_8h_source}{lowpass.\+h} -\/ Filter for output elements
+\end{DoxyItemize}
+\item {\bfseries Output\+Driver\+I2C}
+\begin{DoxyItemize}
+\item \hyperlink{output__i2c_8h_source}{output\+\_\+i2c.\+h} -\/ Output via I2C to timer P\+CB
+\end{DoxyItemize}
+\item {\bfseries Setup\+S\+P\+MB}
+\begin{DoxyItemize}
+\item \hyperlink{setup_8h_source}{setup.\+h} -\/ Initial pin configurations and setup of objects
+\end{DoxyItemize}
+\item {\bfseries State\+Machine}
+\begin{DoxyItemize}
+\item \hyperlink{sm_8h_source}{sm.\+h} -\/ Execute main logic loop and interface with all involved elements
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
 
 \subsection*{Features}
 
@@ -38,10 +73,10 @@ Go to {\ttfamily cd $\sim$/\+Arduino/libraries}
 
 
 \begin{DoxyItemize}
-\item Run {\ttfamily roslaunch spmbv2 run.\+launch}
+\item Run {\ttfamily roslaunch spmb run.\+launch}
 \end{DoxyItemize}
 
-({\itshape If any configuration parameters regarding baudrate have been adjusted then parse the corresponding parameter in the launch file e.\+g. {\ttfamily roslaunch spmbv2 run.\+launch baud\+:=yourbaudrateinteger}})
+({\itshape If any configuration parameters regarding baudrate have been adjusted then parse the corresponding parameter in the launch file e.\+g. {\ttfamily roslaunch spmb run.\+launch baud\+:=yourbaudrateinteger}})
 
 
 \begin{DoxyItemize}
@@ -50,15 +85,18 @@ Go to {\ttfamily cd $\sim$/\+Arduino/libraries}
 
 
 \begin{DoxyCode}
-1 process[serial\_node-1]: started with pid [10506]
-2 [INFO] [1563182250.327048]: ROS Serial Python Node
-3 [INFO] [1563182250.351442]: Connecting to /dev/spmb at 57600 baud
-4 [ERROR] [1563182267.573225]: Unable to sync with device; possible link problem or link software version
+1 setting /run\_id to 4e4bd514-a7b2-11e9-a7b3-4485007bad36
+2 process[rosout-1]: started with pid [25122]
+3 started core service [/rosout]
+4 process[serial\_node-2]: started with pid [25128]
+5 [INFO] [1563271988.137866]: ROS Serial Python Node
+6 [INFO] [1563271988.149294]: Connecting to /dev/spmb at 57600 baud
+7 [ERROR] [1563272005.372626]: Unable to sync with device; possible link problem or link software version
        mismatch such as hydro rosserial\_python with groovy Arduino
-5 [INFO] [1563182267.619900]: Note: publish buffer size is 100 bytes
-6 [INFO] [1563182267.620545]: Setup publisher on actuated [spmbv2/actuated]
-7 [INFO] [1563182267.636111]: Note: subscribe buffer size is 100 bytes
-8 [INFO] [1563182267.636602]: Setup subscriber on request [spmbv2/request]
+8 [INFO] [1563272005.404425]: Note: publish buffer size is 100 bytes
+9 [INFO] [1563272005.406264]: Setup publisher on actuated [spmb/actuated]
+10 [INFO] [1563272005.418630]: Note: subscribe buffer size is 100 bytes
+11 [INFO] [1563272005.419878]: Setup subscriber on request [spmb/request]
 \end{DoxyCode}
 
 
@@ -101,7 +139,7 @@ which should show something similar to
 
 \begin{DoxyCode}
 1 $ udevadm info -ap /sys/class/tty/ttyACM0 | grep "^    ATTRS\{serial\}=="
-2     ATTRS\{serial\}=="**85430353331351E0D120**"
+2     ATTRS\{serial\}=="85430353331351E0D120"
 3     ATTRS\{serial\}=="0000:00:14.0"
 \end{DoxyCode}
 
@@ -129,4 +167,10 @@ which should show something similar to
 \end{DoxyCode}
 
 
-$\ast$(if {\ttfamily ls /dev} doesn\textquotesingle{}t show the entry $\ast$$\ast$/dev/spmb$\ast$$\ast$ try rebooting your work station and if the entry still doesn`t show reiterate throught the instructions to make sure you followed them correctly)$\ast$ 
+{\itshape If {\ttfamily ls /dev} doesn\textquotesingle{}t show the entry} {\bfseries dev/spmb} {\itshape try rebooting your work station and if the entry still doesn\textquotesingle{}t show reiterate throught the instructions to make sure you followed them correctly.}
+
+\subsection*{Contribution}
+
+Pull requests from forked repositories and opening new issues are very welcome and much appreciated.
+
+{\bfseries Maintainer\+:} Philipp Rothenhäusler ({\itshape phirot a t kth.\+se $\vert$ philipp.\+rothenhaeusler a t gmail.\+com}) 

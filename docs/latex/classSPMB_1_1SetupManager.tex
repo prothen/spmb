@@ -2,48 +2,68 @@
 \label{classSPMB_1_1SetupManager}\index{S\+P\+M\+B\+::\+Setup\+Manager@{S\+P\+M\+B\+::\+Setup\+Manager}}
 
 
-Collaboration diagram for S\+P\+MB\+:\+:Setup\+Manager\+:
-\nopagebreak
+Runs the configure script and pin setup for the main classes like \hyperlink{classSPMB_1_1StatusIndicator}{Status\+Indicator}, \hyperlink{classSPMB_1_1InterruptManager}{Interrupt\+Manager} and \hyperlink{classSPMB_1_1OutputDriverI2C}{Output\+Driver\+I2C}.  
+
+
+
+
+{\ttfamily \#include $<$setup.\+h$>$}
+
+
+
+Collaboration diagram for S\+P\+MB\+:\+:Setup\+Manager\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=346pt]{classSPMB_1_1SetupManager__coll__graph}
+\includegraphics[width=350pt]{classSPMB_1_1SetupManager__coll__graph}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void {\bfseries \+\_\+common} ()\hypertarget{classSPMB_1_1SetupManager_a1c09eba4b47ad6012b6d3ced131da0a4}{}\label{classSPMB_1_1SetupManager_a1c09eba4b47ad6012b6d3ced131da0a4}
+void \hyperlink{classSPMB_1_1SetupManager_ac81e9e0b26c8560fe12ba38f3147bf8d}{delay\+\_\+start} (float seconds\+\_\+to\+\_\+wait)\hypertarget{classSPMB_1_1SetupManager_ac81e9e0b26c8560fe12ba38f3147bf8d}{}\label{classSPMB_1_1SetupManager_ac81e9e0b26c8560fe12ba38f3147bf8d}
 
-\item 
-void {\bfseries configure\+\_\+common} ()\hypertarget{classSPMB_1_1SetupManager_ae32219bb0aadfbfa2db519a6ebb58555}{}\label{classSPMB_1_1SetupManager_ae32219bb0aadfbfa2db519a6ebb58555}
+\begin{DoxyCompactList}\small\item\em Delay start for initialisation. \end{DoxyCompactList}\item 
+void \hyperlink{classSPMB_1_1SetupManager_a1c09eba4b47ad6012b6d3ced131da0a4}{\+\_\+common} ()\hypertarget{classSPMB_1_1SetupManager_a1c09eba4b47ad6012b6d3ced131da0a4}{}\label{classSPMB_1_1SetupManager_a1c09eba4b47ad6012b6d3ced131da0a4}
 
-\item 
-void {\bfseries \+\_\+configure\+\_\+interrupts} ()\hypertarget{classSPMB_1_1SetupManager_ad22820d8804c92c80f06c267486f3cc8}{}\label{classSPMB_1_1SetupManager_ad22820d8804c92c80f06c267486f3cc8}
+\begin{DoxyCompactList}\small\item\em Common setup script. \end{DoxyCompactList}\item 
+void \hyperlink{classSPMB_1_1SetupManager_ae32219bb0aadfbfa2db519a6ebb58555}{configure\+\_\+common} ()\hypertarget{classSPMB_1_1SetupManager_ae32219bb0aadfbfa2db519a6ebb58555}{}\label{classSPMB_1_1SetupManager_ae32219bb0aadfbfa2db519a6ebb58555}
 
-\item 
-void {\bfseries configure\+\_\+interrupts} (\hyperlink{classSPMB_1_1InterruptManager}{Interrupt\+Manager} $\ast$interrupt\+\_\+manager\+\_\+in)\hypertarget{classSPMB_1_1SetupManager_a5e594557d762d7d7b5141bb1f8cf5227}{}\label{classSPMB_1_1SetupManager_a5e594557d762d7d7b5141bb1f8cf5227}
+\begin{DoxyCompactList}\small\item\em Configure more common setup tools. \end{DoxyCompactList}\item 
+void \hyperlink{classSPMB_1_1SetupManager_a4a1120a522bf828a08d603ce4982e58d}{configure\+\_\+status\+\_\+indicator} (\hyperlink{classSPMB_1_1StatusIndicator}{Status\+Indicator} $\ast$status\+\_\+indicator\+\_\+in)\hypertarget{classSPMB_1_1SetupManager_a4a1120a522bf828a08d603ce4982e58d}{}\label{classSPMB_1_1SetupManager_a4a1120a522bf828a08d603ce4982e58d}
 
-\item 
-void {\bfseries configure\+\_\+output} (\hyperlink{classSPMB_1_1OutputDriverI2C}{Output\+Driver\+I2C} $\ast$output\+\_\+in)\hypertarget{classSPMB_1_1SetupManager_a4e7be3a3f5e5c073a45f5059d56639eb}{}\label{classSPMB_1_1SetupManager_a4e7be3a3f5e5c073a45f5059d56639eb}
+\begin{DoxyCompactList}\small\item\em Configure status indicator. \end{DoxyCompactList}\item 
+void \hyperlink{classSPMB_1_1SetupManager_ad22820d8804c92c80f06c267486f3cc8}{\+\_\+configure\+\_\+interrupts} ()\hypertarget{classSPMB_1_1SetupManager_ad22820d8804c92c80f06c267486f3cc8}{}\label{classSPMB_1_1SetupManager_ad22820d8804c92c80f06c267486f3cc8}
 
-\item 
-void {\bfseries delay\+\_\+start} (float seconds\+\_\+to\+\_\+wait)\hypertarget{classSPMB_1_1SetupManager_ac81e9e0b26c8560fe12ba38f3147bf8d}{}\label{classSPMB_1_1SetupManager_ac81e9e0b26c8560fe12ba38f3147bf8d}
+\begin{DoxyCompactList}\small\item\em Configure interrupts by looping through each that is present in interrupt manager.\+n. \end{DoxyCompactList}\item 
+void \hyperlink{classSPMB_1_1SetupManager_a5e594557d762d7d7b5141bb1f8cf5227}{configure\+\_\+interrupts} (\hyperlink{classSPMB_1_1InterruptManager}{Interrupt\+Manager} $\ast$interrupt\+\_\+manager\+\_\+in)\hypertarget{classSPMB_1_1SetupManager_a5e594557d762d7d7b5141bb1f8cf5227}{}\label{classSPMB_1_1SetupManager_a5e594557d762d7d7b5141bb1f8cf5227}
 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Wrapper around configure interrupts. \end{DoxyCompactList}\item 
+void \hyperlink{classSPMB_1_1SetupManager_a4e7be3a3f5e5c073a45f5059d56639eb}{configure\+\_\+output} (\hyperlink{classSPMB_1_1OutputDriverI2C}{Output\+Driver\+I2C} $\ast$output\+\_\+in)\hypertarget{classSPMB_1_1SetupManager_a4e7be3a3f5e5c073a45f5059d56639eb}{}\label{classSPMB_1_1SetupManager_a4e7be3a3f5e5c073a45f5059d56639eb}
+
+\begin{DoxyCompactList}\small\item\em Configure output driver. \end{DoxyCompactList}\item 
+void \hyperlink{classSPMB_1_1SetupManager_a3db6edae988d49263fc640148f678d38}{arm\+\_\+system} ()\hypertarget{classSPMB_1_1SetupManager_a3db6edae988d49263fc640148f678d38}{}\label{classSPMB_1_1SetupManager_a3db6edae988d49263fc640148f678d38}
+
+\begin{DoxyCompactList}\small\item\em Arm autonomous system. \end{DoxyCompactList}\item 
+\hyperlink{classSPMB_1_1SetupManager_a712e674e38b672f20d5d007e8c64d548}{Setup\+Manager} ()\hypertarget{classSPMB_1_1SetupManager_a712e674e38b672f20d5d007e8c64d548}{}\label{classSPMB_1_1SetupManager_a712e674e38b672f20d5d007e8c64d548}
+
+\begin{DoxyCompactList}\small\item\em Pointer to status\+\_\+indicator for initialisation. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classSPMB_1_1InterruptManager}{Interrupt\+Manager} $\ast$ {\bfseries m\+Interrupt\+Manager}\hypertarget{classSPMB_1_1SetupManager_a29f2062c536ba2b74bda1937e10d3351}{}\label{classSPMB_1_1SetupManager_a29f2062c536ba2b74bda1937e10d3351}
+\hyperlink{classSPMB_1_1StatusIndicator}{Status\+Indicator} $\ast$ \hyperlink{classSPMB_1_1SetupManager_aee4ada747a7d535d75ae4e54e1396c5f}{m\+Status\+Indicator}\hypertarget{classSPMB_1_1SetupManager_aee4ada747a7d535d75ae4e54e1396c5f}{}\label{classSPMB_1_1SetupManager_aee4ada747a7d535d75ae4e54e1396c5f}
 
-\item 
-\hyperlink{classSPMB_1_1OutputDriverI2C}{Output\+Driver\+I2C} $\ast$ {\bfseries m\+Output}\hypertarget{classSPMB_1_1SetupManager_a3cd847b570298f79a6a9d1d86e556377}{}\label{classSPMB_1_1SetupManager_a3cd847b570298f79a6a9d1d86e556377}
+\begin{DoxyCompactList}\small\item\em Pointer to status\+\_\+indicator for initialisation. \end{DoxyCompactList}\item 
+\hyperlink{classSPMB_1_1InterruptManager}{Interrupt\+Manager} $\ast$ \hyperlink{classSPMB_1_1SetupManager_a29f2062c536ba2b74bda1937e10d3351}{m\+Interrupt\+Manager}\hypertarget{classSPMB_1_1SetupManager_a29f2062c536ba2b74bda1937e10d3351}{}\label{classSPMB_1_1SetupManager_a29f2062c536ba2b74bda1937e10d3351}
 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Pointer to interrupt\+\_\+manager for initialisation. \end{DoxyCompactList}\item 
+\hyperlink{classSPMB_1_1OutputDriverI2C}{Output\+Driver\+I2C} $\ast$ \hyperlink{classSPMB_1_1SetupManager_a3cd847b570298f79a6a9d1d86e556377}{m\+Output}\hypertarget{classSPMB_1_1SetupManager_a3cd847b570298f79a6a9d1d86e556377}{}\label{classSPMB_1_1SetupManager_a3cd847b570298f79a6a9d1d86e556377}
+
+\begin{DoxyCompactList}\small\item\em Pointer to output driver for initialisation. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
+Runs the configure script and pin setup for the main classes like \hyperlink{classSPMB_1_1StatusIndicator}{Status\+Indicator}, \hyperlink{classSPMB_1_1InterruptManager}{Interrupt\+Manager} and \hyperlink{classSPMB_1_1OutputDriverI2C}{Output\+Driver\+I2C}. 
 
-
-Definition at line 6 of file setup.\+h.
+Definition at line 9 of file setup.\+h.
 

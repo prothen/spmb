@@ -2,13 +2,18 @@
 \label{classSPMB_1_1OutputDriverI2C}\index{S\+P\+M\+B\+::\+Output\+Driver\+I2C@{S\+P\+M\+B\+::\+Output\+Driver\+I2C}}
 
 
+Output driver using I2C via P\+C\+A9688.  
+
+
+
+
 {\ttfamily \#include $<$output\+\_\+i2c.\+h$>$}
 
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 void \hyperlink{classSPMB_1_1OutputDriverI2C_a65b12f0a0b98851d21ad863fd1584725}{configure} ()
-\begin{DoxyCompactList}\small\item\em Adafruit driver to interface with timer chip. \end{DoxyCompactList}\item 
+\item 
 void \hyperlink{classSPMB_1_1OutputDriverI2C_a8b82addf2f9101b22cf8bfca160132cb}{actuate} (\hyperlink{structSPMB_1_1util_1_1control__filtered}{util\+::control\+\_\+filtered} $\ast$output)
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
@@ -16,17 +21,17 @@ void \hyperlink{classSPMB_1_1OutputDriverI2C_a8b82addf2f9101b22cf8bfca160132cb}{
 \item 
 double \hyperlink{classSPMB_1_1OutputDriverI2C_a1dc1d614d4e099105b124656a871aa83}{m\+Us\+Bit}\hypertarget{classSPMB_1_1OutputDriverI2C_a1dc1d614d4e099105b124656a871aa83}{}\label{classSPMB_1_1OutputDriverI2C_a1dc1d614d4e099105b124656a871aa83}
 
-\begin{DoxyCompactList}\small\item\em Amount of microseconds per bit of 4096 bits total resolution. \end{DoxyCompactList}\item 
-double {\bfseries m\+Offset\+Driver}\hypertarget{classSPMB_1_1OutputDriverI2C_a8ab5bd3883d50cca560313b5275b81e5}{}\label{classSPMB_1_1OutputDriverI2C_a8ab5bd3883d50cca560313b5275b81e5}
+\begin{DoxyCompactList}\small\item\em $<$ Amount of microseconds per bit of 4096 bits total resolution \end{DoxyCompactList}\item 
+double \hyperlink{classSPMB_1_1OutputDriverI2C_a8ab5bd3883d50cca560313b5275b81e5}{m\+Offset\+Driver}\hypertarget{classSPMB_1_1OutputDriverI2C_a8ab5bd3883d50cca560313b5275b81e5}{}\label{classSPMB_1_1OutputDriverI2C_a8ab5bd3883d50cca560313b5275b81e5}
 
-\item 
+\begin{DoxyCompactList}\small\item\em Compensation of output driver period deviation from input in microseconds. \end{DoxyCompactList}\item 
 Adafruit\+\_\+\+P\+W\+M\+Servo\+Driver \hyperlink{classSPMB_1_1OutputDriverI2C_aecd74104de6faf86afbc9c1f9cd0b50a}{m\+Driver}\hypertarget{classSPMB_1_1OutputDriverI2C_aecd74104de6faf86afbc9c1f9cd0b50a}{}\label{classSPMB_1_1OutputDriverI2C_aecd74104de6faf86afbc9c1f9cd0b50a}
 
-\begin{DoxyCompactList}\small\item\em Compensation of output driver period deviation from input in microseconds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Adafruit driver to interface with timer chip. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Output driver using I2C via P\+C\+A9688 
+Output driver using I2C via P\+C\+A9688. 
 
 Definition at line 10 of file output\+\_\+i2c.\+h.
 
@@ -51,10 +56,6 @@ Definition at line 17 of file output\+\_\+i2c.\+cpp.
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classSPMB_1_1OutputDriverI2C_a65b12f0a0b98851d21ad863fd1584725}{}\label{classSPMB_1_1OutputDriverI2C_a65b12f0a0b98851d21ad863fd1584725}
-
-
-Adafruit driver to interface with timer chip. 
-
 configure pins and frequencies 
 
 Definition at line 5 of file output\+\_\+i2c.\+cpp.

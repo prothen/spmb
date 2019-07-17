@@ -1,0 +1,55 @@
+\hypertarget{namespaceSPMB}{}\section{S\+P\+MB Namespace Reference}
+\label{namespaceSPMB}\index{S\+P\+MB@{S\+P\+MB}}
+
+
+Namespace collecting all \hyperlink{namespaceSPMB}{S\+P\+MB} classes and utilities used in \hyperlink{firmware_8ino_source}{firmware.\+ino}.  
+
+
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceSPMB_1_1util}{util}
+\begin{DoxyCompactList}\small\item\em Namespace collecting all utility functions and structs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classSPMB_1_1InterruptGroup}{Interrupt\+Group}
+\begin{DoxyCompactList}\small\item\em Collects Interrupts with same properties in groups and. \end{DoxyCompactList}\item 
+class \hyperlink{classSPMB_1_1InterruptInput}{Interrupt\+Input}
+\begin{DoxyCompactList}\small\item\em Collection of all register necessary for interfacing with an interrupt pin. \end{DoxyCompactList}\item 
+class \hyperlink{classSPMB_1_1InterruptManager}{Interrupt\+Manager}
+\begin{DoxyCompactList}\small\item\em Collection of Interrupt Groups (e.\+g. sorted as time sensitive and non-\/time sensitive ). \end{DoxyCompactList}\item 
+class \hyperlink{classSPMB_1_1LowPass}{Low\+Pass}
+\begin{DoxyCompactList}\small\item\em Provides a templated lowpass filter class for scalar elements. \end{DoxyCompactList}\item 
+class \hyperlink{classSPMB_1_1OutputDriverI2C}{Output\+Driver\+I2C}
+\begin{DoxyCompactList}\small\item\em Output driver using I2C via P\+C\+A9688. \end{DoxyCompactList}\item 
+class \hyperlink{classSPMB_1_1ROSInterface}{R\+O\+S\+Interface}
+\begin{DoxyCompactList}\small\item\em Provides all necessary functinos to interface and debug various datatypes via R\+OS. \end{DoxyCompactList}\item 
+class \hyperlink{classSPMB_1_1SetupManager}{Setup\+Manager}
+\begin{DoxyCompactList}\small\item\em Runs the configure script and pin setup for the main classes like \hyperlink{classSPMB_1_1StatusIndicator}{Status\+Indicator}, \hyperlink{classSPMB_1_1InterruptManager}{Interrupt\+Manager} and \hyperlink{classSPMB_1_1OutputDriverI2C}{Output\+Driver\+I2C}. \end{DoxyCompactList}\item 
+class \hyperlink{classSPMB_1_1StateMachine}{State\+Machine}
+\begin{DoxyCompactList}\small\item\em Executes main logic loop such as switching logic, reading inputs and actuating control signals to hardware interface. \end{DoxyCompactList}\item 
+class \hyperlink{classSPMB_1_1StatusIndicator}{Status\+Indicator}
+\begin{DoxyCompactList}\small\item\em Provides interface and actuation wrapper for status indicator output pins. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef ros\+::\+Node\+Handle\+\_\+$<$ Arduino\+Hardware, 1, 1, 100, 100 $>$ \hyperlink{namespaceSPMB_a3dfee893976eb910fb3de34c228c2314}{my\+Hardware}
+\begin{DoxyCompactList}\small\item\em Specifies the Arduino hardware limitations by assigning buffer sizes and restrictions on amount of publishers and subscribers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Namespace collecting all \hyperlink{namespaceSPMB}{S\+P\+MB} classes and utilities used in \hyperlink{firmware_8ino_source}{firmware.\+ino}. 
+
+\subsection{Typedef Documentation}
+\index{S\+P\+MB@{S\+P\+MB}!my\+Hardware@{my\+Hardware}}
+\index{my\+Hardware@{my\+Hardware}!S\+P\+MB@{S\+P\+MB}}
+\subsubsection[{\texorpdfstring{my\+Hardware}{myHardware}}]{\setlength{\rightskip}{0pt plus 5cm}typedef ros\+::\+Node\+Handle\+\_\+$<$Arduino\+Hardware, 1, 1, 100, 100$>$ {\bf S\+P\+M\+B\+::my\+Hardware}}\hypertarget{namespaceSPMB_a3dfee893976eb910fb3de34c228c2314}{}\label{namespaceSPMB_a3dfee893976eb910fb3de34c228c2314}
+
+
+Specifies the Arduino hardware limitations by assigning buffer sizes and restrictions on amount of publishers and subscribers. 
+
+Typedefinition of Arduino Serial R\+OS interface specifying maximum transmission and buffer allocation 
+
+Definition at line 8 of file ros\+\_\+interface.\+h.
+

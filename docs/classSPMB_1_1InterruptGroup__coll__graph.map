@@ -1,3 +1,3 @@
 <map id="SPMB::InterruptGroup" name="SPMB::InterruptGroup">
-<area shape="rect" id="node2" href="$classSPMB_1_1InterruptInput.html" title="SPMB::InterruptInput" alt="" coords="8,5,153,32"/>
+<area shape="rect" id="node2" href="$classSPMB_1_1InterruptInput.html" title="Collection of all register necessary for interfacing with an interrupt pin. " alt="" coords="8,5,153,32"/>
 </map>

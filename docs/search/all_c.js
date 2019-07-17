@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['update_5foutput_5fsignals',['update_output_signals',['../classSPMB_1_1StateMachine.html#a651fcd0d71e1ce2ec7dfc72255ff8af7',1,'SPMB::StateMachine']]],
-  ['update_5fstate',['update_state',['../classSPMB_1_1LowPass.html#ac01c87236e0a4974e0fe63c648ad0a7e',1,'SPMB::LowPass']]],
-  ['update_5ftimer',['update_timer',['../classSPMB_1_1InterruptInput.html#af827e44330f1054bdfdb28861dbd6505',1,'SPMB::InterruptInput']]]
+  ['reset',['reset',['../classSPMB_1_1InterruptInput.html#adb38e98b59d2c4487bedd00eba453ab2',1,'SPMB::InterruptInput']]],
+  ['rosinterface',['ROSInterface',['../classSPMB_1_1ROSInterface.html#a35478a3b15d22289c6820e70e5cec671',1,'SPMB::ROSInterface']]],
+  ['rosinterface',['ROSInterface',['../classSPMB_1_1ROSInterface.html',1,'SPMB']]],
+  ['rosinterface_3c_20myhardware_20_3e',['ROSInterface&lt; myHardware &gt;',['../classSPMB_1_1ROSInterface.html',1,'SPMB']]],
+  ['rotate_5finterrupts',['rotate_interrupts',['../classSPMB_1_1InterruptGroup.html#a0636f92ce6b96c7e3c2c93dd8b8352f9',1,'SPMB::InterruptGroup::rotate_interrupts()'],['../classSPMB_1_1InterruptManager.html#a281ff95c62f2c714024009fbdfad560e',1,'SPMB::InterruptManager::rotate_interrupts()']]]
 ];

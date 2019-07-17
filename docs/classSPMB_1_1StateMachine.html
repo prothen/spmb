@@ -39,7 +39,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -83,11 +83,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>SPMB</b></li><li class="navelem"><a class="el" href="classSPMB_1_1StateMachine.html">StateMachine</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceSPMB.html">SPMB</a></li><li class="navelem"><a class="el" href="classSPMB_1_1StateMachine.html">StateMachine</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classSPMB_1_1StateMachine-members.html">List of all members</a>  </div>
@@ -96,56 +97,106 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>Executes main logic loop such as switching logic, reading inputs and actuating control signals to hardware interface.  
+ <a href="classSPMB_1_1StateMachine.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="sm_8h_source.html">sm.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for SPMB::StateMachine:</div>
 <div class="dyncontent">
 <div class="center"><img src="classSPMB_1_1StateMachine__coll__graph.png" border="0" usemap="#SPMB_1_1StateMachine_coll__map" alt="Collaboration graph"/></div>
 <map name="SPMB_1_1StateMachine_coll__map" id="SPMB_1_1StateMachine_coll__map">
-<area shape="rect" id="node2" href="classSPMB_1_1ROSInterface.html" title="SPMB::ROSInterface\l\&lt; myHardware \&gt;" alt="" coords="348,9,496,50"/>
-<area shape="rect" id="node3" href="structSPMB_1_1util_1_1control.html" title="SPMB::util::control" alt="" coords="35,5,167,32"/>
-<area shape="rect" id="node4" href="structSPMB_1_1util_1_1control__filtered.html" title="SPMB::util::control\l_filtered" alt="" coords="356,93,488,134"/>
+<area shape="rect" id="node2" href="classSPMB_1_1ROSInterface.html" title="SPMB::ROSInterface\l\&lt; myHardware \&gt;" alt="" coords="348,17,496,58"/>
+<area shape="rect" id="node3" href="structSPMB_1_1util_1_1control.html" title="Struct summarising control outputs. " alt="" coords="35,5,167,32"/>
+<area shape="rect" id="node4" href="structSPMB_1_1util_1_1control__filtered.html" title="Struct summarising filtered control outputs. " alt="" coords="356,91,488,133"/>
 <area shape="rect" id="node5" href="classSPMB_1_1LowPass.html" title="SPMB::LowPass\&lt; uint16_t \&gt;" alt="" coords="5,109,197,136"/>
-<area shape="rect" id="node6" href="classSPMB_1_1InterruptManager.html" title="SPMB::InterruptManager" alt="" coords="339,159,505,185"/>
-<area shape="rect" id="node7" href="classSPMB_1_1OutputDriverI2C.html" title="SPMB::OutputDriverI2C" alt="" coords="341,209,503,236"/>
+<area shape="rect" id="node6" href="classSPMB_1_1InterruptManager.html" title="Collection of Interrupt Groups (e.g. sorted as time sensitive and non&#45;time sensitive )..." alt="" coords="339,157,505,184"/>
+<area shape="rect" id="node7" href="classSPMB_1_1OutputDriverI2C.html" title="Output driver using I2C via PCA9688. " alt="" coords="341,208,503,235"/>
+<area shape="rect" id="node8" href="classSPMB_1_1StatusIndicator.html" title="Provides interface and actuation wrapper for status indicator output pins. " alt="" coords="344,259,500,285"/>
+<area shape="rect" id="node9" href="structSPMB_1_1StatusIndicator_1_1StatusOutput.html" title="Collection of output references and status assignment. " alt="" coords="23,251,179,293"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:aa3228b2d3b74bb31a7ac7f7a20f6da37"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa3228b2d3b74bb31a7ac7f7a20f6da37"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1StateMachine.html#aa3228b2d3b74bb31a7ac7f7a20f6da37">SWStates</a> { <b>OFF</b>, 
+<b>ARM</b>, 
+<b>SWITCH</b>
+ }<tr class="memdesc:aa3228b2d3b74bb31a7ac7f7a20f6da37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the system states. <br /></td></tr>
+</td></tr>
+<tr class="separator:aa3228b2d3b74bb31a7ac7f7a20f6da37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a435a2eb92508aa038a0df64b4edd3ff2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1StateMachine.html#a435a2eb92508aa038a0df64b4edd3ff2">configure_input</a> (<a class="el" href="classSPMB_1_1InterruptManager.html">InterruptManager</a> *interrupt_manager_in, <a class="el" href="classSPMB_1_1ROSInterface.html">ROSInterface</a>&lt; myHardware &gt; *ros_interface_in)</td></tr>
+<tr class="memitem:aea3379ddeb8edf85d0350c3e6391391a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aea3379ddeb8edf85d0350c3e6391391a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1StateMachine.html#aea3379ddeb8edf85d0350c3e6391391a">configure_status_indicator</a> (<a class="el" href="classSPMB_1_1StatusIndicator.html">StatusIndicator</a> *status_indicator_in)</td></tr>
+<tr class="memdesc:aea3379ddeb8edf85d0350c3e6391391a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure pointer to status indicator. <br /></td></tr>
+<tr class="separator:aea3379ddeb8edf85d0350c3e6391391a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a435a2eb92508aa038a0df64b4edd3ff2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a435a2eb92508aa038a0df64b4edd3ff2"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1StateMachine.html#a435a2eb92508aa038a0df64b4edd3ff2">configure_input</a> (<a class="el" href="classSPMB_1_1InterruptManager.html">InterruptManager</a> *interrupt_manager_in, <a class="el" href="classSPMB_1_1ROSInterface.html">ROSInterface</a>&lt; <a class="el" href="namespaceSPMB.html#a3dfee893976eb910fb3de34c228c2314">myHardware</a> &gt; *ros_interface_in)</td></tr>
+<tr class="memdesc:a435a2eb92508aa038a0df64b4edd3ff2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure pointer to interrupt manager and ros_interface. <br /></td></tr>
 <tr class="separator:a435a2eb92508aa038a0df64b4edd3ff2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e1f84c67c0db8422a17c6d0f76f70a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1StateMachine.html#a1e1f84c67c0db8422a17c6d0f76f70a8">configure_output</a> (<a class="el" href="classSPMB_1_1OutputDriverI2C.html">OutputDriverI2C</a> *output_in)</td></tr>
+<tr class="memitem:a1e1f84c67c0db8422a17c6d0f76f70a8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1e1f84c67c0db8422a17c6d0f76f70a8"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1StateMachine.html#a1e1f84c67c0db8422a17c6d0f76f70a8">configure_output</a> (<a class="el" href="classSPMB_1_1OutputDriverI2C.html">OutputDriverI2C</a> *output_in)</td></tr>
+<tr class="memdesc:a1e1f84c67c0db8422a17c6d0f76f70a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure pointer to output driver. <br /></td></tr>
 <tr class="separator:a1e1f84c67c0db8422a17c6d0f76f70a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1812d19f20f020a1635a96da3e8e048"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1StateMachine.html#af1812d19f20f020a1635a96da3e8e048">_update_rc_signals</a> (<a class="el" href="structSPMB_1_1util_1_1control.html">util::control</a> &amp;signals_rc)</td></tr>
+<tr class="memitem:af1812d19f20f020a1635a96da3e8e048"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af1812d19f20f020a1635a96da3e8e048"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1StateMachine.html#af1812d19f20f020a1635a96da3e8e048">_update_rc_signals</a> (<a class="el" href="structSPMB_1_1util_1_1control.html">util::control</a> &amp;signals_rc)</td></tr>
+<tr class="memdesc:af1812d19f20f020a1635a96da3e8e048"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update rc signal input. <br /></td></tr>
 <tr class="separator:af1812d19f20f020a1635a96da3e8e048"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c01752d1ec267a1dc85924d453db6ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1StateMachine.html#a1c01752d1ec267a1dc85924d453db6ce">_swl_execute_switching_logic</a> (<a class="el" href="structSPMB_1_1util_1_1control.html">util::control</a> *signals_rc)</td></tr>
+<tr class="memitem:a1c01752d1ec267a1dc85924d453db6ce"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1c01752d1ec267a1dc85924d453db6ce"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1StateMachine.html#a1c01752d1ec267a1dc85924d453db6ce">_swl_execute_switching_logic</a> (<a class="el" href="structSPMB_1_1util_1_1control.html">util::control</a> *signals_rc)</td></tr>
+<tr class="memdesc:a1c01752d1ec267a1dc85924d453db6ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute switching logic to determine current operation mode. <br /></td></tr>
 <tr class="separator:a1c01752d1ec267a1dc85924d453db6ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefec64633728ccc393ff10752fe76243"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1StateMachine.html#aefec64633728ccc393ff10752fe76243">_swl_check_idle_transition</a> ()</td></tr>
+<tr class="memitem:aefec64633728ccc393ff10752fe76243"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aefec64633728ccc393ff10752fe76243"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1StateMachine.html#aefec64633728ccc393ff10752fe76243">_swl_check_idle_transition</a> ()</td></tr>
+<tr class="memdesc:aefec64633728ccc393ff10752fe76243"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verify whether switching idle condition is not violated and reset otherwise. <br /></td></tr>
 <tr class="separator:aefec64633728ccc393ff10752fe76243"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5b8e99beb2d19a29491429c45249179"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1StateMachine.html#ad5b8e99beb2d19a29491429c45249179">wait_for_next_cycle</a> ()</td></tr>
+<tr class="memitem:ad5b8e99beb2d19a29491429c45249179"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad5b8e99beb2d19a29491429c45249179"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1StateMachine.html#ad5b8e99beb2d19a29491429c45249179">wait_for_next_cycle</a> ()</td></tr>
+<tr class="memdesc:ad5b8e99beb2d19a29491429c45249179"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delay according to remaining time until next desired loop. <br /></td></tr>
 <tr class="separator:ad5b8e99beb2d19a29491429c45249179"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e7447f352e2a9b3f8d451bc834faaa2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1StateMachine.html#a8e7447f352e2a9b3f8d451bc834faaa2">critical_error</a> ()</td></tr>
-<tr class="separator:a8e7447f352e2a9b3f8d451bc834faaa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46daaffbfb6385c230685dcba703314f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1StateMachine.html#a46daaffbfb6385c230685dcba703314f">_process_rc_inputs</a> (<a class="el" href="structSPMB_1_1util_1_1control.html">util::control</a> &amp;signals_rc)</td></tr>
+<tr class="memitem:a46daaffbfb6385c230685dcba703314f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a46daaffbfb6385c230685dcba703314f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1StateMachine.html#a46daaffbfb6385c230685dcba703314f">_process_rc_inputs</a> (<a class="el" href="structSPMB_1_1util_1_1control.html">util::control</a> &amp;signals_rc)</td></tr>
+<tr class="memdesc:a46daaffbfb6385c230685dcba703314f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process rc inputs. <br /></td></tr>
 <tr class="separator:a46daaffbfb6385c230685dcba703314f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ffc09455280e241a558f1b46441aa9d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1StateMachine.html#a6ffc09455280e241a558f1b46441aa9d">_process_ros_inputs</a> (<a class="el" href="structSPMB_1_1util_1_1control.html">util::control</a> &amp;signals_ros)</td></tr>
+<tr class="memitem:a6ffc09455280e241a558f1b46441aa9d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6ffc09455280e241a558f1b46441aa9d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1StateMachine.html#a6ffc09455280e241a558f1b46441aa9d">_process_ros_inputs</a> (<a class="el" href="structSPMB_1_1util_1_1control.html">util::control</a> &amp;signals_ros)</td></tr>
+<tr class="memdesc:a6ffc09455280e241a558f1b46441aa9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process ROS inputs. <br /></td></tr>
 <tr class="separator:a6ffc09455280e241a558f1b46441aa9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a651fcd0d71e1ce2ec7dfc72255ff8af7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1StateMachine.html#a651fcd0d71e1ce2ec7dfc72255ff8af7">update_output_signals</a> ()</td></tr>
+<tr class="memitem:a651fcd0d71e1ce2ec7dfc72255ff8af7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a651fcd0d71e1ce2ec7dfc72255ff8af7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1StateMachine.html#a651fcd0d71e1ce2ec7dfc72255ff8af7">update_output_signals</a> ()</td></tr>
+<tr class="memdesc:a651fcd0d71e1ce2ec7dfc72255ff8af7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update output signal into control_filtered. <br /></td></tr>
 <tr class="separator:a651fcd0d71e1ce2ec7dfc72255ff8af7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a887475df9c15df2defce01f36030f931"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1StateMachine.html#a887475df9c15df2defce01f36030f931">_expose_actuated_signals_to_ros</a> ()</td></tr>
+<tr class="memitem:a887475df9c15df2defce01f36030f931"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a887475df9c15df2defce01f36030f931"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1StateMachine.html#a887475df9c15df2defce01f36030f931">_expose_actuated_signals_to_ros</a> ()</td></tr>
+<tr class="memdesc:a887475df9c15df2defce01f36030f931"><td class="mdescLeft">&#160;</td><td class="mdescRight">Expose actuation signals to ROS via publishing. <br /></td></tr>
 <tr class="separator:a887475df9c15df2defce01f36030f931"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46d01bf4a019982fee4188d7434e38fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1StateMachine.html#a46d01bf4a019982fee4188d7434e38fa">actuate</a> ()</td></tr>
+<tr class="memitem:a46d01bf4a019982fee4188d7434e38fa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a46d01bf4a019982fee4188d7434e38fa"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1StateMachine.html#a46d01bf4a019982fee4188d7434e38fa">actuate</a> ()</td></tr>
+<tr class="memdesc:a46d01bf4a019982fee4188d7434e38fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Actutate output signals to hardware via output driver. <br /></td></tr>
 <tr class="separator:a46d01bf4a019982fee4188d7434e38fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa9adcae2ee0b1d19e5c0ee53830ab4f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa9adcae2ee0b1d19e5c0ee53830ab4f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1StateMachine.html#afa9adcae2ee0b1d19e5c0ee53830ab4f">indicate_status</a> ()</td></tr>
+<tr class="memdesc:afa9adcae2ee0b1d19e5c0ee53830ab4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicate states and information to environment via hardware. <br /></td></tr>
+<tr class="separator:afa9adcae2ee0b1d19e5c0ee53830ab4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e7447f352e2a9b3f8d451bc834faaa2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8e7447f352e2a9b3f8d451bc834faaa2"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1StateMachine.html#a8e7447f352e2a9b3f8d451bc834faaa2">critical_error</a> ()</td></tr>
+<tr class="memdesc:a8e7447f352e2a9b3f8d451bc834faaa2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute logic in case of critical errors. <br /></td></tr>
+<tr class="separator:a8e7447f352e2a9b3f8d451bc834faaa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
+<tr class="memitem:a12dab063883dbefcd89e374090ccdc58"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a12dab063883dbefcd89e374090ccdc58"></a>
+<a class="el" href="classSPMB_1_1StatusIndicator.html">StatusIndicator</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1StateMachine.html#a12dab063883dbefcd89e374090ccdc58">mStatusIndicator</a></td></tr>
+<tr class="memdesc:a12dab063883dbefcd89e374090ccdc58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Facilitates interface with hardware status indicators such as LEDs and piezo buzzers. <br /></td></tr>
+<tr class="separator:a12dab063883dbefcd89e374090ccdc58"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e5c36f8ceb94e6f8913e7475cce2c40"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3e5c36f8ceb94e6f8913e7475cce2c40"></a>
 <a class="el" href="classSPMB_1_1InterruptManager.html">InterruptManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1StateMachine.html#a3e5c36f8ceb94e6f8913e7475cce2c40">mInterruptManager</a></td></tr>
 <tr class="memdesc:a3e5c36f8ceb94e6f8913e7475cce2c40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to interrupt manager provides access to all interrupt results. <br /></td></tr>
 <tr class="separator:a3e5c36f8ceb94e6f8913e7475cce2c40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab653add6890a51701f9d3a3760008e15"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab653add6890a51701f9d3a3760008e15"></a>
-<a class="el" href="classSPMB_1_1ROSInterface.html">ROSInterface</a>&lt; myHardware &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1StateMachine.html#ab653add6890a51701f9d3a3760008e15">mRosi</a></td></tr>
+<a class="el" href="classSPMB_1_1ROSInterface.html">ROSInterface</a>&lt; <a class="el" href="namespaceSPMB.html#a3dfee893976eb910fb3de34c228c2314">myHardware</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPMB_1_1StateMachine.html#ab653add6890a51701f9d3a3760008e15">mRosi</a></td></tr>
 <tr class="memdesc:ab653add6890a51701f9d3a3760008e15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to ROS interface that provides access to all ROS related actions. <br /></td></tr>
 <tr class="separator:ab653add6890a51701f9d3a3760008e15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aecac5b27c3a5daa5331d367f55bed915"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aecac5b27c3a5daa5331d367f55bed915"></a>
@@ -210,244 +261,10 @@ boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="separator:a1d0a5cbe9d61f50e3d0ac3bdca99b936"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A test class</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Add status LED class </dd></dl>
+<div class="textblock"><p>Executes main logic loop such as switching logic, reading inputs and actuating control signals to hardware interface. </p>
 
-<p>Definition at line <a class="el" href="sm_8h_source.html#l00013">13</a> of file <a class="el" href="sm_8h_source.html">sm.h</a>.</p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a887475df9c15df2defce01f36030f931"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SPMB::StateMachine::_expose_actuated_signals_to_ros </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>expose ros </p>
-
-<p>Definition at line <a class="el" href="sm_8cpp_source.html#l00217">217</a> of file <a class="el" href="sm_8cpp_source.html">sm.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a46daaffbfb6385c230685dcba703314f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SPMB::StateMachine::_process_rc_inputs </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structSPMB_1_1util_1_1control.html">util::control</a> &amp;&#160;</td>
-          <td class="paramname"><em>signals_rc</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>taestestetest </p>
-
-<p>Definition at line <a class="el" href="sm_8cpp_source.html#l00169">169</a> of file <a class="el" href="sm_8cpp_source.html">sm.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a6ffc09455280e241a558f1b46441aa9d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SPMB::StateMachine::_process_ros_inputs </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structSPMB_1_1util_1_1control.html">util::control</a> &amp;&#160;</td>
-          <td class="paramname"><em>signals_ros</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>test ros </p>
-
-<p>Definition at line <a class="el" href="sm_8cpp_source.html#l00175">175</a> of file <a class="el" href="sm_8cpp_source.html">sm.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aefec64633728ccc393ff10752fe76243"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SPMB::StateMachine::_swl_check_idle_transition </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>oeoauu </p>
-
-<p>Definition at line <a class="el" href="sm_8cpp_source.html#l00150">150</a> of file <a class="el" href="sm_8cpp_source.html">sm.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a1c01752d1ec267a1dc85924d453db6ce"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SPMB::StateMachine::_swl_execute_switching_logic </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structSPMB_1_1util_1_1control.html">util::control</a> *&#160;</td>
-          <td class="paramname"><em>signals_rc</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>taehu </p>
-
-<p>Definition at line <a class="el" href="sm_8cpp_source.html#l00077">77</a> of file <a class="el" href="sm_8cpp_source.html">sm.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="af1812d19f20f020a1635a96da3e8e048"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SPMB::StateMachine::_update_rc_signals </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structSPMB_1_1util_1_1control.html">util::control</a> &amp;&#160;</td>
-          <td class="paramname"><em>signals_rc</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>update rc signals </p>
-
-<p>Definition at line <a class="el" href="sm_8cpp_source.html#l00061">61</a> of file <a class="el" href="sm_8cpp_source.html">sm.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a46d01bf4a019982fee4188d7434e38fa"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SPMB::StateMachine::actuate </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>actuate </p>
-
-<p>Definition at line <a class="el" href="sm_8cpp_source.html#l00224">224</a> of file <a class="el" href="sm_8cpp_source.html">sm.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a435a2eb92508aa038a0df64b4edd3ff2"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SPMB::StateMachine::configure_input </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classSPMB_1_1InterruptManager.html">InterruptManager</a> *&#160;</td>
-          <td class="paramname"><em>interrupt_manager_in</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classSPMB_1_1ROSInterface.html">ROSInterface</a>&lt; myHardware &gt; *&#160;</td>
-          <td class="paramname"><em>ros_interface_in</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>configure input </p>
-
-<p>Definition at line <a class="el" href="sm_8cpp_source.html#l00025">25</a> of file <a class="el" href="sm_8cpp_source.html">sm.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a1e1f84c67c0db8422a17c6d0f76f70a8"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SPMB::StateMachine::configure_output </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classSPMB_1_1OutputDriverI2C.html">OutputDriverI2C</a> *&#160;</td>
-          <td class="paramname"><em>output_in</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Brief description </p>
-
-<p>Definition at line <a class="el" href="sm_8cpp_source.html#l00035">35</a> of file <a class="el" href="sm_8cpp_source.html">sm.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a8e7447f352e2a9b3f8d451bc834faaa2"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SPMB::StateMachine::critical_error </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>thaeu </p>
-
-<p>Definition at line <a class="el" href="sm_8cpp_source.html#l00057">57</a> of file <a class="el" href="sm_8cpp_source.html">sm.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a651fcd0d71e1ce2ec7dfc72255ff8af7"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SPMB::StateMachine::update_output_signals </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>update output </p>
-
-<p>Definition at line <a class="el" href="sm_8cpp_source.html#l00183">183</a> of file <a class="el" href="sm_8cpp_source.html">sm.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ad5b8e99beb2d19a29491429c45249179"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SPMB::StateMachine::wait_for_next_cycle </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>oeauoeu </p>
-
-<p>Definition at line <a class="el" href="sm_8cpp_source.html#l00039">39</a> of file <a class="el" href="sm_8cpp_source.html">sm.cpp</a>.</p>
-
-</div>
-</div>
-</div><!-- contents -->
+<p>Definition at line <a class="el" href="sm_8h_source.html#l00008">8</a> of file <a class="el" href="sm_8h_source.html">sm.h</a>.</p>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">
