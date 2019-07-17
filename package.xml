@@ -4,13 +4,13 @@
   <version>1.0.0</version>
   <description>The spmb package, providing a RC supervised interface solution for Atmega328p based devices to ROS. Tailored for control algorithm verification. </description>
 
-  <maintainer email="phirot@kth.se">Philipp Rothenhäusler</maintainer>
+  <maintainer email="philipp.rothenhaeusler@gmail.com">Philipp Rothenhäusler</maintainer>
 
   <license>BSD</license>
 
   <url type="website">https://prothen.github.io/spmb/index.html</url>
 
-  <author email="jane.doe@example.com">Philipp Rothenhäusler</author>
+  <author email="philipp.rothenhaeusler@gmail.com">Philipp Rothenhäusler</author>
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>std_msgs</build_depend>
