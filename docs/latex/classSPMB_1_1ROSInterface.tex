@@ -1,0 +1,95 @@
+\hypertarget{classSPMB_1_1ROSInterface}{}\section{S\+P\+MB\+:\+:R\+O\+S\+Interface$<$ T $>$ Class Template Reference}
+\label{classSPMB_1_1ROSInterface}\index{S\+P\+M\+B\+::\+R\+O\+S\+Interface$<$ T $>$@{S\+P\+M\+B\+::\+R\+O\+S\+Interface$<$ T $>$}}
+
+
+Provides all necessary functinos to interface and debug various datatypes via R\+OS.  
+
+
+
+
+{\ttfamily \#include $<$ros\+\_\+interface.\+h$>$}
+
+
+
+Collaboration diagram for S\+P\+MB\+:\+:R\+O\+S\+Interface$<$ T $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{classSPMB_1_1ROSInterface__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classSPMB_1_1ROSInterface_a35478a3b15d22289c6820e70e5cec671}{R\+O\+S\+Interface} (const char $\ast$subscriber\+\_\+topic, const char $\ast$publisher\+\_\+topic)\hypertarget{classSPMB_1_1ROSInterface_a35478a3b15d22289c6820e70e5cec671}{}\label{classSPMB_1_1ROSInterface_a35478a3b15d22289c6820e70e5cec671}
+
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \hyperlink{classSPMB_1_1ROSInterface_ad2d544970c191068cbe030d99763d42c}{cb\+\_\+request\+\_\+} (const spmb\+::request \&msg)\hypertarget{classSPMB_1_1ROSInterface_ad2d544970c191068cbe030d99763d42c}{}\label{classSPMB_1_1ROSInterface_ad2d544970c191068cbe030d99763d42c}
+
+\begin{DoxyCompactList}\small\item\em Callback for command request via R\+OS. \end{DoxyCompactList}\item 
+void \hyperlink{classSPMB_1_1ROSInterface_abb8a72d72e30a8475793200c730e26e6}{publish} (\hyperlink{structSPMB_1_1util_1_1control__filtered}{util\+::control\+\_\+filtered} $\ast$data)\hypertarget{classSPMB_1_1ROSInterface_abb8a72d72e30a8475793200c730e26e6}{}\label{classSPMB_1_1ROSInterface_abb8a72d72e30a8475793200c730e26e6}
+
+\begin{DoxyCompactList}\small\item\em Parsing to publish control\+\_\+filtered to R\+OS message actuated. \end{DoxyCompactList}\item 
+void \hyperlink{classSPMB_1_1ROSInterface_a6e220ac2a41d61b6185190cc372b1e42}{debug} (const char $\ast$text)\hypertarget{classSPMB_1_1ROSInterface_a6e220ac2a41d61b6185190cc372b1e42}{}\label{classSPMB_1_1ROSInterface_a6e220ac2a41d61b6185190cc372b1e42}
+
+\begin{DoxyCompactList}\small\item\em Print convenience function for debugging. \end{DoxyCompactList}\item 
+void \hyperlink{classSPMB_1_1ROSInterface_a7b11f07c071a4d15020c35ba5b08c62f}{debug} (std\+::string text)\hypertarget{classSPMB_1_1ROSInterface_a7b11f07c071a4d15020c35ba5b08c62f}{}\label{classSPMB_1_1ROSInterface_a7b11f07c071a4d15020c35ba5b08c62f}
+
+\begin{DoxyCompactList}\small\item\em Print convenience function for debugging. \end{DoxyCompactList}\item 
+void \hyperlink{classSPMB_1_1ROSInterface_af8dfeaa9dbfbe888a8e9c70ba8d5067c}{debug} (uint8\+\_\+t number)\hypertarget{classSPMB_1_1ROSInterface_af8dfeaa9dbfbe888a8e9c70ba8d5067c}{}\label{classSPMB_1_1ROSInterface_af8dfeaa9dbfbe888a8e9c70ba8d5067c}
+
+\begin{DoxyCompactList}\small\item\em Print convenience function for debugging. \end{DoxyCompactList}\item 
+void \hyperlink{classSPMB_1_1ROSInterface_a9579eac78ddf7b87b50a334e6da349ee}{debug} (uint16\+\_\+t number)\hypertarget{classSPMB_1_1ROSInterface_a9579eac78ddf7b87b50a334e6da349ee}{}\label{classSPMB_1_1ROSInterface_a9579eac78ddf7b87b50a334e6da349ee}
+
+\begin{DoxyCompactList}\small\item\em Print convenience function for debugging. \end{DoxyCompactList}\item 
+void \hyperlink{classSPMB_1_1ROSInterface_a09c2f1e8c0794d28f3471bddca193841}{debug} (long number)\hypertarget{classSPMB_1_1ROSInterface_a09c2f1e8c0794d28f3471bddca193841}{}\label{classSPMB_1_1ROSInterface_a09c2f1e8c0794d28f3471bddca193841}
+
+\begin{DoxyCompactList}\small\item\em Print convenience function for debugging. \end{DoxyCompactList}\item 
+void \hyperlink{classSPMB_1_1ROSInterface_a0a4d658a4a9cfee22bcd76098b20b86a}{debug} (float number)\hypertarget{classSPMB_1_1ROSInterface_a0a4d658a4a9cfee22bcd76098b20b86a}{}\label{classSPMB_1_1ROSInterface_a0a4d658a4a9cfee22bcd76098b20b86a}
+
+\begin{DoxyCompactList}\small\item\em Print convenience function for debugging. \end{DoxyCompactList}\item 
+void \hyperlink{classSPMB_1_1ROSInterface_aefb908f905b26d8a0c3c5a4eab833ec1}{debug} (double number)\hypertarget{classSPMB_1_1ROSInterface_aefb908f905b26d8a0c3c5a4eab833ec1}{}\label{classSPMB_1_1ROSInterface_aefb908f905b26d8a0c3c5a4eab833ec1}
+
+\begin{DoxyCompactList}\small\item\em Print convenience function for debugging. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+T \hyperlink{classSPMB_1_1ROSInterface_a8a0d97d194910287787071f0bba2f874}{m\+Nh}\hypertarget{classSPMB_1_1ROSInterface_a8a0d97d194910287787071f0bba2f874}{}\label{classSPMB_1_1ROSInterface_a8a0d97d194910287787071f0bba2f874}
+
+\begin{DoxyCompactList}\small\item\em Node handle variable. \end{DoxyCompactList}\item 
+spmb\+::actuated \hyperlink{classSPMB_1_1ROSInterface_a20ef624424f72fb68ea8e5a283fc1c25}{m\+Msg\+Pub}\hypertarget{classSPMB_1_1ROSInterface_a20ef624424f72fb68ea8e5a283fc1c25}{}\label{classSPMB_1_1ROSInterface_a20ef624424f72fb68ea8e5a283fc1c25}
+
+\begin{DoxyCompactList}\small\item\em Node handle variable. \end{DoxyCompactList}\item 
+spmb\+::request \hyperlink{classSPMB_1_1ROSInterface_ad850fdb3ac366daffb6a325eb243a57f}{m\+Msg\+Sub}\hypertarget{classSPMB_1_1ROSInterface_ad850fdb3ac366daffb6a325eb243a57f}{}\label{classSPMB_1_1ROSInterface_ad850fdb3ac366daffb6a325eb243a57f}
+
+\begin{DoxyCompactList}\small\item\em Node handle variable. \end{DoxyCompactList}\item 
+\hyperlink{structSPMB_1_1util_1_1control}{util\+::control} \hyperlink{classSPMB_1_1ROSInterface_ae6913bbbc7b866f368bed451b782e407}{m\+Signals}\hypertarget{classSPMB_1_1ROSInterface_ae6913bbbc7b866f368bed451b782e407}{}\label{classSPMB_1_1ROSInterface_ae6913bbbc7b866f368bed451b782e407}
+
+\begin{DoxyCompactList}\small\item\em Node handle variable. \end{DoxyCompactList}\item 
+boolean \hyperlink{classSPMB_1_1ROSInterface_a90fe56a55e9599b2d6c87435c3d9fc23}{m\+Is\+Idle}\hypertarget{classSPMB_1_1ROSInterface_a90fe56a55e9599b2d6c87435c3d9fc23}{}\label{classSPMB_1_1ROSInterface_a90fe56a55e9599b2d6c87435c3d9fc23}
+
+\begin{DoxyCompactList}\small\item\em Node handle variable. \end{DoxyCompactList}\item 
+long \hyperlink{classSPMB_1_1ROSInterface_a66af2aff77df71c0e937ce713117cac4}{m\+Timestamp}\hypertarget{classSPMB_1_1ROSInterface_a66af2aff77df71c0e937ce713117cac4}{}\label{classSPMB_1_1ROSInterface_a66af2aff77df71c0e937ce713117cac4}
+
+\begin{DoxyCompactList}\small\item\em Node handle variable. \end{DoxyCompactList}\item 
+uint16\+\_\+t \hyperlink{classSPMB_1_1ROSInterface_a7a7df0454febf2d53aab44d82e3e2e15}{m\+Min\+Time\+Period}\hypertarget{classSPMB_1_1ROSInterface_a7a7df0454febf2d53aab44d82e3e2e15}{}\label{classSPMB_1_1ROSInterface_a7a7df0454febf2d53aab44d82e3e2e15}
+
+\begin{DoxyCompactList}\small\item\em Node handle variable. \end{DoxyCompactList}\item 
+ros\+::\+Subscriber$<$ spmb\+::request, \hyperlink{classSPMB_1_1ROSInterface}{R\+O\+S\+Interface}$<$ T $>$ $>$ \hyperlink{classSPMB_1_1ROSInterface_af5455e14f031904eef29a49248a77c7a}{m\+Subscriber}\hypertarget{classSPMB_1_1ROSInterface_af5455e14f031904eef29a49248a77c7a}{}\label{classSPMB_1_1ROSInterface_af5455e14f031904eef29a49248a77c7a}
+
+\begin{DoxyCompactList}\small\item\em Node handle variable. \end{DoxyCompactList}\item 
+ros\+::\+Publisher \hyperlink{classSPMB_1_1ROSInterface_a26a3aac13b059a5fe61d73beb81ca040}{m\+Publisher}\hypertarget{classSPMB_1_1ROSInterface_a26a3aac13b059a5fe61d73beb81ca040}{}\label{classSPMB_1_1ROSInterface_a26a3aac13b059a5fe61d73beb81ca040}
+
+\begin{DoxyCompactList}\small\item\em Node handle variable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\\*
+class S\+P\+M\+B\+::\+R\+O\+S\+Interface$<$ T $>$}
+
+Provides all necessary functinos to interface and debug various datatypes via R\+OS. 
+
+R\+OS Interface class providing interface functions and facilitating publishing and subscribing 
+
+Definition at line 47 of file ros\+\_\+interface.\+h.
+

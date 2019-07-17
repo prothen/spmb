@@ -1,0 +1,39 @@
+\hypertarget{classSPMB_1_1InterruptManager}{}\section{S\+P\+MB\+:\+:Interrupt\+Manager Class Reference}
+\label{classSPMB_1_1InterruptManager}\index{S\+P\+M\+B\+::\+Interrupt\+Manager@{S\+P\+M\+B\+::\+Interrupt\+Manager}}
+
+
+Collection of Interrupt Groups (e.\+g. sorted as time sensitive and non-\/time sensitive ).  
+
+
+
+
+{\ttfamily \#include $<$input\+\_\+rc.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classSPMB_1_1InterruptManager_a7848e944d851bf3bcc251e03e673433c}{append\+\_\+group} (\hyperlink{classSPMB_1_1InterruptGroup}{Interrupt\+Group} $\ast$new\+Interrupt\+Group)\hypertarget{classSPMB_1_1InterruptManager_a7848e944d851bf3bcc251e03e673433c}{}\label{classSPMB_1_1InterruptManager_a7848e944d851bf3bcc251e03e673433c}
+
+\begin{DoxyCompactList}\small\item\em Append a new interrupt group to the interrupt manager. \end{DoxyCompactList}\item 
+void \hyperlink{classSPMB_1_1InterruptManager_a281ff95c62f2c714024009fbdfad560e}{rotate\+\_\+interrupts} ()\hypertarget{classSPMB_1_1InterruptManager_a281ff95c62f2c714024009fbdfad560e}{}\label{classSPMB_1_1InterruptManager_a281ff95c62f2c714024009fbdfad560e}
+
+\begin{DoxyCompactList}\small\item\em Rotate all interrupts or attempt to rotate in case some are idle or in an erroneous state. \end{DoxyCompactList}\item 
+void \hyperlink{classSPMB_1_1InterruptManager_ae6d936207409563b307e3f0bbced7dbc}{arm\+\_\+interrupts} ()\hypertarget{classSPMB_1_1InterruptManager_ae6d936207409563b307e3f0bbced7dbc}{}\label{classSPMB_1_1InterruptManager_ae6d936207409563b307e3f0bbced7dbc}
+
+\begin{DoxyCompactList}\small\item\em Arm all interrupts. \end{DoxyCompactList}\item 
+bool \hyperlink{classSPMB_1_1InterruptManager_abef4d7dfc94ed70cb9b137803d75ebe4}{get\+\_\+time\+\_\+period} (std\+::string label, volatile uint16\+\_\+t \&time\+\_\+period)\hypertarget{classSPMB_1_1InterruptManager_abef4d7dfc94ed70cb9b137803d75ebe4}{}\label{classSPMB_1_1InterruptManager_abef4d7dfc94ed70cb9b137803d75ebe4}
+
+\begin{DoxyCompactList}\small\item\em Get time period for a interrupt identified with the provided label argument and store result in time\+\_\+period argument. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \hyperlink{classSPMB_1_1InterruptGroup}{Interrupt\+Group} $\ast$ $>$ \hyperlink{classSPMB_1_1InterruptManager_a103e2348c57eecaab0605c196f3b924b}{m\+Interrupt\+Groups}\hypertarget{classSPMB_1_1InterruptManager_a103e2348c57eecaab0605c196f3b924b}{}\label{classSPMB_1_1InterruptManager_a103e2348c57eecaab0605c196f3b924b}
+
+\begin{DoxyCompactList}\small\item\em $<$ Collection of all interrupt groups storing their pointers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Collection of Interrupt Groups (e.\+g. sorted as time sensitive and non-\/time sensitive ). 
+
+Definition at line 119 of file input\+\_\+rc.\+h.
+

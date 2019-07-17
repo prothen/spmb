@@ -1,0 +1,57 @@
+\hypertarget{classSPMB_1_1LowPass}{}\section{S\+P\+MB\+:\+:Low\+Pass$<$ T $>$ Class Template Reference}
+\label{classSPMB_1_1LowPass}\index{S\+P\+M\+B\+::\+Low\+Pass$<$ T $>$@{S\+P\+M\+B\+::\+Low\+Pass$<$ T $>$}}
+
+
+Provides a templated lowpass filter class for scalar elements.  
+
+
+
+
+{\ttfamily \#include $<$lowpass.\+h$>$}
+
+
+
+Collaboration diagram for S\+P\+MB\+:\+:Low\+Pass$<$ T $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=196pt]{classSPMB_1_1LowPass__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classSPMB_1_1LowPass_a11696a906cb869ccf580673b8ddfee3b}{\+\_\+correct\+\_\+period} (volatile uint16\+\_\+t \&period\+\_\+corrected)\hypertarget{classSPMB_1_1LowPass_a11696a906cb869ccf580673b8ddfee3b}{}\label{classSPMB_1_1LowPass_a11696a906cb869ccf580673b8ddfee3b}
+
+\begin{DoxyCompactList}\small\item\em Correct period. \end{DoxyCompactList}\item 
+void \hyperlink{classSPMB_1_1LowPass_ac01c87236e0a4974e0fe63c648ad0a7e}{update\+\_\+state} (T New\+State)\hypertarget{classSPMB_1_1LowPass_ac01c87236e0a4974e0fe63c648ad0a7e}{}\label{classSPMB_1_1LowPass_ac01c87236e0a4974e0fe63c648ad0a7e}
+
+\begin{DoxyCompactList}\small\item\em Update State. \end{DoxyCompactList}\item 
+T \hyperlink{classSPMB_1_1LowPass_a5f21ff8ce24fcbd7296edd991b425556}{value} ()\hypertarget{classSPMB_1_1LowPass_a5f21ff8ce24fcbd7296edd991b425556}{}\label{classSPMB_1_1LowPass_a5f21ff8ce24fcbd7296edd991b425556}
+
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\bfseries Low\+Pass} (float time\+\_\+constant\+\_\+in\+\_\+seconds, T default\+\_\+value)\hypertarget{classSPMB_1_1LowPass_a763169e42d8a7059a77a6fda0ae98f24}{}\label{classSPMB_1_1LowPass_a763169e42d8a7059a77a6fda0ae98f24}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \hyperlink{classSPMB_1_1LowPass_a3272be66039cc317ae295f7e4ce90c23}{m\+Time\+Constant}\hypertarget{classSPMB_1_1LowPass_a3272be66039cc317ae295f7e4ce90c23}{}\label{classSPMB_1_1LowPass_a3272be66039cc317ae295f7e4ce90c23}
+
+\begin{DoxyCompactList}\small\item\em filter constant \end{DoxyCompactList}\item 
+long \hyperlink{classSPMB_1_1LowPass_a0d65cef27970b458eb9a8065e3141eae}{m\+Timestamp}\hypertarget{classSPMB_1_1LowPass_a0d65cef27970b458eb9a8065e3141eae}{}\label{classSPMB_1_1LowPass_a0d65cef27970b458eb9a8065e3141eae}
+
+\begin{DoxyCompactList}\small\item\em timestamp since last update \end{DoxyCompactList}\item 
+T \hyperlink{classSPMB_1_1LowPass_a63f1e9ef7ccb4a1b51ebb81681d377ec}{m\+Value}\hypertarget{classSPMB_1_1LowPass_a63f1e9ef7ccb4a1b51ebb81681d377ec}{}\label{classSPMB_1_1LowPass_a63f1e9ef7ccb4a1b51ebb81681d377ec}
+
+\begin{DoxyCompactList}\small\item\em most recent value after last filter update \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\\*
+class S\+P\+M\+B\+::\+Low\+Pass$<$ T $>$}
+
+Provides a templated lowpass filter class for scalar elements. 
+
+Definition at line 41 of file lowpass.\+h.
+

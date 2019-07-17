@@ -1,0 +1,78 @@
+\hypertarget{namespaceSPMB_1_1util}{}\section{S\+P\+MB\+:\+:util Namespace Reference}
+\label{namespaceSPMB_1_1util}\index{S\+P\+M\+B\+::util@{S\+P\+M\+B\+::util}}
+
+
+Namespace collecting all utility functions and structs.  
+
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structSPMB_1_1util_1_1control}{control}
+\begin{DoxyCompactList}\small\item\em Struct summarising control outputs. \end{DoxyCompactList}\item 
+struct \hyperlink{structSPMB_1_1util_1_1control__filtered}{control\+\_\+filtered}
+\begin{DoxyCompactList}\small\item\em Struct summarising filtered control outputs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{namespaceSPMB_1_1util_a49c998abcde5121db1901865ebe25d6c}{clear\+\_\+screen} ()\hypertarget{namespaceSPMB_1_1util_a49c998abcde5121db1901865ebe25d6c}{}\label{namespaceSPMB_1_1util_a49c998abcde5121db1901865ebe25d6c}
+
+\begin{DoxyCompactList}\small\item\em Clear Screen. \end{DoxyCompactList}\item 
+void \hyperlink{namespaceSPMB_1_1util_ab22b4ff0cee38fd3f446baa578e62a13}{print\+\_\+binary} (uint8\+\_\+t binary\+\_\+number)\hypertarget{namespaceSPMB_1_1util_ab22b4ff0cee38fd3f446baa578e62a13}{}\label{namespaceSPMB_1_1util_ab22b4ff0cee38fd3f446baa578e62a13}
+
+\begin{DoxyCompactList}\small\item\em Print binary. \end{DoxyCompactList}\item 
+void \hyperlink{namespaceSPMB_1_1util_adc278024a8899778608a23fe569239aa}{print} (std\+::string text\+\_\+in, bool new\+\_\+line)\hypertarget{namespaceSPMB_1_1util_adc278024a8899778608a23fe569239aa}{}\label{namespaceSPMB_1_1util_adc278024a8899778608a23fe569239aa}
+
+\begin{DoxyCompactList}\small\item\em Print std\+::string. \end{DoxyCompactList}\item 
+void \hyperlink{namespaceSPMB_1_1util_aef9b8fb539af91ef114d7e5069bf1ffd}{print} (const char $\ast$text, bool new\+\_\+line)\hypertarget{namespaceSPMB_1_1util_aef9b8fb539af91ef114d7e5069bf1ffd}{}\label{namespaceSPMB_1_1util_aef9b8fb539af91ef114d7e5069bf1ffd}
+
+\begin{DoxyCompactList}\small\item\em Print text. \end{DoxyCompactList}\item 
+void \hyperlink{namespaceSPMB_1_1util_a4c5086c3e792e782fed53beeee6ab583}{print} (int number, bool new\+\_\+line)\hypertarget{namespaceSPMB_1_1util_a4c5086c3e792e782fed53beeee6ab583}{}\label{namespaceSPMB_1_1util_a4c5086c3e792e782fed53beeee6ab583}
+
+\begin{DoxyCompactList}\small\item\em Print number int. \end{DoxyCompactList}\item 
+void \hyperlink{namespaceSPMB_1_1util_a6bbbaa47ffb222ffefbaa6e699499680}{print} (uint16\+\_\+t number, bool new\+\_\+line)\hypertarget{namespaceSPMB_1_1util_a6bbbaa47ffb222ffefbaa6e699499680}{}\label{namespaceSPMB_1_1util_a6bbbaa47ffb222ffefbaa6e699499680}
+
+\begin{DoxyCompactList}\small\item\em Print number int. \end{DoxyCompactList}\item 
+void \hyperlink{namespaceSPMB_1_1util_a1cdc21855101c0831fc67136d4ed213e}{print} (long number, bool new\+\_\+line)\hypertarget{namespaceSPMB_1_1util_a1cdc21855101c0831fc67136d4ed213e}{}\label{namespaceSPMB_1_1util_a1cdc21855101c0831fc67136d4ed213e}
+
+\begin{DoxyCompactList}\small\item\em Print number long. \end{DoxyCompactList}\item 
+void \hyperlink{namespaceSPMB_1_1util_a283514fcdb842b663e5aca645df446b8}{print} (float number, bool new\+\_\+line)\hypertarget{namespaceSPMB_1_1util_a283514fcdb842b663e5aca645df446b8}{}\label{namespaceSPMB_1_1util_a283514fcdb842b663e5aca645df446b8}
+
+\begin{DoxyCompactList}\small\item\em Print number float. \end{DoxyCompactList}\item 
+void \hyperlink{namespaceSPMB_1_1util_a62c1cfce77b01d236e24c91055b187de}{toggle} (uint8\+\_\+t reg, uint8\+\_\+t port)\hypertarget{namespaceSPMB_1_1util_a62c1cfce77b01d236e24c91055b187de}{}\label{namespaceSPMB_1_1util_a62c1cfce77b01d236e24c91055b187de}
+
+\begin{DoxyCompactList}\small\item\em Alarm -\/ easy pin toggle Interrupt. \end{DoxyCompactList}\item 
+void \hyperlink{namespaceSPMB_1_1util_a25378d074df47bc965af23165934202f}{correct\+\_\+period} (volatile uint16\+\_\+t period, volatile uint16\+\_\+t \&period\+\_\+corrected)\hypertarget{namespaceSPMB_1_1util_a25378d074df47bc965af23165934202f}{}\label{namespaceSPMB_1_1util_a25378d074df47bc965af23165934202f}
+
+\begin{DoxyCompactList}\small\item\em Correct periods. \end{DoxyCompactList}\item 
+int8\+\_\+t \hyperlink{namespaceSPMB_1_1util_a79b8e16f207d7a06916905baa87afca3}{period\+\_\+to\+\_\+pwm} (volatile uint16\+\_\+t input)\hypertarget{namespaceSPMB_1_1util_a79b8e16f207d7a06916905baa87afca3}{}\label{namespaceSPMB_1_1util_a79b8e16f207d7a06916905baa87afca3}
+
+\begin{DoxyCompactList}\small\item\em Transate period to pwm. \end{DoxyCompactList}\item 
+uint16\+\_\+t \hyperlink{namespaceSPMB_1_1util_a59bd5fc051bb8e5601fb8bc0cefebf67}{pwm\+\_\+to\+\_\+period} (volatile int8\+\_\+t input)\hypertarget{namespaceSPMB_1_1util_a59bd5fc051bb8e5601fb8bc0cefebf67}{}\label{namespaceSPMB_1_1util_a59bd5fc051bb8e5601fb8bc0cefebf67}
+
+\begin{DoxyCompactList}\small\item\em Translate pwm to period. \end{DoxyCompactList}\item 
+boolean \hyperlink{namespaceSPMB_1_1util_aa7a7258bfb5e56987098fbd639059f7f}{I\+S\+\_\+\+V\+A\+L\+ID} (volatile uint16\+\_\+t \&period)\hypertarget{namespaceSPMB_1_1util_aa7a7258bfb5e56987098fbd639059f7f}{}\label{namespaceSPMB_1_1util_aa7a7258bfb5e56987098fbd639059f7f}
+
+\begin{DoxyCompactList}\small\item\em saturate read pwm to keep period in range \mbox{[}1,2\mbox{]} ms and frequency 50 Hs with T=20ms \end{DoxyCompactList}\item 
+void \hyperlink{namespaceSPMB_1_1util_a21b8f49acf2ab92e460320ad1b7e923c}{I\+S\+\_\+\+V\+A\+L\+ID} (volatile uint16\+\_\+t \&period, volatile boolean \&valid)\hypertarget{namespaceSPMB_1_1util_a21b8f49acf2ab92e460320ad1b7e923c}{}\label{namespaceSPMB_1_1util_a21b8f49acf2ab92e460320ad1b7e923c}
+
+\begin{DoxyCompactList}\small\item\em saturate read pwm to keep period in range \mbox{[}1,2\mbox{]} ms and frequency 50 Hs with T=20ms \end{DoxyCompactList}\item 
+boolean \hyperlink{namespaceSPMB_1_1util_a9602ed8ba5ebb3d4ef020c25d881f9c7}{H\+A\+S\+\_\+\+C\+L\+E\+A\+R\+\_\+\+S\+T\+A\+TE} (volatile uint16\+\_\+t period)\hypertarget{namespaceSPMB_1_1util_a9602ed8ba5ebb3d4ef020c25d881f9c7}{}\label{namespaceSPMB_1_1util_a9602ed8ba5ebb3d4ef020c25d881f9c7}
+
+\begin{DoxyCompactList}\small\item\em Return true if state has a distinct state and is not noised. \end{DoxyCompactList}\item 
+boolean \hyperlink{namespaceSPMB_1_1util_a79946aad4b2a3f7c519ec1de8eb93b31}{S\+T\+A\+TE} (volatile uint16\+\_\+t period)\hypertarget{namespaceSPMB_1_1util_a79946aad4b2a3f7c519ec1de8eb93b31}{}\label{namespaceSPMB_1_1util_a79946aad4b2a3f7c519ec1de8eb93b31}
+
+\begin{DoxyCompactList}\small\item\em Return the value assigned to certain periods from setup\+\_\+macro.\+h. \end{DoxyCompactList}\item 
+boolean \hyperlink{namespaceSPMB_1_1util_a0e45982fbb1f2bcd0a10dee5abf979af}{I\+S\+\_\+\+I\+D\+LE} (volatile long stamp\+\_\+in\+\_\+us, uint16\+\_\+t period\+\_\+in\+\_\+ms)\hypertarget{namespaceSPMB_1_1util_a0e45982fbb1f2bcd0a10dee5abf979af}{}\label{namespaceSPMB_1_1util_a0e45982fbb1f2bcd0a10dee5abf979af}
+
+\begin{DoxyCompactList}\small\item\em Return true if the stamp is obsolete with regard to provided period in ms. \end{DoxyCompactList}\item 
+boolean \hyperlink{namespaceSPMB_1_1util_a985cd42455fd0468d9b9f06ade16de6f}{I\+S\+\_\+\+T\+I\+ME} (long \&timestamp\+\_\+in\+\_\+us, uint16\+\_\+t time\+\_\+period\+\_\+in\+\_\+ms)\hypertarget{namespaceSPMB_1_1util_a985cd42455fd0468d9b9f06ade16de6f}{}\label{namespaceSPMB_1_1util_a985cd42455fd0468d9b9f06ade16de6f}
+
+\begin{DoxyCompactList}\small\item\em Update timestamp if time period is exceeded and return true. \end{DoxyCompactList}\item 
+boolean \hyperlink{namespaceSPMB_1_1util_a90d2a4845fec1d38b017089d1faee2eb}{I\+S\+\_\+\+T\+I\+M\+E\+\_\+\+I\+N\+\_\+\+MS} (long \&timestamp\+\_\+in\+\_\+ms, uint16\+\_\+t time\+\_\+period\+\_\+in\+\_\+ms)\hypertarget{namespaceSPMB_1_1util_a90d2a4845fec1d38b017089d1faee2eb}{}\label{namespaceSPMB_1_1util_a90d2a4845fec1d38b017089d1faee2eb}
+
+\begin{DoxyCompactList}\small\item\em Update timestamp if time period is exceeded and return true. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Namespace collecting all utility functions and structs. 

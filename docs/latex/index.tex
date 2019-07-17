@@ -1,0 +1,217 @@
+\subsection*{Brief}
+
+The Signal\&Power Management Board ({\bfseries \hyperlink{namespaceSPMB}{S\+P\+MB}}) provides firmware for Arduino U\+NO devices using Atmega328p microcontrollers facilitating a Robot Operating System ({\bfseries R\+OS}) interface for a radio controlled ({\bfseries RC}) supervised vehicle. Here the current configuration is based on the {\bfseries T\+R\+A\+X\+X\+AS} platforms (in specific T\+R\+X4). The \hyperlink{namespaceSPMB}{S\+P\+MB} provides direct RC forwarding and publishing of actuated control signals to the R\+OS interface. With a predefined fast switching sequence of channels the software based control algorithms are activated. Furthermore a failsafe for idled software connections is embedded such that RC operation is activated if less than {\itshape 10\+Hz} control frequency is present. If a RC channel is not read successfully, e.\+g. broken wires or empty batteries, the channel is deactivated and the output goes in the channels default control signal. In case of velocity and steering this corresponds to 0 actuation. In addition lowpass filtering of all control signals, both remote and software based is included and can be customised by adapting the parameters under {\ttfamily \hyperlink{setup__macros_8h_source}{firmware/setup\+\_\+macros.\+h}}. The main and control loop time is configured and tested at {\itshape 50\+Hz}. Theoretically much higher frequencies are possible, however interrupt reading capability greatly deteriorates with a fast main loop frequency. Therefore it is recommended to not vary these frequencies to higher values or otherwise stable performance can not be guaranteed. Also the firmware provides a led signaling class which provides easily accessible information about the current \hyperlink{namespaceSPMB}{S\+P\+MB}\textquotesingle{}s state machine status.
+
+
+\begin{DoxyItemize}
+\item {\bfseries Main loop} in \hyperlink{firmware_8ino_source}{firmware.\+ino} depending on
+\begin{DoxyItemize}
+\item {\bfseries Status\+Indicator}
+\begin{DoxyItemize}
+\item \hyperlink{si_8h_source}{si.\+h} -\/ L\+ED signaling and exposing information to environment
+\end{DoxyItemize}
+\item {\bfseries Interrupt\+Manager}
+\begin{DoxyItemize}
+\item \hyperlink{input__rc_8h_source}{input\+\_\+rc.\+h} -\/ Input via RC
+\end{DoxyItemize}
+\item {\bfseries R\+O\+S\+Interface}
+\begin{DoxyItemize}
+\item \hyperlink{ros__interface_8h_source}{ros\+\_\+interface.\+h} -\/ Input via R\+OS and publish actuated control
+\end{DoxyItemize}
+\item {\bfseries Low\+Pass}
+\begin{DoxyItemize}
+\item \hyperlink{lowpass_8h_source}{lowpass.\+h} -\/ Filter for output elements
+\end{DoxyItemize}
+\item {\bfseries Output\+Driver\+I2C}
+\begin{DoxyItemize}
+\item \hyperlink{output__i2c_8h_source}{output\+\_\+i2c.\+h} -\/ Output via I2C to timer P\+CB
+\end{DoxyItemize}
+\item {\bfseries Setup\+S\+P\+MB}
+\begin{DoxyItemize}
+\item \hyperlink{setup_8h_source}{setup.\+h} -\/ Initial pin configurations and setup of objects
+\end{DoxyItemize}
+\item {\bfseries State\+Machine}
+\begin{DoxyItemize}
+\item \hyperlink{sm_8h_source}{sm.\+h} -\/ Execute main logic loop and interface with all involved elements
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+
+
+
+
+\subsection*{Features}
+
+
+\begin{DoxyItemize}
+\item RC Forwarding
+\item Safety logic for both R\+O\+S-\/ and R\+C-\/based control
+\item Actuation output via R\+OS for debugging and learning of manual controlled maneuvers or continuation of actuation-\/based estimator while supervised intervention
+\item Switching logic with state machine considering idle conditions, various error cases and providing supervisor interrupt via braking maneuver
+\item {\itshape 50 Hz} actuation and lowpass filtered control
+\item O\+OP based modules with independent use cases both with and without R\+OS usage (serial and ros nodehandle.\+loginfo debugging possible)
+\item Installation of udev rules for unique device node under {\ttfamily /dev/spmb}
+\item Scripts for installing ros libraries to Arduino library folder {\ttfamily $\sim$/\+Arduino/libraries/}
+\item Doxygen based A\+PI as reference as basis for continuoous integration
+\end{DoxyItemize}
+
+
+
+
+
+\subsection*{Execute the R\+OS Interface}
+
+
+\begin{DoxyItemize}
+\item Run {\ttfamily roslaunch spmb run.\+launch}
+\end{DoxyItemize}
+
+({\itshape If any configuration parameters regarding baudrate have been adjusted then parse the corresponding parameter in the launch file e.\+g. {\ttfamily roslaunch spmb run.\+launch baud\+:=yourbaudrateinteger}})
+
+
+\begin{DoxyItemize}
+\item After approximately 3-\/4 seconds the terminal will output
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}
+1 setting /run\_id to 4e4bd514-a7b2-11e9-a7b3-4485007bad36
+2 process[rosout-1]: started with pid [25122]
+3 started core service [/rosout]
+4 process[serial\_node-2]: started with pid [25128]
+5 [INFO] [1563271988.137866]: ROS Serial Python Node
+6 [INFO] [1563271988.149294]: Connecting to /dev/spmb at 57600 baud
+7 [ERROR] [1563272005.372626]: Unable to sync with device; possible link problem or link software version
+       mismatch such as hydro rosserial\_python with groovy Arduino
+8 [INFO] [1563272005.404425]: Note: publish buffer size is 100 bytes
+9 [INFO] [1563272005.406264]: Setup publisher on actuated [spmb/actuated]
+10 [INFO] [1563272005.418630]: Note: subscribe buffer size is 100 bytes
+11 [INFO] [1563272005.419878]: Setup subscriber on request [spmb/request]
+\end{DoxyCode}
+
+
+({\itshape Note that initially there will be a single error output regarding a sync problem. After this the publishers should be initialised and no further error messages should be shown.})
+
+
+
+
+
+\subsection*{Dependencies}
+
+\subsubsection*{Install Arduino Libraries}
+
+Go to {\ttfamily cd $\sim$/\+Arduino/libraries}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily git clone \href{https://github.com/adafruit/Adafruit-PWM-Servo-Driver-Library.git}{\tt https\+://github.\+com/adafruit/\+Adafruit-\/\+P\+W\+M-\/\+Servo-\/\+Driver-\/\+Library.\+git}}
+\item {\ttfamily git clone \href{https://github.com/maniacbug/StandardCplusplus.git}{\tt https\+://github.\+com/maniacbug/\+Standard\+Cplusplus.\+git}}
+\item Download and install Arduino (v1.\+8.\+5) (x64 \href{https://www.arduino.cc/download_handler.php?f=/arduino-1.8.5-linux64.tar.xz}{\tt https\+://www.\+arduino.\+cc/download\+\_\+handler.\+php?f=/arduino-\/1.\+8.\+5-\/linux64.\+tar.\+xz})
+\item Build the repository to generate header files for messages with {\ttfamily catkin build} in any directory of your catkin workspace
+\item Source your workspace with {\ttfamily source $\sim$/your\+\_\+workspace/devel/setup.bash}
+\item Run the {\ttfamily make\+\_\+library.\+sh} script in the root of this repository
+\item If desired install the udev rule file under {\ttfamily resources/99-\/spmb.\+rules}, which will install the permanent device node {\ttfamily dev/spmb} to avoid the deviating node identifier tty\+A\+C\+Mx with x changing based on the amount of tty\+A\+CM devices or reconnections of the same device)
+\end{DoxyItemize}
+
+\subsubsection*{Interface with R\+OS}
+
+
+\begin{DoxyItemize}
+\item After installing the udev rules (see below) the R\+OS Interface can be accessed with {\ttfamily rosrun rosserial\+\_\+python serial\+\_\+node.\+py \+\_\+port\+:=/dev/spmb \+\_\+baud\+:=57600}
+\item The {\ttfamily rosrun} command is conveniently embedded into the launch file under {\ttfamily launch/run.\+launch} (see {\itshape Execute the R\+OS Interface} section above)
+\end{DoxyItemize}
+
+\subsubsection*{Install udev-\/rules}
+
+
+\begin{DoxyItemize}
+\item You can find the rules under the folder {\ttfamily resources} with the name {\ttfamily 99-\/spmb.\+rules}
+\item Easiest way to identify the device node is to unplug all usb devices from your work station except the Arduino U\+NO. Then before connecting the Arduino you can list the devices with {\ttfamily ls /dev} and then after connecting the Arduino entering the command {\ttfamily ls /dev} should show a new device node entry. (Usually {\ttfamily /dev/tty\+A\+C\+Mx} where x is some number relating to the amount of currently registered tty\+A\+CM devices)
+\item Assuming that your Arduino identifies with {\ttfamily /dev/tty\+A\+C\+M0} you can list the hardware information with the command
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}
+1 udevadm info -ap /sys/class/tty/ttyACM0
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item From there extract the serial attribute with
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}
+1 udevadm info -ap /sys/class/tty/ttyACM0 | grep "^    ATTRS\{serial\}=="
+\end{DoxyCode}
+
+
+which should show something similar to
+
+
+\begin{DoxyCode}
+1 $ udevadm info -ap /sys/class/tty/ttyACM0 | grep "^    ATTRS\{serial\}=="
+2     ATTRS\{serial\}=="85430353331351E0D120"
+3     ATTRS\{serial\}=="0000:00:14.0"
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item Open the file {\ttfamily 99-\/spmb.\+rules} under {\ttfamily resources/} and replace the default entry for serial {\ttfamily A\+T\+T\+RS\{serial\}==\char`\"{}55736313238351219281\char`\"{}} with your terminal output e.\+g. {\ttfamily A\+T\+T\+RS\{serial\}==\char`\"{}85430353331351\+E0\+D120\char`\"{}}
+\item Copy the file into the udev folder using super user privileges
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}
+1 sudo cp resources/99-spmb.rules /etc/udev/rules.d/
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item Reload and trigger the rules using
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}
+1 udevadm control --reload-rules && udevadm trigger
+\end{DoxyCode}
+
+
+{\itshape If {\ttfamily ls /dev} doesn\textquotesingle{}t show the entry} {\bfseries dev/spmb} {\itshape try rebooting your work station and if the entry still doesn\textquotesingle{}t show reiterate throught the instructions to make sure you followed them correctly.}
+
+
+
+
+
+\subsection*{Contribution}
+
+Pull requests from forked repositories and opening new issues are very welcome and much appreciated.
+
+Contributions are also invited to adhere to the \href{https://google.github.io/styleguide/cppguide.html}{\tt C++ Google Style Guide}.
+
+{\bfseries Maintainer\+:} Philipp Rothenhäusler ({\itshape phirot a t kth.\+se $\vert$ philipp.\+rothenhaeusler a t gmail.\+com})
+
+
+
+
+
+\subsection*{L\+I\+C\+E\+N\+SE}
+
+B\+SD 3-\/\+Clause License
+
+Copyright (c) 2019, Philipp Rothenhäusler All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met\+:
+
+
+\begin{DoxyEnumerate}
+\item Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+\item Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+\item Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+\end{DoxyEnumerate}
+
+T\+H\+IS S\+O\+F\+T\+W\+A\+RE IS P\+R\+O\+V\+I\+D\+ED BY T\+HE C\+O\+P\+Y\+R\+I\+G\+HT H\+O\+L\+D\+E\+RS A\+ND C\+O\+N\+T\+R\+I\+B\+U\+T\+O\+RS \char`\"{}\+A\+S I\+S\char`\"{} A\+ND A\+NY E\+X\+P\+R\+E\+SS OR I\+M\+P\+L\+I\+ED W\+A\+R\+R\+A\+N\+T\+I\+ES, I\+N\+C\+L\+U\+D\+I\+NG, B\+UT N\+OT L\+I\+M\+I\+T\+ED TO, T\+HE I\+M\+P\+L\+I\+ED W\+A\+R\+R\+A\+N\+T\+I\+ES OF M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY A\+ND F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE A\+RE D\+I\+S\+C\+L\+A\+I\+M\+ED. IN NO E\+V\+E\+NT S\+H\+A\+LL T\+HE C\+O\+P\+Y\+R\+I\+G\+HT H\+O\+L\+D\+ER OR C\+O\+N\+T\+R\+I\+B\+U\+T\+O\+RS BE L\+I\+A\+B\+LE F\+OR A\+NY D\+I\+R\+E\+CT, I\+N\+D\+I\+R\+E\+CT, I\+N\+C\+I\+D\+E\+N\+T\+AL, S\+P\+E\+C\+I\+AL, E\+X\+E\+M\+P\+L\+A\+RY, OR C\+O\+N\+S\+E\+Q\+U\+E\+N\+T\+I\+AL D\+A\+M\+A\+G\+ES (I\+N\+C\+L\+U\+D\+I\+NG, B\+UT N\+OT L\+I\+M\+I\+T\+ED TO, P\+R\+O\+C\+U\+R\+E\+M\+E\+NT OF S\+U\+B\+S\+T\+I\+T\+U\+TE G\+O\+O\+DS OR S\+E\+R\+V\+I\+C\+ES; L\+O\+SS OF U\+SE, D\+A\+TA, OR P\+R\+O\+F\+I\+TS; OR B\+U\+S\+I\+N\+E\+SS I\+N\+T\+E\+R\+R\+U\+P\+T\+I\+ON) H\+O\+W\+E\+V\+ER C\+A\+U\+S\+ED A\+ND ON A\+NY T\+H\+E\+O\+RY OF L\+I\+A\+B\+I\+L\+I\+TY, W\+H\+E\+T\+H\+ER IN C\+O\+N\+T\+R\+A\+CT, S\+T\+R\+I\+CT L\+I\+A\+B\+I\+L\+I\+TY, OR T\+O\+RT (I\+N\+C\+L\+U\+D\+I\+NG N\+E\+G\+L\+I\+G\+E\+N\+CE OR O\+T\+H\+E\+R\+W\+I\+SE) A\+R\+I\+S\+I\+NG IN A\+NY W\+AY O\+UT OF T\+HE U\+SE OF T\+H\+IS S\+O\+F\+T\+W\+A\+RE, E\+V\+EN IF A\+D\+V\+I\+S\+ED OF T\+HE P\+O\+S\+S\+I\+B\+I\+L\+I\+TY OF S\+U\+CH D\+A\+M\+A\+GE. 

@@ -1,0 +1,10 @@
+<map id="SPMB::StateMachine" name="SPMB::StateMachine">
+<area shape="rect" id="node2" href="$classSPMB_1_1ROSInterface.html" title="SPMB::ROSInterface\l\&lt; myHardware \&gt;" alt="" coords="348,17,496,58"/>
+<area shape="rect" id="node3" href="$structSPMB_1_1util_1_1control.html" title="Struct summarising control outputs. " alt="" coords="35,5,167,32"/>
+<area shape="rect" id="node4" href="$structSPMB_1_1util_1_1control__filtered.html" title="Struct summarising filtered control outputs. " alt="" coords="356,91,488,133"/>
+<area shape="rect" id="node5" href="$classSPMB_1_1LowPass.html" title="SPMB::LowPass\&lt; uint16_t \&gt;" alt="" coords="5,109,197,136"/>
+<area shape="rect" id="node6" href="$classSPMB_1_1InterruptManager.html" title="Collection of Interrupt Groups (e.g. sorted as time sensitive and non&#45;time sensitive )..." alt="" coords="339,157,505,184"/>
+<area shape="rect" id="node7" href="$classSPMB_1_1OutputDriverI2C.html" title="Output driver using I2C via PCA9688. " alt="" coords="341,208,503,235"/>
+<area shape="rect" id="node8" href="$classSPMB_1_1StatusIndicator.html" title="Provides interface and actuation wrapper for status indicator output pins. " alt="" coords="344,259,500,285"/>
+<area shape="rect" id="node9" href="$structSPMB_1_1StatusIndicator_1_1StatusOutput.html" title="Collection of output references and status assignment. " alt="" coords="23,251,179,293"/>
+</map>
