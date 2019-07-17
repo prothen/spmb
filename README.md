@@ -20,6 +20,8 @@ Also the firmware provides a led signaling class which provides easily accessibl
     - **StateMachine**          
         + sm.h - Execute main logic loop and interface with all involved elements
 
+***
+
 ## Features
 - RC Forwarding
 - Safety logic for both ROS- and RC-based control
@@ -31,25 +33,7 @@ Also the firmware provides a led signaling class which provides easily accessibl
 - Scripts for installing ros libraries to Arduino library folder `~/Arduino/libraries/`
 - Doxygen based API as reference as basis for continuoous integration
 
-
-## Dependencies
-**Install Libraries into `~/Arduino/libraries`:**
-
-Go to `cd ~/Arduino/libraries`
-
-- `git clone https://github.com/adafruit/Adafruit-PWM-Servo-Driver-Library.git`
-
-- `git clone https://github.com/maniacbug/StandardCplusplus.git`
-
-- Download and install Arduino (v1.8.5) (x64 https://www.arduino.cc/download_handler.php?f=/arduino-1.8.5-linux64.tar.xz)
-
-- Build the repository to generate header files for messages with `catkin build` in any directory of your catkin workspace
-
-- Source your workspace with `source ~/your_workspace/devel/setup.bash`
-
-- Run the `make_library.sh` script in the root of this repository
-
-- If desired install the udev rule file under `resources/99-spmb.rules`, which will install the permanent device node `dev/spmb` to avoid the deviating node identifier ttyACMx with x changing based on the amount of ttyACM devices or reconnections of the same device) 
+***
 
 ## Execute the ROS Interface
 
@@ -73,13 +57,37 @@ process[serial_node-2]: started with pid [25128]
 [INFO] [1563272005.419878]: Setup subscriber on request [spmb/request]
 ```
 
-## Interface with ROS
+(*Note that initially there will be a single error output regarding a sync problem. After this the publishers should be initialised and no further error messages should be shown.*)
+
+***
+
+## Dependencies
+
+### Install Arduino Libraries
+
+Go to `cd ~/Arduino/libraries`
+
+- `git clone https://github.com/adafruit/Adafruit-PWM-Servo-Driver-Library.git`
+
+- `git clone https://github.com/maniacbug/StandardCplusplus.git`
+
+- Download and install Arduino (v1.8.5) (x64 https://www.arduino.cc/download_handler.php?f=/arduino-1.8.5-linux64.tar.xz)
+
+- Build the repository to generate header files for messages with `catkin build` in any directory of your catkin workspace
+
+- Source your workspace with `source ~/your_workspace/devel/setup.bash`
+
+- Run the `make_library.sh` script in the root of this repository
+
+- If desired install the udev rule file under `resources/99-spmb.rules`, which will install the permanent device node `dev/spmb` to avoid the deviating node identifier ttyACMx with x changing based on the amount of ttyACM devices or reconnections of the same device) 
+
+### Interface with ROS
 - After installing the udev rules (see below) the ROS Interface can be accessed with 
 ```rosrun rosserial_python serial_node.py _port:=/dev/spmb _baud:=57600```
 
 - The `rosrun` command is conveniently embedded into the launch file under `launch/run.launch` (see *Execute the ROS Interface* section above)
 
-## Install udev-rules
+### Install udev-rules
 - You can find the rules under the folder `resources` with the name `99-spmb.rules`
 - Easiest way to identify the device node is to unplug all usb devices from your work station except the Arduino UNO. Then before connecting the Arduino you can list the devices with `ls /dev` and then after connecting the Arduino entering the command `ls /dev` should show a new device node entry. (Usually `/dev/ttyACMx` where x is some number relating to the amount of currently registered ttyACM devices)
 
@@ -119,8 +127,12 @@ sudo cp resources/99-spmb.rules /etc/udev/rules.d/
  
 *If `ls /dev` doesn't show the entry* **dev/spmb** *try rebooting your work station and if the entry still doesn't show reiterate throught the instructions to make sure you followed them correctly.*
 
+***
+
 ## Contribution
 
 Pull requests from forked repositories and opening new issues are very welcome and much appreciated.
+
+Contributions are also invited to adhere to the [C++ Google Style Guide](https://google.github.io/styleguide/cppguide.html).
 
 **Maintainer:** Philipp Rothenhäusler (*phirot a t kth.se | philipp.rothenhaeusler a t gmail.com*)
