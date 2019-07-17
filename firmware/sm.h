@@ -3,89 +3,125 @@
 #include "spmb.h"
 
 namespace SPMB{
-
-
-    /**
-     *  A test class
-     */
-
-    /*! \todo Add status LED class */
+    
+    //! Executes main logic loop such as switching logic, reading inputs and actuating control signals to hardware interface.
     class StateMachine{
-
         public:
-            InterruptManager* mInterruptManager;        //!< Pointer to interrupt manager provides access to all interrupt results. 
+            //! Facilitates interface with hardware status indicators such as LEDs and piezo buzzers.
+            StatusIndicator* mStatusIndicator;          
+
+            //! Pointer to interrupt manager provides access to all interrupt results.
+            InterruptManager* mInterruptManager;         
 
             #ifdef ROS_ACTIVE
-            ROSInterface<myHardware>* mRosi;            //!< Pointer to ROS interface that provides access to all ROS related actions. 
+            //! Pointer to ROS interface that provides access to all ROS related actions. 
+            ROSInterface<myHardware>* mRosi;            
             #endif /* ROS_ACTIVE */
 
-            OutputDriverI2C* mOutput;                   //!<  Pointer to output driver that provides access to all hardware related actuation actions. 
+            //! Pointer to output driver that provides access to all hardware related actuation actions. 
+            OutputDriverI2C* mOutput;                   
 
-            util::control_filtered mControlFiltered;    //!< Filtered control output for actuation via output driver. 
-            bool mALIVE;                                //!< Indicates state machine health status. 
-            bool mSW_CONTROL_ACTIVE;                    //!< Activation boolean for software control loop 
+            //! Filtered control output for actuation via output driver.
+            util::control_filtered mControlFiltered;    
+
+            //! Indicates state machine health status. 
+            bool mALIVE;                                
             
-            long mSMTimestamp;                          //!< Timestamp of last main loop iteration. 
-            long mCTRLTimestamp;                        //!< Timestamp of last control actuation. 
-
-            uint16_t mSMTimePeriod;                     //!< Time period of main logic loop 
-            uint16_t mCTRLTimePeriod;                   //!< Timp period of control loop
+            //! Activation boolean for software control loop 
+            bool mSW_CONTROL_ACTIVE;                    
             
-            uint8_t mSWLState;                          //!< State of switching logic, see macros for states. 
-            uint16_t mSWLTimePeriod;                    //!< Time period of switching logic to detect idle 
-            long mSWLTimestamp;                         //!< Timestamp of switching logic 
-            boolean mS1;                                //!< Channel 4 (differential_front) state 
-            boolean mS2;                                //!< Channel 5 (differential_rear) state 
-            boolean mS1_prev;                           //!< Previous Channel 4 (differential_front) state 
-            boolean mS2_prev;                           //!< Previous Channel 5 (differential_rear) state 
+            //! Timestamp of last main loop iteration.
+            long mSMTimestamp; 
 
-            StateMachine(); //< Constructor
+            //! Timestamp of last control actuation.                          
+            long mCTRLTimestamp;                         
+
+            //! Time period of main logic loop 
+            uint16_t mSMTimePeriod;  
+
+            //! Timp period of control loop                   
+            uint16_t mCTRLTimePeriod;                   
+            
+            //! Define the system states.
+            typedef enum {
+                OFF,
+                ARM,
+                SWITCH
+            } SWStates;                                 
+
+            //! State of switching logic, see macros for states. 
+            uint8_t mSWLState;                          
+            
+            //! Time period of switching logic to detect idle 
+            uint16_t mSWLTimePeriod;                  
+              
+            //! Timestamp of switching logic 
+            long mSWLTimestamp;                         
+            
+            //! Channel 4 (differential_front) state 
+            boolean mS1;                                
+
+            //! Channel 5 (differential_rear) state 
+            boolean mS2;                                
+            
+            //! Previous Channel 4 (differential_front) state 
+            boolean mS1_prev;                           
+
+            //! Previous Channel 5 (differential_rear) state 
+            boolean mS2_prev;
+
+            //< Constructor                           
+            StateMachine(); 
+
+            //! Configure pointer to status indicator.
+            void configure_status_indicator(StatusIndicator* status_indicator_in);
 
             #ifdef ROS_ACTIVE
-            /*! configure input */
+            //! Configure pointer to interrupt manager and ros_interface.
             void configure_input( InterruptManager* interrupt_manager_in, ROSInterface<myHardware>* ros_interface_in);
             #else
-            /*! configure input */
+            //! Configure pointer to interrupt manager.
             void configure_input( InterruptManager* interrupt_manager_in);
             #endif /* ROS_ACTIVE */
             
-            /*! Brief description */
+            //! Configure pointer to output driver.
             void configure_output(OutputDriverI2C* output_in);
 
-            /*! update rc signals */
+            //! Update rc signal input.
             void _update_rc_signals(util::control &signals_rc);
 
-            /*! taehu */
+            //! Execute switching logic to determine current operation mode.
             void _swl_execute_switching_logic(util::control* signals_rc);
 
-            /*! oeoauu */
+            //! Verify whether switching idle condition is not violated and reset otherwise.
             void _swl_check_idle_transition();
 
-            /*! oeauoeu */
+            //! Delay according to remaining time until next desired loop.
             void wait_for_next_cycle();
             
-            /*! thaeu */
-            void critical_error();
-
-            /*! taestestetest */
+            //! Process rc inputs.
             void _process_rc_inputs(util::control &signals_rc);
             
             #ifdef ROS_ACTIVE
-            /*! test ros */
+            //! Process ROS inputs.
             void _process_ros_inputs(util::control &signals_ros);
             #endif /* ROS_ACTIVE */
 
-            /*! update output */
+            //! Update output signal into control_filtered.
             void update_output_signals();
 
             #ifdef ROS_ACTIVE
-            /*! expose ros */
+            //! Expose actuation signals to ROS via publishing.
             void _expose_actuated_signals_to_ros();
             #endif /* ROS_ACTIVE */
             
-            /*! actuate */
+            //! Actutate output signals to hardware via output driver.
             void actuate();
-    };
 
-
-}
+            //! Indicate states and information to environment via hardware.
+            void indicate_status();
+    
+            //! Execute logic in case of critical errors.
+            void critical_error();  
+    }; /* class StateMachine */
+} // namespaces SPMB

@@ -7,6 +7,7 @@ namespace SPMB{
     {
         mALIVE = true;
         mSW_CONTROL_ACTIVE = false;
+        mStatusIndicator->switch_status(StatusIndicator::SIStatus::RC_ON);
 
         mSMTimePeriod = uint16_t(s2ms * T_LOOP_RATE);
         mCTRLTimePeriod = uint16_t(s2ms * T_CONTROL_LOOP_RATE);
@@ -15,12 +16,17 @@ namespace SPMB{
         mCTRLTimestamp = micros();
 
         mSWLTimePeriod = uint16_t(s2ms * SWL_TIME_PERIOD_RESET);
-        mSWLState=0;
+        mSWLState=SWStates::OFF;
         mS1=false;
         mS2=false;
         mS1_prev=mS1;
         mS2_prev=mS2;
     }
+
+    void StateMachine::configure_status_indicator(StatusIndicator* status_indicator_in){
+        mStatusIndicator = status_indicator_in;
+    }
+
     #ifdef ROS_ACTIVE
     void StateMachine::configure_input(   InterruptManager* interrupt_manager_in, ROSInterface<myHardware>* ros_interface_in){
         mInterruptManager = interrupt_manager_in;
@@ -53,10 +59,6 @@ namespace SPMB{
         }
         mSMTimestamp = micros();
     }
-    
-    void StateMachine::critical_error(){
-        util::print("Critical Erorr encountered: Nominal State Machine Operation is disable", true);
-    }
 
     void StateMachine::_update_rc_signals(util::control &signals_rc){          
         mInterruptManager->rotate_interrupts();
@@ -82,8 +84,9 @@ namespace SPMB{
                 || mRosi->mIsIdle
                 #endif /*  ROS_ACTIVE */
                 ){
+            mSWLState = SWStates::OFF;
             mSW_CONTROL_ACTIVE = false;
-            mSWLState = SWL_OFF;
+            mStatusIndicator->switch_status(StatusIndicator::SIStatus::RC_ON);
         }else{;}
         
 
@@ -91,30 +94,28 @@ namespace SPMB{
             mS1 = util::STATE(signals_rc->differential_front);
             mS2 = util::STATE(signals_rc->differential_rear);
 
-            /*
             util::print("mS1: ", false);
             util::print(mS1, true);
             util::print("mS2: ", false);
             util::print(mS2, true);
             util::print("dt: ", false);
             util::print(float(us2ms*(micros()-mSWLTimestamp)), true);
-            */
 
             switch(mSWLState){
-                case SWL_OFF: {
+                case SWStates::OFF: {
                     mSWLTimestamp = micros();
                     if (mS1^mS2) {
-                        mSWLState = SWL_ARM;
                         mS1_prev = mS1;
                         mS2_prev = mS2;
+                        mSWLState = SWStates::ARM;
                     }else{;}
                     break;
                 }
-                case SWL_ARM: {
+                case SWStates::ARM: {
                     if ((mS1^mS2)&&(mS1!=mS1_prev)&&(mS2!=mS2_prev)) {
-                        mSWLState = SWL_SWITCH;
                         mS1_prev = mS1;
                         mS2_prev = mS2;
+                        mSWLState = SWStates::SWITCH;
                     }
                     else if(!(mS1^mS2)){
                         _swl_check_idle_transition();
@@ -124,45 +125,40 @@ namespace SPMB{
                     }
                     break;
                 }
-                case SWL_SWITCH: {
+                case SWStates::SWITCH: {
                     _swl_check_idle_transition();
                     if ((mS1^mS2)&&(mS1!=mS1_prev)&&(mS2!=mS2_prev)) {
-                        mSWLState = SWL_OFF;
                         mS1_prev = mS1;
                         mS2_prev = mS2;
+                        mSWLState = SWStates::OFF;
                         mSW_CONTROL_ACTIVE = true;
+                        mStatusIndicator->switch_status(StatusIndicator::SIStatus::SW_ON);
                     }else{;}
                     break;
                 }
-                default: ; //error
+                default: ; 
             }
-        }
-        else{;} 
+        } else{;} 
         
-        /*
         util::print("SW_CONTROL_ACTIVE:",false);
         util::print(mSW_CONTROL_ACTIVE, true);
         util::print("STATEMACHINE STATE:",false);
-        util::print(mSWLState, true); 
-        */       
+        util::print(mSWLState, true);        
     }
 
     void StateMachine::_swl_check_idle_transition(){
         if(util::IS_IDLE(mSWLTimestamp, mSWLTimePeriod)){ // TODO: DEBUG test case
-            mSWLState = SWL_OFF;
             mS1 = false;
             mS2 = false;
             mS1_prev = mS1;
             mS2_prev = mS2;
+            mSWLState = SWStates::OFF;
             
-            /*
             util::print("reset state machine", true);
             util::print("time_period: ", false);
             util::print(mSWLTimePeriod, true);
             util::print("time_period: ", false);
-            util::print(mSWLTimestamp, true);
-            */
-            
+            util::print(mSWLTimestamp, true);            
         } else{;}
     }
 
@@ -184,7 +180,7 @@ namespace SPMB{
         util::control output_signals;
         util::control signals_rc;
         util::control signals_ros;
-
+        
         _process_rc_inputs(signals_rc);
         
         #ifdef ROS_ACTIVE
@@ -206,12 +202,10 @@ namespace SPMB{
         mControlFiltered.differential_front.update_state(output_signals.differential_front);
         mControlFiltered.differential_rear.update_state(output_signals.differential_rear);
     
-        /*
         util::print("steering: ", false);
         util::print(signals_rc.steering, true);
         util::print("steering filtered : ", false);
         util::print(mControlFiltered.steering.value(), true);
-        */
     }
     #ifdef ROS_ACTIVE
     void StateMachine::_expose_actuated_signals_to_ros(){
@@ -229,4 +223,12 @@ namespace SPMB{
         #endif /* ROS_ACTIVE */
     }
 
+    void StateMachine::indicate_status(){
+        mStatusIndicator->blink();
+    }
+
+    void StateMachine::critical_error(){
+        util::print("Critical Erorr encountered: Nominal State Machine Operation is disable", true); 
+        mStatusIndicator->switch_status(StatusIndicator::SIStatus::EMERGENCY);
+    }
 }
