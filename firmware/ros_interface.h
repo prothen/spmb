@@ -3,9 +3,11 @@
 #include "spmb.h"
 
 namespace SPMB {
+    //! Specifies the Arduino hardware limitations by assigning buffer sizes and restrictions on amount of publishers and subscribers.
     /*! Typedefinition of Arduino Serial ROS interface specifying maximum transmission and buffer allocation */
     typedef ros::NodeHandle_<ArduinoHardware, 1, 1, 100, 100> myHardware;
     
+    //! Provides all necessary functinos to interface and debug various datatypes via ROS.
     /*! ROS Interface class providing interface functions and facilitating publishing and subscribing */
     // \Todo Provide interface functions for int, float, double and string to parse into char * for loginfo
     // \Todo Remove util::control mSignals and provide interface based on call-by-reference with util::control to parse ROS message
@@ -14,31 +16,55 @@ namespace SPMB {
         public:
             ROSInterface(const char * subscriber_topic, const char * publisher_topic); //!< Constructor
 
-            /*! Callback for command request via ROS */
-            void cb_request_(const spmbv2::request& msg);
+            //! Callback for command request via ROS
+            void cb_request_(const spmb::request& msg);
              
-            /*! Parsing to publish control_filtered to ROS message actuated */
+            //! Parsing to publish control_filtered to ROS message actuated
             void publish(util::control_filtered* data);
   
-            /*! Print convenience function for debugging */
+            //! Print convenience function for debugging
             void debug(const char * text);
+            //! Print convenience function for debugging
+            void debug(std::string text);
+            //! Print convenience function for debugging
+            void debug(uint8_t number);
+            //! Print convenience function for debugging
+            void debug(uint16_t number);
+            //! Print convenience function for debugging
+            void debug(long number);
+            //! Print convenience function for debugging
+            void debug(float number);
+            //! Print convenience function for debugging
+            void debug(double number);
 
+            //! Node handle variable
             T mNh;
-            spmbv2::actuated mMsgPub;
-            spmbv2::request mMsgSub; 
+
+            //! Node handle variable
+            spmb::actuated mMsgPub;
+
+            //! Node handle variable
+            spmb::request mMsgSub; 
                         
+            //! Node handle variable
             util::control mSignals;
 
+            //! Node handle variable
             boolean mIsIdle;
+            //! Node handle variable
             long mTimestamp;
+            //! Node handle variable
             uint16_t mMinTimePeriod;
 
-            ros::Subscriber<spmbv2::request, ROSInterface<T>> mSubscriber;
+            //! Node handle variable
+            ros::Subscriber<spmb::request, ROSInterface<T>> mSubscriber;
+            
+            //! Node handle variable
             ros::Publisher mPublisher;
     };
 
     template<typename T>
-    void ROSInterface<T>::cb_request_(const spmbv2::request& msg){
+    void ROSInterface<T>::cb_request_(const spmb::request& msg){
         mSignals.steering = util::pwm_to_period(msg.steering);
         mSignals.velocity = util::pwm_to_period(msg.velocity);
         mSignals.transmission = util::pwm_to_period(msg.transmission);
@@ -51,7 +77,48 @@ namespace SPMB {
     template<typename T>
     void ROSInterface<T>::debug(const char * text){
         mNh.loginfo(text);
+    }    
+    
+    template<typename T>
+    void ROSInterface<T>::debug(std::string text){
+        mNh.loginfo(text.c_str());
     }
+    
+    template<typename T>
+    void ROSInterface<T>::debug(uint8_t number){
+        char buffer[10];
+        itoa(number, buffer, 10);
+        mNh.loginfo(buffer);
+    }    
+
+    template<typename T>
+    void ROSInterface<T>::debug(uint16_t number){
+        char buffer[10];
+        itoa(number, buffer, 10);
+        mNh.loginfo(buffer);
+    }    
+    
+    template<typename T>
+    void ROSInterface<T>::debug(long number){
+        char buffer[10];
+        itoa(number, buffer, 10);
+        mNh.loginfo(buffer);
+    }    
+    
+    template<typename T>
+    void ROSInterface<T>::debug(float number){
+        char buffer[20];
+        snprintf(buffer, sizeof buffer, "%f", number);
+        mNh.loginfo(buffer);
+    }
+    
+    template<typename T>
+    void ROSInterface<T>::debug(double number){
+        char buffer[20];
+        snprintf(buffer, sizeof buffer, "%f", number);
+        mNh.loginfo(buffer);
+    }
+
 
     template<typename T>
     void ROSInterface<T>::publish(util::control_filtered* data){
