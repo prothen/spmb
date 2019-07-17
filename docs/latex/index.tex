@@ -37,6 +37,10 @@ The Signal\&Power Management Board ({\bfseries \hyperlink{namespaceSPMB}{S\+P\+M
 \end{DoxyItemize}
 \end{DoxyItemize}
 
+
+
+
+
 \subsection*{Features}
 
 
@@ -52,22 +56,9 @@ The Signal\&Power Management Board ({\bfseries \hyperlink{namespaceSPMB}{S\+P\+M
 \item Doxygen based A\+PI as reference as basis for continuoous integration
 \end{DoxyItemize}
 
-\subsection*{Dependencies}
-
-{\bfseries Install Libraries into {\ttfamily $\sim$/\+Arduino/libraries}\+:}
-
-Go to {\ttfamily cd $\sim$/\+Arduino/libraries}
 
 
-\begin{DoxyItemize}
-\item {\ttfamily git clone \href{https://github.com/adafruit/Adafruit-PWM-Servo-Driver-Library.git}{\tt https\+://github.\+com/adafruit/\+Adafruit-\/\+P\+W\+M-\/\+Servo-\/\+Driver-\/\+Library.\+git}}
-\item {\ttfamily git clone \href{https://github.com/maniacbug/StandardCplusplus.git}{\tt https\+://github.\+com/maniacbug/\+Standard\+Cplusplus.\+git}}
-\item Download and install Arduino (v1.\+8.\+5) (x64 \href{https://www.arduino.cc/download_handler.php?f=/arduino-1.8.5-linux64.tar.xz}{\tt https\+://www.\+arduino.\+cc/download\+\_\+handler.\+php?f=/arduino-\/1.\+8.\+5-\/linux64.\+tar.\+xz})
-\item Build the repository to generate header files for messages with {\ttfamily catkin build} in any directory of your catkin workspace
-\item Source your workspace with {\ttfamily source $\sim$/your\+\_\+workspace/devel/setup.bash}
-\item Run the {\ttfamily make\+\_\+library.\+sh} script in the root of this repository
-\item If desired install the udev rule file under {\ttfamily resources/99-\/spmb.\+rules}, which will install the permanent device node {\ttfamily dev/spmb} to avoid the deviating node identifier tty\+A\+C\+Mx with x changing based on the amount of tty\+A\+CM devices or reconnections of the same device)
-\end{DoxyItemize}
+
 
 \subsection*{Execute the R\+OS Interface}
 
@@ -100,7 +91,30 @@ Go to {\ttfamily cd $\sim$/\+Arduino/libraries}
 \end{DoxyCode}
 
 
-\subsection*{Interface with R\+OS}
+({\itshape Note that initially there will be a single error output regarding a sync problem. After this the publishers should be initialised and no further error messages should be shown.})
+
+
+
+
+
+\subsection*{Dependencies}
+
+\subsubsection*{Install Arduino Libraries}
+
+Go to {\ttfamily cd $\sim$/\+Arduino/libraries}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily git clone \href{https://github.com/adafruit/Adafruit-PWM-Servo-Driver-Library.git}{\tt https\+://github.\+com/adafruit/\+Adafruit-\/\+P\+W\+M-\/\+Servo-\/\+Driver-\/\+Library.\+git}}
+\item {\ttfamily git clone \href{https://github.com/maniacbug/StandardCplusplus.git}{\tt https\+://github.\+com/maniacbug/\+Standard\+Cplusplus.\+git}}
+\item Download and install Arduino (v1.\+8.\+5) (x64 \href{https://www.arduino.cc/download_handler.php?f=/arduino-1.8.5-linux64.tar.xz}{\tt https\+://www.\+arduino.\+cc/download\+\_\+handler.\+php?f=/arduino-\/1.\+8.\+5-\/linux64.\+tar.\+xz})
+\item Build the repository to generate header files for messages with {\ttfamily catkin build} in any directory of your catkin workspace
+\item Source your workspace with {\ttfamily source $\sim$/your\+\_\+workspace/devel/setup.bash}
+\item Run the {\ttfamily make\+\_\+library.\+sh} script in the root of this repository
+\item If desired install the udev rule file under {\ttfamily resources/99-\/spmb.\+rules}, which will install the permanent device node {\ttfamily dev/spmb} to avoid the deviating node identifier tty\+A\+C\+Mx with x changing based on the amount of tty\+A\+CM devices or reconnections of the same device)
+\end{DoxyItemize}
+
+\subsubsection*{Interface with R\+OS}
 
 
 \begin{DoxyItemize}
@@ -108,7 +122,7 @@ Go to {\ttfamily cd $\sim$/\+Arduino/libraries}
 \item The {\ttfamily rosrun} command is conveniently embedded into the launch file under {\ttfamily launch/run.\+launch} (see {\itshape Execute the R\+OS Interface} section above)
 \end{DoxyItemize}
 
-\subsection*{Install udev-\/rules}
+\subsubsection*{Install udev-\/rules}
 
 
 \begin{DoxyItemize}
@@ -169,8 +183,14 @@ which should show something similar to
 
 {\itshape If {\ttfamily ls /dev} doesn\textquotesingle{}t show the entry} {\bfseries dev/spmb} {\itshape try rebooting your work station and if the entry still doesn\textquotesingle{}t show reiterate throught the instructions to make sure you followed them correctly.}
 
+
+
+
+
 \subsection*{Contribution}
 
 Pull requests from forked repositories and opening new issues are very welcome and much appreciated.
+
+Contributions are invited to adhere to the \href{https://google.github.io/styleguide/cppguide.html}{\tt C++ Google Style Guide}.
 
 {\bfseries Maintainer\+:} Philipp Rothenhäusler ({\itshape phirot a t kth.\+se $\vert$ philipp.\+rothenhaeusler a t gmail.\+com}) 

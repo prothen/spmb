@@ -115,6 +115,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </ul>
 </li>
 </ul>
+<hr/>
 <h2>Features</h2>
 <ul>
 <li>RC Forwarding</li>
@@ -127,8 +128,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>Scripts for installing ros libraries to Arduino library folder <code>~/Arduino/libraries/</code></li>
 <li>Doxygen based API as reference as basis for continuoous integration</li>
 </ul>
+<hr/>
+<h2>Execute the ROS Interface</h2>
+<ul>
+<li>Run <code>roslaunch spmb run.launch</code></li>
+</ul>
+<p>(<em>If any configuration parameters regarding baudrate have been adjusted then parse the corresponding parameter in the launch file e.g. <code>roslaunch spmb run.launch baud:=yourbaudrateinteger</code></em>)</p>
+<ul>
+<li>After approximately 3-4 seconds the terminal will output</li>
+</ul>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;setting /run_id to 4e4bd514-a7b2-11e9-a7b3-4485007bad36</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;process[rosout-1]: started with pid [25122]</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;started core service [/rosout]</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;process[serial_node-2]: started with pid [25128]</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;[INFO] [1563271988.137866]: ROS Serial Python Node</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;[INFO] [1563271988.149294]: Connecting to /dev/spmb at 57600 baud</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;[ERROR] [1563272005.372626]: Unable to sync with device; possible link problem or link software version mismatch such as hydro rosserial_python with groovy Arduino</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;[INFO] [1563272005.404425]: Note: publish buffer size is 100 bytes</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;[INFO] [1563272005.406264]: Setup publisher on actuated [spmb/actuated]</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;[INFO] [1563272005.418630]: Note: subscribe buffer size is 100 bytes</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;[INFO] [1563272005.419878]: Setup subscriber on request [spmb/request]</div></div><!-- fragment --><p>(<em>Note that initially there will be a single error output regarding a sync problem. After this the publishers should be initialised and no further error messages should be shown.</em>)</p>
+<hr/>
 <h2>Dependencies</h2>
-<p><b>Install Libraries into <code>~/Arduino/libraries</code>:</b></p>
+<h3>Install Arduino Libraries</h3>
 <p>Go to <code>cd ~/Arduino/libraries</code></p>
 <ul>
 <li><code>git clone <a href="https://github.com/adafruit/Adafruit-PWM-Servo-Driver-Library.git">https://github.com/adafruit/Adafruit-PWM-Servo-Driver-Library.git</a></code></li>
@@ -139,20 +151,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>Run the <code>make_library.sh</code> script in the root of this repository</li>
 <li>If desired install the udev rule file under <code>resources/99-spmb.rules</code>, which will install the permanent device node <code>dev/spmb</code> to avoid the deviating node identifier ttyACMx with x changing based on the amount of ttyACM devices or reconnections of the same device)</li>
 </ul>
-<h2>Execute the ROS Interface</h2>
-<ul>
-<li>Run <code>roslaunch spmb run.launch</code></li>
-</ul>
-<p>(<em>If any configuration parameters regarding baudrate have been adjusted then parse the corresponding parameter in the launch file e.g. <code>roslaunch spmb run.launch baud:=yourbaudrateinteger</code></em>)</p>
-<ul>
-<li>After approximately 3-4 seconds the terminal will output</li>
-</ul>
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;setting /run_id to 4e4bd514-a7b2-11e9-a7b3-4485007bad36</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;process[rosout-1]: started with pid [25122]</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;started core service [/rosout]</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;process[serial_node-2]: started with pid [25128]</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;[INFO] [1563271988.137866]: ROS Serial Python Node</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;[INFO] [1563271988.149294]: Connecting to /dev/spmb at 57600 baud</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;[ERROR] [1563272005.372626]: Unable to sync with device; possible link problem or link software version mismatch such as hydro rosserial_python with groovy Arduino</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;[INFO] [1563272005.404425]: Note: publish buffer size is 100 bytes</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;[INFO] [1563272005.406264]: Setup publisher on actuated [spmb/actuated]</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;[INFO] [1563272005.418630]: Note: subscribe buffer size is 100 bytes</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;[INFO] [1563272005.419878]: Setup subscriber on request [spmb/request]</div></div><!-- fragment --><h2>Interface with ROS</h2>
+<h3>Interface with ROS</h3>
 <ul>
 <li>After installing the udev rules (see below) the ROS Interface can be accessed with <code>rosrun rosserial_python serial_node.py _port:=/dev/spmb _baud:=57600</code></li>
 <li>The <code>rosrun</code> command is conveniently embedded into the launch file under <code>launch/run.launch</code> (see <em>Execute the ROS Interface</em> section above)</li>
 </ul>
-<h2>Install udev-rules</h2>
+<h3>Install udev-rules</h3>
 <ul>
 <li>You can find the rules under the folder <code>resources</code> with the name <code>99-spmb.rules</code></li>
 <li>Easiest way to identify the device node is to unplug all usb devices from your work station except the Arduino UNO. Then before connecting the Arduino you can list the devices with <code>ls /dev</code> and then after connecting the Arduino entering the command <code>ls /dev</code> should show a new device node entry. (Usually <code>/dev/ttyACMx</code> where x is some number relating to the amount of currently registered ttyACM devices)</li>
@@ -170,8 +174,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>Reload and trigger the rules using</li>
 </ul>
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;udevadm control --reload-rules &amp;&amp; udevadm trigger</div></div><!-- fragment --><p><em>If <code>ls /dev</code> doesn't show the entry</em> <b>dev/spmb</b> <em>try rebooting your work station and if the entry still doesn't show reiterate throught the instructions to make sure you followed them correctly.</em></p>
+<hr/>
 <h2>Contribution</h2>
 <p>Pull requests from forked repositories and opening new issues are very welcome and much appreciated.</p>
+<p>Contributions are invited to adhere to the <a href="https://google.github.io/styleguide/cppguide.html">C++ Google Style Guide</a>.</p>
 <p><b>Maintainer:</b> Philipp Rothenhäusler (<em>phirot a t kth.se | philipp.rothenhaeusler a t gmail.com</em>) </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
