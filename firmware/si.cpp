@@ -2,54 +2,66 @@
 
 namespace SPMB{
     
+    StatusIndicator::StatusOutput::StatusOutput(SIStatus status, uint8_t pin, uint16_t period){
+        Status = status;
+        Pin = pin;
+        Period = period;
+    }
+
     StatusIndicator::StatusIndicator(){
-        mStatus = OFF;
-        mTimestamp = millis();
+        mStatus = SIStatus::OFF;
+        mValue = 0;
+        mTimestamp = millis();   
+    }
 
+    void StatusIndicator::configure(){
+        
         // ADD OFF Status CONFIGURATION
-        StatusOutput tmp;
-        tmp.status = OFF;
-        tmp.pin = 13;     
-        tmp.period = 5000;
-        mOutput.push_back(tmp);
+        StatusOutput tmp0(SIStatus::OFF, 13, 2000);
+        mOutput.push_back(tmp0);
 
-        // ADD RC_ON status CONFIGURATION
-        tmp.status = RC_ON;
-        tmp.pin = 13; 
-        tmp.period = 750;    
-        mOutput.push_back(tmp);
+        // ADD RC_ON Status CONFIGURATION
+        StatusOutput tmp1(SIStatus::RC_ON, 13, 500);  
+        mOutput.push_back(tmp1);
 
-        // ADD SW_ON status CONFIGURATION
-        tmp.status = SW_ON;
-        tmp.pin = 13;   
-        tmp.period = 400;  
-        mOutput.push_back(tmp);
+        // ADD SW_ON Status CONFIGURATION
+        StatusOutput tmp2(SIStatus::SW_ON, 13, 200);
+        mOutput.push_back(tmp2);
 
-        // ADD EMERGENCY status CONFIGURATION
-        tmp.status = EMERGENCY;
-        tmp.pin = 13;   
-        tmp.period = 100;  
-        mOutput.push_back(tmp);
-
+        // ADD EMERGENCY Status CONFIGURATION
+        StatusOutput tmp3(SIStatus::EMERGENCY, 13, 100);
+        mOutput.push_back(tmp3);
+        
         for (std::vector<StatusOutput>::iterator it = mOutput.begin(); it != mOutput.end(); it++){
-            pinMode(it->pin, OUTPUT);
-            digitalWrite(it->pin, LOW);
-        }      
+            pinMode(it->Pin, OUTPUT);
+        }  
+
+        mActiveOutput = &mOutput.back();
+        
     }
 
     void StatusIndicator::switch_status(SIStatus new_status){
-        for(std::vector<StatusOutput>::iterator it = mOutput.begin(); it!=mOutput.end(); it++){
-            if (it->status == new_status){
-                mActiveOutput = it;
-                break;
-            } else {;}
-        }
+        if (new_status != mStatus){  
+            for(std::vector<StatusOutput>::iterator it = mOutput.begin(); it != mOutput.end(); it++){
+                if (it->Status == new_status){
+                    mStatus = new_status;
+                    mActiveOutput = &*it;
+                    break; // \Todo This condition only holds if exactly one output is for each status assigned (unique indicators).
+                } else {;}
+            }
+        } else{;}
     }
 
     void StatusIndicator::blink(){
-        if (util::IS_TIME_IN_MS(mTimestamp, mActiveOutput->period)){
-            uint8_t tmp = digitalRead(mActiveOutput->pin);
-            digitalWrite(mActiveOutput->pin, !tmp);
-        } else {;}
+        if (util::IS_TIME_IN_MS(mTimestamp, (mActiveOutput->Period))){
+            uint8_t pin = mActiveOutput->Pin;
+            if (mValue) { 
+                mValue = 0;
+                digitalWrite(pin, 1);
+            } else{
+                mValue = 1;
+                digitalWrite(pin, 0);
+            }
+        } else {;}            
     }
 } // namespace SPMB
