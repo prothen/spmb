@@ -2,15 +2,15 @@
 <package format="2">
   <name>spmb</name>
   <version>1.0.0</version>
-  <description>The spmb package</description>
+  <description>The spmb package, providing a RC supervised interface solution for Atmega328p based devices to ROS. Tailored for control algorithm verification. </description>
 
   <maintainer email="phirot@kth.se">Philipp Rothenhäusler</maintainer>
 
-  <license>TODO</license>
+  <license>BSD</license>
 
-  <!-- <url type="website">http://wiki.ros.org/spmbv2</url> -->
+  <url type="website">https://prothen.github.io/spmb/index.html</url>
 
-  <!-- <author email="jane.doe@example.com">Jane Doe</author> -->
+  <author email="jane.doe@example.com">Philipp Rothenhäusler</author>
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>std_msgs</build_depend>
