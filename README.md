@@ -127,7 +127,7 @@ sudo cp resources/99-spmb.rules /etc/udev/rules.d/
  udevadm control --reload-rules && udevadm trigger
  ```
  
-*If `ls /dev` doesn't show the entry* **dev/spmb** *try rebooting your work station and if the entry still doesn't show reiterate throught the instructions to make sure you followed them correctly.*
+*If `ls /dev` doesn't show the entry* **dev/spmb** *you can try rebooting your work station.*
 
 ***
 
